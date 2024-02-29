@@ -30,9 +30,9 @@ module.exports = {
     hot: true
   },
   plugins: [
-    //new HtmlWebpackPlugin({ this serves a template but we were serving it the webpack made
-      //template: path.join(__dirname, "/client/dist/index.html")
-    //}),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "index.html")
+    }),
     new webpack.ProvidePlugin({
       process: 'process/browser',
     })
