@@ -2,15 +2,13 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-require("dotenv").config();
 
 
 module.exports = {
-  mode: "none",
+  mode: "development",
   entry: path.join(__dirname, "/client/src/index.jsx"),
   output : {
-    path: path.resolve(__dirname, "client", "dist"),
-    filename: "output.js"
+    path: path.resolve(__dirname, "client", "dist")
   },
   module: {
     rules: [
@@ -20,7 +18,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
+            presets: ['@babel/preset-react']
           }
         }
       },
