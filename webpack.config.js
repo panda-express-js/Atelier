@@ -24,10 +24,15 @@ module.exports = {
       },
     ]
   },
+  devServer: {
+    static: {directory: path.join(__dirname, 'client/dist')},
+    open: true,
+    hot: true
+  },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, "/client", "/dist", "/index.html"),
-    }),
+    //new HtmlWebpackPlugin({ this serves a template but we were serving it the webpack made
+      //template: path.join(__dirname, "/client/dist/index.html")
+    //}),
     new webpack.ProvidePlugin({
       process: 'process/browser',
     })
