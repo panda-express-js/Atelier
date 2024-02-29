@@ -1,3 +1,3 @@
-var secret = 'the krabby patty secret recipe';
+var secret = '42';
 
 export default secret;
