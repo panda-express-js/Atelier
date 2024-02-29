@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
+    "client-dev": "npx webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
