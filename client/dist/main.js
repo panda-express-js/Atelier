@@ -16,7 +16,7 @@
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _product_details_index_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product_details/index.jsx */ \"./client/src/components/product_details/index.jsx\");\n/* harmony import */ var _related_products_index_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./related_products/index.jsx */ \"./client/src/components/related_products/index.jsx\");\n/* harmony import */ var _ratings_Index_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ratings/Index.jsx */ \"./client/src/components/ratings/Index.jsx\");\n/* harmony import */ var _questionsAndAnswers_index_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./questionsAndAnswers/index.jsx */ \"./client/src/components/questionsAndAnswers/index.jsx\");\n\n\n\n\n\nconst App = () => {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    id: \"main-component\"\n  }, \"App goes here\");\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://fec/./client/src/components/App.jsx?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _product_details_index_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./product_details/index.jsx */ \"./client/src/components/product_details/index.jsx\");\n/* harmony import */ var _related_products_index_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./related_products/index.jsx */ \"./client/src/components/related_products/index.jsx\");\n/* harmony import */ var _ratings_Index_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ratings/Index.jsx */ \"./client/src/components/ratings/Index.jsx\");\n/* harmony import */ var _questionsAndAnswers_index_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./questionsAndAnswers/index.jsx */ \"./client/src/components/questionsAndAnswers/index.jsx\");\n/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../config.js */ \"./client/src/config.js\");\n\n\n\n\n\n\nconst App = () => {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n    id: \"main-component\"\n  }, \"App goes here\", _config_js__WEBPACK_IMPORTED_MODULE_5__[\"default\"]);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);\n\n//# sourceURL=webpack://fec/./client/src/components/App.jsx?");
 
 /***/ }),
 
@@ -57,6 +57,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n\nconst RelatedProducts = () => {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", null);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RelatedProducts);\n\n//# sourceURL=webpack://fec/./client/src/components/related_products/index.jsx?");
+
+/***/ }),
+
+/***/ "./client/src/config.js":
+/*!******************************!*\
+  !*** ./client/src/config.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar secret = 'the krabby patty secret recipe';\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (secret);\n\n//# sourceURL=webpack://fec/./client/src/config.js?");
 
 /***/ }),
 

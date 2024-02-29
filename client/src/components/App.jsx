@@ -4,6 +4,7 @@ import RelatedProducts from './related_products/index.jsx';
 import RatingsReviews from './ratings/Index.jsx';
 import QandA from './questionsAndAnswers/index.jsx';
 
+import token from '../config.js';
 
 const App = () => {
 
@@ -15,6 +16,7 @@ const App = () => {
       <QandA />
       <RatingsReviews /> */}
       App goes here
+      {token}
     </div>
   )
 }
