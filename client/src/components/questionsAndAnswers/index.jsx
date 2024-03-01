@@ -8,3 +8,5 @@ const QandA = () => {
     </div>
   )
 }
+
+export default QandA;
