@@ -15,24 +15,26 @@ const App = () => {
   useEffect(()=>{
     axios.get(`${server}/products`, {headers: {'Authorization': `${GITHUB_APIKEY}`}})
     .then((response) => {
-      console.log(response.data);
-      setProduct(response.data);
+      console.log(response.data[0]);
+      setProduct(response.data[0]);
     })
     .catch((err) => console.log(err))
   },[]);
+  // PROPS TO PASS DOWN
+  // -product === current product
 
-
-
+  //for future if need to change current product make:
+  //get request function that passes down to everyones to be able to change current product?
 
 
   return (
     <div id='main-component'>
       <h1>Atelier</h1>
-      <ProductDetail/>
-      <RelatedProducts />
-      <QandA />
+      <ProductDetail product={product}/>
+      <RelatedProducts product={product}/>
+      <QandA product={product}/>
 
-      {/* <RatingsReviews /> */}
+      {/* <RatingsReviews product={product}/> */}
     </div>
   )
 }
