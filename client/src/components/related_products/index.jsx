@@ -2,7 +2,9 @@ import React from 'react'
 
 const RelatedProducts = () => {
   return (
-    <div></div>
+    <div>
+      This is my related products component!
+    </div>
   )
 }
 
