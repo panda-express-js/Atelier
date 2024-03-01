@@ -16,6 +16,7 @@ const App = () => {
       <QandA />
       <RatingsReviews /> */}
       App goes here
+      987654321
     </div>
   )
 }
