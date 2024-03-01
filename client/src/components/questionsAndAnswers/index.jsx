@@ -4,7 +4,7 @@ const QandA = () => {
 
   return (
     <div>
-
+      <h4>questions & Answers</h4>
     </div>
   )
 }
