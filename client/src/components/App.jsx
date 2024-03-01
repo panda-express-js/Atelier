@@ -12,8 +12,10 @@ const App = () => {
   const [product, setProduct] = useState('');
   const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
 
+  const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
+
   useEffect(()=>{
-    axios.get(`${server}/products`, {headers: {'Authorization': `${GITHUB_APIKEY}`}})
+    axios.get(`${server}/products`, options)
     .then((response) => {
       console.log(response.data[0]);
       setProduct(response.data[0]);
@@ -30,11 +32,11 @@ const App = () => {
   return (
     <div id='main-component'>
       <h1>Atelier</h1>
-      <ProductDetail product={product}/>
-      <RelatedProducts product={product}/>
-      <QandA product={product}/>
+      <ProductDetail product={product} server={server} options={options}/>
+      <RelatedProducts product={product} server={server} options={options}/>
+      <QandA product={product} server={server} options={options}/>
 
-      {/* <RatingsReviews product={product}/> */}
+      {/* <RatingsReviews product={product} server={server} options={options}/> */}
     </div>
   )
 }
