@@ -2,11 +2,10 @@ import React , { useState, useEffect } from 'react'
 import axios from 'axios'
 import RelatedCard from './RelatedCard.jsx'
 
-const RelatedProducts = ({product, options, server}) => {
-  const [relatedIds, setRelatedIds] = useState([])
-
+const RelatedProducts = ({product, server, options, productIds}) => {
+  /*
   useEffect(() => {
-    if (product) {
+    if (product.id) {
       axios.get(`${server}/products/${product.id}/related`, options)
       .then((response) => {
         setRelatedIds(response.data)
@@ -16,12 +15,15 @@ const RelatedProducts = ({product, options, server}) => {
       })
     }
   }, [product])
+*/
 
   return (
     <div id='relatedProductsCards'>
-      {relatedIds.map(ID => {
+      ---related products list ------
+      {productIds.map(ID => {
         return <RelatedCard key={ID} id={ID} server={server} options={options} />
       })}
+      ---related products list ------
     </div>
   )
 }

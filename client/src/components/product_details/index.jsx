@@ -5,17 +5,21 @@ import Details from './details.jsx';
 import Summary from './summary.jsx';
 
 const ProductDetail = ({ product, server, options }) => {
-  let endpoint = `${server}/products/${product.id}/styles`;
+
 
   const [allStyles, setAllStyles] = useState([]);
   const [style, setStyle] = useState({});
 
   useEffect(() => {
-    if (product) {
+    if (product.id) {
+      let endpoint = `${server}/products/${product.id}/styles`;
       axios.get(endpoint, options)
       .then((response) => {
         setAllStyles(response.data.results);
         setStyle(response.data.results[0]);
+      })
+      .catch((err) => {
+        console.log(err)
       })
     }
   }, [product])
