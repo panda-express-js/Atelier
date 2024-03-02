@@ -15,10 +15,10 @@ const App = () => {
   const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
 
   useEffect(()=>{
-    axios.get(`${server}/products`, options)
+    axios.get(`${server}/products/40344`, options)
     .then((response) => {
-      console.log(response.data[0]);
-      setProduct(response.data[0]);
+      console.log(response.data);
+      setProduct(response.data);
     })
     .catch((err) => console.log(err))
   },[]);
@@ -27,7 +27,6 @@ const App = () => {
 
   //for future if need to change current product make:
   //get request function that passes down to everyones to be able to change current product?
-
 
   return (
     <div id='main-component'>
