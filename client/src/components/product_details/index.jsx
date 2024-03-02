@@ -5,7 +5,7 @@ import Details from './details.jsx';
 import Summary from './summary.jsx';
 
 const ProductDetail = ({ product, server, options }) => {
-  let endpoint = (`${server}/products/${product.id}/styles`);
+  let endpoint = `${server}/products/${product.id}/styles`;
 
   const [allStyles, setAllStyles] = useState([]);
   const [style, setStyle] = useState({});
@@ -14,7 +14,6 @@ const ProductDetail = ({ product, server, options }) => {
     if (product) {
       axios.get(endpoint, options)
       .then((response) => {
-        console.log('response:', response.data.results);
         setAllStyles(response.data.results);
         setStyle(response.data.results[0]);
       })
