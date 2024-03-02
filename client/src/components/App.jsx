@@ -27,17 +27,23 @@ const App = () => {
       console.log(response.data);
       setProduct(response.data);
     })
-    .catch((err) => console.log(err))
+    .catch((err) => {console.log(err)})
     .then(() => {
       axios.get(`${server}/products/${id}/styles`, options)
       .then((response) => {
         setAllStyles(response.data);
         setStyle(response.data[0]);
       })
+      .catch((err) => {console.log(err)})
+      .then(() => {
+        axios.get(`${server}/products/${id}/related`, options)
+        .then((result) => {
+          setProductIds(result.data)
+        })
+        .catch((err) => {console.log(err)})
+      })
     })
-
-
-  },[]);
+  }, []);
   // PROPS TO PASS DOWN
   // -product === current product
 
@@ -47,8 +53,8 @@ const App = () => {
   return (
     <div id='main-component'>
       <h1>Atelier</h1>
-      <ProductDetail server={server} options={options} product={product} allStyles={allStyles} style={style} reviews={reviews}/>
-      <RelatedProducts server={server} options={options} product={product} productIds={productIds} style={style} reviews={reviews}/>
+      <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews}/>
+      <RelatedProducts product={product} server={server} options={options} productIds={productIds} style={style} reviews={reviews}/>
       <QandA server={server} options={options} product={product} />
       {/* <RatingsReviews server={server} options={options} product={product} reviews={reviews}/> */}
     </div>
