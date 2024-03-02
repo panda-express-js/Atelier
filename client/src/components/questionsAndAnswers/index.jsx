@@ -8,12 +8,14 @@ const QandA = ({product, server, options}) => {
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
+    if (product) {
     axios.get(`${server}/qa/questions?product_id=${product.id}`, options)
     .then((response) => {
       console.log(response.data);
       setQuestions(response.data);
     })
     .catch((err) => console.log(err))
+  }
   },[product])
 
 
