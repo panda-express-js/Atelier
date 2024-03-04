@@ -8,8 +8,14 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 export default function StarDisplay (props) {
   // props.rating should be the number
 
+  // number goes in => stars come out
+
   // ** replace number with props.rating after AverageStarRating is implemented
   let number = 3.25 // for testing
+
+  // make the rounding in here too - try using a helper function
+
+  // percentage rating out of 5 //// 2.5 is 50% etc.
   let ratingArray = [ 0, 0, 0, 0, 0 ]
 
   // can use Math.floor to find out how many stars to render without the percentages
@@ -27,6 +33,7 @@ export default function StarDisplay (props) {
       // add logic to make the first 0 in the array be replaced with the remainder
       // as a whole integer (multiplied by 100)
       ratingArray[ratingArray.indexOf(0)] = (remainder * 100)
+      console.log(ratingArray);
     }
 
   }

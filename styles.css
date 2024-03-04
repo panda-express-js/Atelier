@@ -1,10 +1,9 @@
 
 /* ---Stars--- */
-
 .star-0 {
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: 1rem;
   color: #ddd;
 }
 
@@ -22,7 +21,7 @@
 .star-25 {
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: 1rem;
   color: #ddd;
 }
 
@@ -40,7 +39,7 @@
 .star-50 {
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: 1rem;
   color: #ddd;
 }
 
@@ -58,7 +57,7 @@
 .star-75 {
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: 1rem;
   color: #ddd;
 }
 
@@ -76,7 +75,7 @@
 .star-100 {
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: 1rem;
   color: #ddd;
 }
 
@@ -84,6 +83,8 @@
   font: var(--fa-font-solid);
   content: "\f005";
   position: absolute;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
   left: 0;
   top: 0;
   width: 100%;
