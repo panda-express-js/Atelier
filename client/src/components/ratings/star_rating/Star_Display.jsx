@@ -7,10 +7,30 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function StarDisplay (props) {
   // props.rating should be the number
-  // the rating should be averaged out in the average rating thing
-  // otherwise we should only allow for stars to be broken down by the quarter
+
+  // ** replace number with props.rating after AverageStarRating is implemented
+  let number = 3.25 // for testing
+  let ratingArray = [ 0, 0, 0, 0, 0 ]
 
   // can use Math.floor to find out how many stars to render without the percentages
+  // multiply the remainder (if any) by 100 to find out what percentage it should be
+
+  let flatNum = Math.floor(number)
+
+  for (let i = 0; i < flatNum; i++) {
+    ratingArray[i] = 100;
+  }
+
+  if (ratingArray.includes(0)) {
+    if ((number - flatNum) > 0) {
+      var remainder = number - flatNum;
+      // add logic to make the first 0 in the array be replaced with the remainder
+      // as a whole integer (multiplied by 100)
+      ratingArray[ratingArray.find(0)] = (remainder * 100)
+    }
+
+  }
+
 
   return (<FontAwesomeIcon icon={faStar} />);
 };
