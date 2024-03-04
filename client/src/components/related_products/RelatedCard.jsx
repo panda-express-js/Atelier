@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 
-const RelatedCard = ({id, server, options, obj}) => {
+const RelatedCard = ({id, obj, changeId}) => {
 
   return (
-    <div className='card' style={{ display: 'flex', flexDirection: 'column' }}>
+    <div className='card' onClick={()=>{changeId(id)}}style={{ display: 'flex', flexDirection: 'column' }}>
       {obj.url ? <img alt='product image' width='50px'src={obj.url} />: <p>No Product Image</p>}
       <span>{obj.category}</span>
       <span>{obj.name}</span>

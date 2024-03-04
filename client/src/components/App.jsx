@@ -43,18 +43,22 @@ const App = () => {
         .catch((err) => {console.log(err)})
       })
     })
-  }, []);
+  }, [id]);
   // PROPS TO PASS DOWN
   // -product === current product
 
-  //for future if need to change current product make:
-  //get request function that passes down to everyones to be able to change current product?
+  //function changes id State, which is watched by useEffect, and rerenders for the new product
+  const changeId = (id) => {
+    console.log('click', id)
+    setId(id);
+  }
+
 
   return (
     <div id='main-component'>
       <h1>Atelier</h1>
       <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews}/>
-      <RelatedProducts product={product} server={server} options={options} productIds={productIds} style={style} reviews={reviews}/>
+      <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId}/>
       <QandA server={server} options={options} product={product} />
       {/* <RatingsReviews server={server} options={options} product={product} reviews={reviews}/> */}
     </div>
