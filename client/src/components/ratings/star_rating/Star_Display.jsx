@@ -31,8 +31,6 @@ export default function StarDisplay (props) {
 
   }
 
-  console.log('this is the rating array ', ratingArray);
-
   // map over the rating array and create a star for each number in the array
   // with a different className based on the number in the array
 
