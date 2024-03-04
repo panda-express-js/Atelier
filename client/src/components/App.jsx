@@ -31,8 +31,8 @@ const App = () => {
     .then(() => {
       axios.get(`${server}/products/${id}/styles`, options)
       .then((response) => {
-        setAllStyles(response.data);
-        setStyle(response.data[0]);
+        setAllStyles(response.data.results);
+        setStyle(response.data.results[0]);
       })
       .catch((err) => {console.log(err)})
       .then(() => {
