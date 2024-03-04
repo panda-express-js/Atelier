@@ -37,7 +37,7 @@ export default function StarDisplay (props) {
   // with a different className based on the number in the array
 
   return (
-  <span>
+    <>
     {
     function() {
       let ratingDisplay = ratingArray.map((num) => {
@@ -46,6 +46,6 @@ export default function StarDisplay (props) {
       return ratingDisplay;
     }()
   }
-  </span>
+  </>
   );
 };

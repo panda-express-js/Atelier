@@ -4,11 +4,11 @@ import StarDisplay from './star_rating/Star_Display.jsx'
 export default function RatingsReviews () {
 
   return (
-  <div>
+  <div id="Ratings & Reviews">
     <h2>Ratings & Reviews</h2>
     <>Here's a review</>
     <br></br>
-    <>Here's a star</>
+    <>Star rating test</>
     <br></br>
     <StarDisplay />
   </div>
