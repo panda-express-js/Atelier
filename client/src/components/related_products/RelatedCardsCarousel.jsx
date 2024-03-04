@@ -5,8 +5,6 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options}) => {
 
   const [currentPosition, setCurrentPosition] = useState(0);
   const [productList, setProductList] = useState([])
-//stop
-
 
   useEffect(() => {
     Promise.all(uniqueProductIds.map((id) => {
