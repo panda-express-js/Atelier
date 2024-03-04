@@ -3,7 +3,7 @@ import Answer from './Answer.jsx';
 
 function AnswerList({ answers }) {
 
-  if (!answers ) {
+  if (!answers || answers.length === 0 ) {
     return <div>No answers yet</div>;
   }
 
