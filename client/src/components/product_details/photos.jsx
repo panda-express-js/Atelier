@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PhotoList from './photoList.jsx';
 
 const Photos = ({ style }) => {
-  console.log(style);
 
+  let currentPhoto;
+  const [photoIndex, setPhotoIndex] = useState(0);
 
+  if (style.photos) {
+    currentPhoto = style.photos[photoIndex].url;
+  }
 
   return (
     <div>
-
-      Big Photo Here
+      <img width='200px' src={currentPhoto} />
+      <PhotoList list={style.photos}/>
     </div>
   )
 }
