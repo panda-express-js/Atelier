@@ -8,8 +8,8 @@
   color: #ddd;
 }
 
-.star-0:after {
-  font-family: FontAwesome;
+.star-0::after {
+  font: var(--fa-font-solid);
   content: "\f005";
   position: absolute;
   left: 0;
@@ -26,8 +26,8 @@
   color: #ddd;
 }
 
-.star-25:after {
-  font-family: FontAwesome;
+.star-25::after {
+  font: var(--fa-font-solid);
   content: "\f005";
   position: absolute;
   left: 0;
@@ -44,8 +44,8 @@
   color: #ddd;
 }
 
-.star-50:after {
-  font-family: FontAwesome;
+.star-50::after {
+  font: var(--fa-font-solid);
   content: "\f005";
   position: absolute;
   left: 0;
@@ -62,8 +62,8 @@
   color: #ddd;
 }
 
-.star-75:after {
-  font-family: FontAwesome;
+.star-75::after {
+  font: var(--fa-font-solid);
   content: "\f005";
   position: absolute;
   left: 0;
@@ -80,8 +80,8 @@
   color: #ddd;
 }
 
-.star-100:after {
-  font-family: FontAwesome;
+.star-100::after {
+  font: var(--fa-font-solid);
   content: "\f005";
   position: absolute;
   left: 0;
