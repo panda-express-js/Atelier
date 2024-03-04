@@ -1,17 +1,17 @@
-
 import React  from 'react';
+import Question from './Question.jsx';
 
 
-function QuestionList({ questions}) {
+function QuestionList({answers, questions}) {
 
-  if (!Array.isArray(questions.results)) {
+  if (!questions) {
     return <div>No questions yet</div>;
   }
 
   return (
     <div>
-      {questions.results.map((question, index) => (
-        <div key={index}>{question.question_body}</div>
+       {questions.map((question, index) => (
+        <Question key={question.question_id} question={question} answers={answers[question.question_id]} />
       ))}
     </div>
   );
