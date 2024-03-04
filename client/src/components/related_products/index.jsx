@@ -3,7 +3,7 @@ import axios from 'axios'
 import RelatedCard from './RelatedCard.jsx'
 import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
 
-const RelatedProducts = ({product, server, options, productIds, style}) => {
+const RelatedProducts = ({product, server, options, productIds, changeId}) => {
   //40382 has good range
   //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
@@ -16,7 +16,7 @@ const RelatedProducts = ({product, server, options, productIds, style}) => {
 
   return (
     <div id='relatedProductsCards'>
-      <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options}/>
+      <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId}/>
     </div>
 
   )

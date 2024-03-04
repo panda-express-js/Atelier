@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import RelatedCard from './RelatedCard.jsx'
 import axios from 'axios'
-const RelatedCardsCarousel = ({uniqueProductIds, server, options}) => {
+const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId}) => {
 
   const [currentPosition, setCurrentPosition] = useState(0);
   const [productList, setProductList] = useState([])
@@ -41,7 +41,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options}) => {
     <div style={{ display: 'flex' }}>
       {productList.map((obj, index) => {
         if (index >= currentPosition && index <= currentPosition + 3) {
-          return <RelatedCard key={obj.id} id={obj.id} obj={obj}/>
+          return <RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeId}/>
         } else {
           return null;
         }
