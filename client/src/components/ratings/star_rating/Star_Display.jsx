@@ -26,11 +26,26 @@ export default function StarDisplay (props) {
       var remainder = number - flatNum;
       // add logic to make the first 0 in the array be replaced with the remainder
       // as a whole integer (multiplied by 100)
-      ratingArray[ratingArray.find(0)] = (remainder * 100)
+      ratingArray[ratingArray.indexOf(0)] = (remainder * 100)
     }
 
   }
 
+  console.log('this is the rating array ', ratingArray);
 
-  return (<FontAwesomeIcon icon={faStar} />);
+  // map over the rating array and create a star for each number in the array
+  // with a different className based on the number in the array
+
+  return (
+  <span>
+    {
+    function() {
+      let ratingDisplay = ratingArray.map((num) => {
+          return <FontAwesomeIcon icon={faStar} className={`star-${num}`} />
+      })
+      return ratingDisplay;
+    }()
+  }
+  </span>
+  );
 };
