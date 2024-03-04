@@ -5,36 +5,35 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options}) => {
 
   const [currentPosition, setCurrentPosition] = useState(0);
   const [productList, setProductList] = useState([])
+//stop
+
 
   useEffect(() => {
-    uniqueProductIds.forEach((id) => {
-      var obj = {}
-      axios.get(`${server}/products/${id}`, options)
-      .then((result) => {
-        obj = result.data;
+    Promise.all(uniqueProductIds.map((id) => {
+      return axios.get(`${server}/products/${id}`, options)
+      .then((productResponse) => {
+        return axios.get(`${server}/products/${id}/styles`, options)
+        .then((stylesResponse) => {
+          return {
+            id: id,
+            name: productResponse.data.name,
+            category: productResponse.data.category,
+            default_price: productResponse.data.default_price,
+            url: stylesResponse.data.results[0].photos[0].url,
+            sale_price: stylesResponse.data.results[0].sale_price
+        }})
       })
-      .catch((err) => {
-        console.log(err);
-      })
-      .then(() => {
-        axios.get(`${server}/products/${id}/styles`, options)
-        .then((result) => {
-          obj.url = result.data.results[0].photos[0].url;
-          obj.sale_price = result.data.results[0].sale_price;
-          setProductList(prevList => [...prevList, obj]);
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+    }))
+    .then((arrayOfDetails) => {
+      setProductList(arrayOfDetails);
     })
-  })
-  }, [uniqueProductIds])
+  }, [uniqueProductIds]);
 
-  const rightArrow = (index) => {
+  const rightArrow = () => {
     setCurrentPosition(currentPosition + 1);
   }
 
-  const leftArrow = (index) => {
+  const leftArrow = () => {
     setCurrentPosition(currentPosition - 1);
   }
 
@@ -54,6 +53,5 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options}) => {
     </div>
   )
 }
-//    {/*<button onClick={() => {leftArrow()}}></button>*/}
-//{/*<button onClick={() => {rightArrow()}}></button>*/}
+
 export default RelatedCardsCarousel;

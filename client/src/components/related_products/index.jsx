@@ -4,7 +4,8 @@ import RelatedCard from './RelatedCard.jsx'
 import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
 
 const RelatedProducts = ({product, server, options, productIds, style}) => {
-
+  //40382 has good range
+  //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
 
   useEffect(() => {
