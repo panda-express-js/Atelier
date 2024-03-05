@@ -60,7 +60,7 @@ const App = () => {
       <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews}/>
       <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} />
       <QandA server={server} options={options} product={product} />
-      {/* <RatingsReviews server={server} options={options} product={product} reviews={reviews}/> */}
+      <RatingsReviews server={server} options={options} product={product} reviews={reviews}/>
     </div>
   )
 }

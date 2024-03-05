@@ -1,0 +1,32 @@
+/* ---Stars--- */
+
+.star-box {
+  position:relative;
+  display: inline-block;
+}
+.star-box-empty {
+  display: flex;
+  position: relative;
+  z-index: 50;
+}
+
+.star-box-full {
+  display:flex;
+  position: absolute;
+  z-index: 100;
+  height: 100%;
+  overflow: hidden;
+}
+
+.star-empty {
+  display: inline-block;
+  font-size: 1rem;
+  color: #ddd;
+}
+
+.star-full {
+  display: inline-block;
+  position: flex;
+  font-size: 1rem;
+  color: #f80;
+}
