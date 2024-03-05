@@ -4,7 +4,7 @@ import Question from './Question.jsx';
 
 function QuestionList({answers, questions}) {
 
-  if (!questions) {
+  if (questions.length === 0) {
     return <div>No questions yet</div>;
   }
 
