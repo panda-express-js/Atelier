@@ -17,7 +17,6 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
     setUniqueProductIds(arr);
   }, [productIds])
 
-  //react-modal for the pop up comparison window. dependency
   return (
     <div id='carousels'>
       <h6>RELATED PRODUCTS</h6>
