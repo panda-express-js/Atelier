@@ -17,7 +17,7 @@ export default function ReviewList ({product , server, options, reviews, setRevi
   },[])}
 
 
-  console.log(reviews, " these are the reviews passed down from generation to generation");
+  if(reviews.results) {console.log(reviews, " these are the reviews passed down from generation to generation")};
 
   return <div id="review-list">
     This is a list of reviews, I promise
