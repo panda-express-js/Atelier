@@ -9,9 +9,6 @@ export default function RatingsReviews ({ server, options, product, reviews, set
     <h2>Ratings & Reviews</h2>
     <ReviewList reviews={reviews} product={product} server={server} options={options} setReviews={setReviews}/>
     <br></br>
-    <>Star rating test</>
-    <br></br>
-    <StarDisplay rating={4.5}/>
   </div>
 )
 }
