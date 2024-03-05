@@ -18,7 +18,6 @@ const RelatedProducts = ({product, server, options, productIds, changeId}) => {
     <div id='relatedProductsCards'>
       <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId}/>
     </div>
-
   )
 }
 
