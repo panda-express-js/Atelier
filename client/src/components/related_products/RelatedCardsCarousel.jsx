@@ -24,6 +24,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId}) => 
     }))
     .then((arrayOfDetails) => {
       setProductList(arrayOfDetails);
+      setCurrentPosition(0)
     })
   }, [uniqueProductIds]);
 
