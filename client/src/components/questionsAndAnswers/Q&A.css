@@ -1,3 +1,4 @@
+/* Answer.css */
 .answersExpanded {
   max-height: 50vh; /* Half of the viewport height */
   overflow-y: auto; /* Make it scrollable */
@@ -6,4 +7,41 @@
 .toggleAnswers {
   display: block;
   margin-top: 10px;
+}
+
+/* Search.css */
+.searchInput {
+  width: 50%;
+  padding: 8px 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Question.css */
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.question-row {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.question-text {
+  font-weight: bold;
+}
+
+.question-actions {
+  white-space: nowrap;
+  margin-left: auto;
 }
