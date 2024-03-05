@@ -1,7 +1,7 @@
 import React , { useState, useEffect } from 'react'
 import axios from 'axios'
-import RelatedCard from './RelatedCard.jsx'
 import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
+import OutfitCardsCarousel from './OutfitCardsCarousel.jsx'
 
 const RelatedProducts = ({product, server, options, productIds, changeId}) => {
   //40382 has good range
@@ -13,10 +13,15 @@ const RelatedProducts = ({product, server, options, productIds, changeId}) => {
     setUniqueProductIds(Array.from(idSet));
   }, [productIds])
 
-
+  //react-modal for the pop up comparison window. dependency
   return (
-    <div id='relatedProductsCards'>
-      <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId}/>
+    <div id='carousels'>
+      <div id='relatedProductsCarousel'>
+        <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId}/>
+      </div>
+      <div id='outfirProductCarousel'>
+        <OutfitCardsCarousel />
+      </div>
     </div>
   )
 }
