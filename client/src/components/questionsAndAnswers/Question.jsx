@@ -1,14 +1,30 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState}  from 'react';
 import AnswerList from './AnswerList.jsx';
 
 
 function Question({question, answers}) {
-  return (
+
+  const [helpfulness, setHelpfulness] = useState(question.question_helpfulness);
+  const [hasVoted, setHasVoted] = useState(false);
+
+  const handleHelpfulClick = (e) => {
+    e.preventDefault();
+    if (!hasVoted) {
+      setHelpfulness(helpfulness + 1);
+      setHasVoted(true);
+    }
+  };
+
+  const questionStyles = {
+    fontWeight: 'bold'
+  };
+
+   return (
     <div>
-      <p>Q: {question.question_body} Helpful? Yes ({question.question_helpfulness})</p>
+      <p style={questionStyles}>Q: {question.question_body} Helpful? <a href="#" onClick={handleHelpfulClick}>Yes </a> ({helpfulness}) | <a href="#">Add Answer</a></p>
       <AnswerList answers={answers}/>
     </div>
-  )
+  );
 }
 
 export default Question;

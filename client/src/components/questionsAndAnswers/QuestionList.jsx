@@ -4,9 +4,8 @@ import Question from './Question.jsx';
 
 function QuestionList({answers, questions}) {
 
-  if (questions.length === 0) {
-    return <div>No questions yet</div>;
-  }
+  // Sort questions by helpfulness
+  const sortedQuestions = [...questions].sort((a, b) => b.question_helpfulness - a.question_helpfulness);
 
   return (
     <div>
