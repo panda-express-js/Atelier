@@ -1,0 +1,9 @@
+.answersExpanded {
+  max-height: 50vh; /* Half of the viewport height */
+  overflow-y: auto; /* Make it scrollable */
+}
+
+.toggleAnswers {
+  display: block;
+  margin-top: 10px;
+}
