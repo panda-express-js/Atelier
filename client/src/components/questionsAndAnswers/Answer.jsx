@@ -1,6 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function Answer({ answer }) {
+
+  const [helpfulness, setHelpfulness] = useState(answer.helpfulness);
+  const [hasVoted, setHasVoted] = useState(false);
+  const [reported, setReported] = useState(false);
+
+  const handleHelpfulClick = (e) => {
+    e.preventDefault();
+    if (!hasVoted) {
+      setHelpfulness(helpfulness + 1);
+      setHasVoted(true);
+    }
+  };
+
+  const handleReportClick = (e) => {
+    e.preventDefault();
+    if (!reported) {
+      setReported(true);
+    }
+  };
 
   const answerDate = new Date(answer.date);
 
@@ -12,14 +31,14 @@ function Answer({ answer }) {
 
   const isSeller = answer.answerer_name.toLowerCase() === 'seller';
 
-  return (
+   return (
     <div>
       <p>A: {answer.body}</p>
       <p>
-        by {isSeller ? <strong>Seller</strong> : answer.answerer_name}, {formattedDate} Helpful? Yes ({answer.helpfulness})
+        by {isSeller ? <strong>Seller</strong> : answer.answerer_name}, {formattedDate} | Helpful? <a href="#" onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
+        {reported ? " Reported" : <a href="#" onClick={handleReportClick}> Report</a>}
       </p>
     </div>
   );
 }
-
 export default Answer;
