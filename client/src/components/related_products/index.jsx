@@ -8,11 +8,15 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
   //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
   useEffect(() => {
-    const idSet = new Set(productIds);
-    setUniqueProductIds(Array.from(idSet));
+    const arr = productIds.reduce((acc, id) => {
+      if (!acc.includes(id) && id !== product.id) {
+        return acc.concat(id);
+      }
+      return acc;
+    }, []);
+    setUniqueProductIds(arr);
   }, [productIds])
 
-  //react-modal for the pop up comparison window. dependency
   return (
     <div id='carousels'>
       <h6>RELATED PRODUCTS</h6>

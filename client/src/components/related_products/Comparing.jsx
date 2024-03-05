@@ -17,7 +17,6 @@ const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct
 
   let featuresArray = makeFeaturesArray(mainProduct.features, relatedProduct.features)
 
-  //<button onClick={closeModal}>Close Modal</button>
   return (
     <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Comparison Modal">
       <table>
