@@ -43,7 +43,7 @@ const App = () => {
         .catch((err) => {console.log(err)})
       })
     })
-  }, []);
+  }, [id]);
   // PROPS TO PASS DOWN
   // -product === current product
 
