@@ -193,3 +193,24 @@ describe(Details, () => {
 //   })
 
 // })
+
+describe(Summary, () => {
+
+  it('renders the correct slogan', () => {
+    render(<Summary product={productExample}/>);
+    expect(screen.getByText("You've got to wear shades")).toBeInTheDocument();
+  })
+
+  it('renders the correct description', () => {
+    render(<Summary product={productExample}/>);
+    expect(screen.getByText("Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.")).toBeInTheDocument();
+  })
+
+  it('renders features of the product', () => {
+    render(<Summary product={productExample}/>);
+    expect(screen.getByText("Ultrasheen Lenses")).toBeInTheDocument();
+    expect(screen.getByText("UV Protection")).toBeInTheDocument();
+    expect(screen.getByText("LightCompose Frames")).toBeInTheDocument();
+  })
+
+})
