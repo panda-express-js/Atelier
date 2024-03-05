@@ -5,7 +5,7 @@ const RelatedCard = ({id, obj, changeId}) => {
 
   return (
     <div className='card' onClick={()=>{changeId(id)}}style={{ display: 'flex', flexDirection: 'column' }}>
-      {obj.url ? <img alt='product image' width='50px'src={obj.url} />: <p>No Product Image</p>}
+      {obj.url ? <img alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <p>No Product Image</p>}
       <span>{obj.category}</span>
       <span>{obj.name}</span>
         {obj.sale_price ? <>
