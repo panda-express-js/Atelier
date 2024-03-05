@@ -10,7 +10,7 @@ export default function RatingsReviews () {
     <br></br>
     <>Star rating test</>
     <br></br>
-    <StarDisplay />
+    <StarDisplay rating={4.5}/>
   </div>
 )
 }
