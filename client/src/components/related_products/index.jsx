@@ -16,9 +16,11 @@ const RelatedProducts = ({product, server, options, productIds, changeId}) => {
   //react-modal for the pop up comparison window. dependency
   return (
     <div id='carousels'>
+      <h6>RELATED PRODUCTS</h6>
       <div id='relatedProductsCarousel'>
         <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId}/>
       </div>
+      <h6>YOUR OUTFIT</h6>
       <div id='outfirProductCarousel'>
         <OutfitCardsCarousel />
       </div>
