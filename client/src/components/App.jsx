@@ -43,7 +43,7 @@ const App = () => {
         .catch((err) => {console.log(err)})
       })
     })
-  }, [id]);
+  }, []);
   // PROPS TO PASS DOWN
   // -product === current product
 
@@ -53,14 +53,13 @@ const App = () => {
     setId(id);
   }
 
-
   return (
     <div id='main-component'>
       <h1>Atelier</h1>
       <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews}/>
       <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} />
       <QandA server={server} options={options} product={product} />
-      <RatingsReviews server={server} options={options} product={product} reviews={reviews}/>
+      <RatingsReviews server={server} options={options} product={product} reviews={reviews} setReviews={setReviews}/>
     </div>
   )
 }
