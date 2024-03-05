@@ -4,7 +4,7 @@ import axios from 'axios'
 const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, product, style}) => {
 
   const [currentPosition, setCurrentPosition] = useState(0);
-  const [productList, setProductList] = useState([])
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     Promise.all(uniqueProductIds.map((id) => {
