@@ -43,7 +43,7 @@ const App = () => {
         .catch((err) => {console.log(err)})
       })
     })
-  }, [id]);
+  }, []);
   // PROPS TO PASS DOWN
   // -product === current product
 
@@ -52,7 +52,6 @@ const App = () => {
     console.log('click', id)
     setId(id);
   }
-
 
   return (
     <div id='main-component'>
