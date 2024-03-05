@@ -1,37 +1,32 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
+import Comparing from './Comparing.jsx'
 
-const RelatedCard = ({id, server, options}) => {
+const RelatedCard = ({id, obj, changeId}) => {
 
-  const [productDetails, setProductDetails] = useState({});
-  const [url, setUrl] = useState('');
-  const [rating, setRating] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    axios.get(`${server}/products/${id}`, options)
-    .then((result) => {
-      setProductDetails(result.data);
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-    .then(() => {
-      axios.get(`${server}/products/${id}/styles`, options)
-      .then((result) => {
-        setUrl(result.data.results)
-      })
-    })
-  }, [id])
-  //image is the primary image for product / in /products/:product_id/styles default true photos
-  //product category / name/ price/ star rating placeholder (review url)
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <div>
-      <img src='https://www.canva.com/design/DAF-UL2QTf0/KQAkm5BxCwCHxTyNpDfE0w/edit?utm_content=DAF-UL2QTf0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton'/>
-      {productDetails.category}
-      {productDetails.name}
-      {productDetails.default_price}
-
+  <div>
+    <button onClick={()=> {openModal()}}>star</button>
+    <Comparing isModalOpen={isModalOpen} closeModal={closeModal}  />
+    <div className='card' onClick={()=>{changeId(id)}}style={{ display: 'flex', flexDirection: 'column' }}>
+      {obj.url ? <img alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <p>No Product Image</p>}
+      <span>{obj.category}</span>
+      <span>{obj.name}</span>
+        {obj.sale_price ? <>
+                        <span style={{ color:'red' }}>{obj.sale_price}</span>
+                        <span style={{ textDecoration: 'line-through' }}>{obj.default_price}</span>
+                      </>: <span>{obj.default_price}</span>}
+        <span>rating</span>
     </div>
+  </div>
   )
 }
 

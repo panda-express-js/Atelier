@@ -1,46 +1,30 @@
 import React , { useState, useEffect } from 'react'
 import axios from 'axios'
-import RelatedCard from './RelatedCard.jsx'
+import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
+import OutfitCardsCarousel from './OutfitCardsCarousel.jsx'
 
-const RelatedProducts = ({product, server, options, productIds}) => {
-  /*
+const RelatedProducts = ({product, server, options, productIds, changeId, style}) => {
+  //40382 has good range
+  //og was 40344
+  const [uniqueProductIds, setUniqueProductIds] = useState([])
   useEffect(() => {
-    if (product.id) {
-      axios.get(`${server}/products/${product.id}/related`, options)
-      .then((response) => {
-        setRelatedIds(response.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    }
-  }, [product])
-*/
+    const idSet = new Set(productIds);
+    setUniqueProductIds(Array.from(idSet));
+  }, [productIds])
 
+  //react-modal for the pop up comparison window. dependency
   return (
-    <div id='relatedProductsCards'>
-      ---related products list ------
-      {productIds.map(ID => {
-        return <RelatedCard key={ID} id={ID} server={server} options={options} />
-      })}
-      ---related products list ------
+    <div id='carousels'>
+      <h6>RELATED PRODUCTS</h6>
+      <div id='relatedProductsCarousel'>
+        <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId} product={product} style={style} />
+      </div>
+      <h6>YOUR OUTFIT</h6>
+      <div id='outfirProductCarousel'>
+        <OutfitCardsCarousel />
+      </div>
     </div>
   )
 }
-//function idea for running get for an array of ids
-  /*
-  const getAllRelatedProducts = (idArray) => {
-    idArray.forEach((id) => {
-      console.log(id)
-      axios.get(`${server}/products/${id}`, options)
-      .then((result)=> {
-        setRelatedProducts(relatedProducts.concat(result.data))
-      })
-      .catch((err) => {
-        console.log('function err', err)
-      })
-    })
-  }
-  */
 
 export default RelatedProducts;
