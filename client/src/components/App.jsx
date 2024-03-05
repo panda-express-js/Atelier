@@ -5,7 +5,7 @@ import RatingsReviews from './ratings/Index.jsx';
 import QandA from './questionsAndAnswers/index.jsx';
 import { GITHUB_APIKEY } from '../../../config.js';
 import axios from 'axios';
-
+import '../../../styles.css';
 
 const App = () => {
 
