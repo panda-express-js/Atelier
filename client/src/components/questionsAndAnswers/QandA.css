@@ -11,7 +11,7 @@
 
 /* Search.css */
 .searchInput {
-  width: 50%;
+  width: 80%;
   padding: 8px 12px;
   margin-bottom: 20px;
   font-size: 16px;
@@ -19,6 +19,12 @@
   border-radius: 4px;
 }
 
+/* Questionlist.css */
+
+.questionlist-container {
+  max-height: 500px;
+  overflow-y: auto;
+}
 /* Question.css */
 
 .question-container {
@@ -30,7 +36,7 @@
 }
 
 .question-row {
-  width: 50%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
   align-items: center;
