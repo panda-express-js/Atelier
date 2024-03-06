@@ -56,7 +56,7 @@ const App = () => {
   return (
     <div id='main-component'>
       <h1>Atelier</h1>
-      <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews}/>
+      <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle}/>
       <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} />
       <QandA server={server} options={options} product={product} />
       <RatingsReviews server={server} options={options} product={product} reviews={reviews} setReviews={setReviews}/>
