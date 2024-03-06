@@ -7,7 +7,7 @@ import Summary from './summary.jsx';
 const ProductDetail = ({ product, allStyles, style, reviews, server, options, setStyle }) => {
 
   return (
-    <div>
+    <div id="overviewContainer">
       <Photos style={style} />
       <Details product={product} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} />
       <Summary product={product} />

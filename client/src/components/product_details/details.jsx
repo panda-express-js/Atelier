@@ -10,7 +10,7 @@ const Details = ({ product, allStyles, style, setStyle }) => {
     if (price === style.sale_price) {
       return (
         <span style={{ color: 'red' }}>{price}
-          <span style={{ textDecoration: 'line-through' }}>{style.original_price}</span>
+          <span style={{ color: 'black', textDecoration: 'line-through' }}>{style.original_price}</span>
         </span>
       )
     } else {
@@ -21,7 +21,7 @@ const Details = ({ product, allStyles, style, setStyle }) => {
   }
 
   return (
-    <div>
+    <div id="detailContainer">
       <div>
         star rating here
       </div>
