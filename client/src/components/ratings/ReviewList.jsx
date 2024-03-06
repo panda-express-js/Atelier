@@ -28,10 +28,11 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     <label for="sort">Sort by:</label>
 
       <select name="sort" className="sort">
-        <option value="newest">newest</option>
         <option value="relevant">relevant</option>
+        <option value="newest">newest</option>
         <option value="helpful">helpful</option>
       </select>
+      <br></br>
     </div>
     {function () {
       if (reviews.results){
