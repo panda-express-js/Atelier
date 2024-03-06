@@ -3,12 +3,13 @@ import { render, screen } from '@testing-library/react';
 
 import ProductDetail from '../components/product_details/index.jsx';
 import Details from '../components/product_details/details.jsx';
+import ItemAdd from '../components/product_details/itemAdd.jsx';
 import PhotoList from '../components/product_details/photoList.jsx';
 import Photos from '../components/product_details/photos.jsx';
 import StyleSelector from '../components/product_details/styleSelect.jsx';
 import Summary from '../components/product_details/summary';
 
-// START of Sample Data
+// START OF SAMPLE DATA
 const productExample = {
   "id": 40345,
   "campus": "hr-rfp",
@@ -153,6 +154,66 @@ const styleExample2 =  {
       }
   }
 }
+
+const styleExample3 = {
+	"style_id": 240516,
+	"name": "Black",
+	"original_price": "65.00",
+	"sale_price": null,
+	"default?": true,
+	"photos": [
+			{
+					"thumbnail_url": "https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+					"url": "https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+			},
+			{
+					"thumbnail_url": "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+					"url": "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80"
+			},
+			{
+					"thumbnail_url": "https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+					"url": "https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80"
+			},
+			{
+					"thumbnail_url": "https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+					"url": "https://images.unsplash.com/photo-1553830591-d8632a99e6ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1511&q=80"
+			},
+			{
+					"thumbnail_url": "https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80",
+					"url": "https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
+			},
+			{
+					"thumbnail_url": "https://images.unsplash.com/photo-1554774853-d50f9c681ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+					"url": "https://images.unsplash.com/photo-1554774853-d50f9c681ae2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1651&q=80"
+			}
+	],
+	"skus": {
+			"1394841": {
+					"quantity": 8,
+					"size": "XS"
+			},
+			"1394842": {
+					"quantity": 16,
+					"size": "S"
+			},
+			"1394843": {
+					"quantity": 17,
+					"size": "M"
+			},
+			"1394844": {
+					"quantity": 10,
+					"size": "L"
+			},
+			"1394845": {
+					"quantity": 15,
+					"size": "XL"
+			},
+			"1394846": {
+					"quantity": 6,
+					"size": "XXL"
+			}
+	}
+}
 // END OF SAMPLE DATA
 
 describe(Details, () => {
@@ -193,6 +254,19 @@ describe(Details, () => {
 //   })
 
 // })
+
+describe(ItemAdd, () => {
+
+  it('populates all available sizes into selector', () => {
+		render(<ItemAdd style={styleExample3} />);
+		expect(screen.getByText("XS")).toBeInTheDocument();
+		expect(screen.getByText("M")).toBeInTheDocument();
+		expect(screen.getByText("XXL")).toBeInTheDocument();
+  })
+
+})
+
+
 
 describe(Summary, () => {
 

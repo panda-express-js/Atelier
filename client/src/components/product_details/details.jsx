@@ -1,5 +1,6 @@
 import React from 'react';
 // import StyleSelector from './styleSelect.jsx';
+import ItemAdd from './itemAdd.jsx';
 
 const Details = ({ product, allStyles, style }) => {
 
@@ -28,7 +29,7 @@ const Details = ({ product, allStyles, style }) => {
       <div>{product.name}</div>
       <div>{renderPrice()}</div>
       {/* <StyleSelector allStyles={allStyles} style={style}/> */}
-
+      <ItemAdd style={style}/>
     </div>
   )
 }
