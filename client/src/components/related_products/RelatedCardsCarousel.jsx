@@ -49,7 +49,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
         }
       })}
     </div>
-    <div>{currentPosition === uniqueProductIds.length - 4 ? null :<button onClick={() => {rightArrow()}}>{'>'}</button>}</div>
+    <div>{currentPosition >= uniqueProductIds.length - 4 ? null :<button onClick={() => {rightArrow()}}>{'>'}</button>}</div>
     </div>
   )
 }
