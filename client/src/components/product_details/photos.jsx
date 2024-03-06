@@ -33,7 +33,7 @@ const Photos = ({ style }) => {
     <div id="photoContainer">
       <FontAwesomeIcon className="photoIcon photoV" icon={faV} />
       <FontAwesomeIcon onClick={photoLeft} className="photoIcon leftArrow" icon={faArrowLeft} />
-      <img width='200px' src={currentPhoto} />
+      <img className="currentPhoto" width='200px' src={currentPhoto} />
       <FontAwesomeIcon onClick={photoRight} className="photoIcon rightArrow" icon={faArrowRight} />
       <FontAwesomeIcon className="photoIcon photoExpand" icon={faExpand} />
       <PhotoList list={style.photos}/>
