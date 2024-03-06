@@ -2,13 +2,39 @@ import React, {useState, useEffect} from 'react';
 import OutfitCard from './OutfitCard.jsx';
 
 const OutfitCardsCarousel = ({product, style}) => {
-  const [outfit, setOutfit] = useState([{id: 1}, {id: 2}, {id: 3}, {id:4}, {id:5}]);
-  const [isAdded, setIsAdded] = useState(false);
+  const [outfit, setOutfit] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(0);
 
+  useEffect(() => {
+    const storedOutfit = localStorage.getItem('userOutfit');
+    if (storedOutfit) {
+      let outfits = JSON.parse(storedOutfit)
+      setOutfit(outfits);
+    }
+  }, [product]);
+  //update storage and rerender
   const addToOutift = () => {
-
+    if(!outfit.some((outfitObj) => outfitObj.id === product.id)) {
+      const newOutfitObj = {
+        id: product.id,
+        name: product.name,
+        category: product.category,
+        default_price: product.default_price,
+        features: product.features,
+        url: style.photos[0].url,
+        sale_price: style.sale_price
+      };
+      setOutfit((prevOutfit) => [...prevOutfit, newOutfitObj]);
+      localStorage.setItem('userOutfit', JSON.stringify([...outfit, newOutfitObj]));
+    }
   }
+  const deleteOutfit = (id) => {
+    var newOutfit = outfit.filter((obj) => obj.id !== id );
+    console.log(newOutfit)
+    setOutfit(newOutfit);
+    localStorage.setItem('userOutfit', JSON.stringify(newOutfit))
+  }
+
   const rightArrow = () => {
     setCurrentPosition(currentPosition + 1);
   }
@@ -19,11 +45,11 @@ const OutfitCardsCarousel = ({product, style}) => {
   return (
     <div style={{ display: 'flex' }}>
     <div>{currentPosition === 0 ? null: <button onClick={() => {leftArrow()}}>{'<'}</button>}</div>
-    <button>+ icon Add To Outift</button>
+    <button onClick={()=>{addToOutift()}}>+ icon Add To Outift</button>
     <div style={{ display: 'flex' }}>
       {outfit.map((obj, index) => {
         if (index >= currentPosition && index <= currentPosition + 2) {
-          return <OutfitCard key={obj.id} id={obj.id} obj={obj} />
+          return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} />
         } else {
           return null;
         }
