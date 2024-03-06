@@ -10,6 +10,12 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   const [sort, setSort] = useState("relevant")
 
+  const handleSelectChange = (event) => {
+    setSort(event.target.value);
+    console.log(event.target.value)
+    console.log(sort)
+};
+
   // call the API and update review state using useEffect
 
   useEffect(() => {
@@ -17,7 +23,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     axios.get(`${server}/reviews?product_id=${product.id}&sort=${sort}&count=2`, options).then( (response) => {
       setReviews(response.data)
     }).catch((err) => console.log(err))
-  },[])
+  },[sort])
 
 
   if(reviews.results) {console.log(reviews, " these are the reviews passed down from generation to generation")};
@@ -27,7 +33,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     <div className="sort-div">
     <label for="sort">Sort by:</label>
 
-      <select name="sort" className="sort">
+      <select name="sort" className="sort" value={sort} onChange={handleSelectChange}>
         <option value="relevant">relevant</option>
         <option value="newest">newest</option>
         <option value="helpful">helpful</option>
