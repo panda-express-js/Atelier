@@ -12,21 +12,18 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   const handleSelectChange = (event) => {
     setSort(event.target.value);
-    console.log(event.target.value)
-    console.log(sort)
 };
 
   // call the API and update review state using useEffect
 
   useEffect(() => {
-    console.log(product.id, "this is the product ID in useEffect")
     axios.get(`${server}/reviews?product_id=${product.id}&sort=${sort}&count=2`, options).then( (response) => {
       setReviews(response.data)
     }).catch((err) => console.log(err))
   },[sort])
 
 
-  if(reviews.results) {console.log(reviews, " these are the reviews passed down from generation to generation")};
+  if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
   return <div className="review-list">
     <h3>Reviews</h3>
