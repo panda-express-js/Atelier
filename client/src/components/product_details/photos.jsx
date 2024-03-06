@@ -13,28 +13,19 @@ const Photos = ({ style }) => {
     currentPhoto = style.photos[photoIndex].url;
   }
 
-  const photoRight = () => {
-    if (photoIndex === style.photos.length - 1) {
-      setPhotoIndex(0);
-    } else {
-      setPhotoIndex(photoIndex + 1);
+  const changePhoto = (newIndex) => {
+    if (newIndex > style.photos.length - 1 || newIndex < 0) {
+      newIndex = 0;
     }
-  }
-
-  const photoLeft = () => {
-    if (photoIndex === 0) {
-      setPhotoIndex(style.photos.length - 1);
-    } else {
-      setPhotoIndex(photoIndex - 1);
-    }
+    setPhotoIndex(newIndex);
   }
 
   return (
     <div id="photoContainer">
       <FontAwesomeIcon className="photoIcon photoV" icon={faV} />
-      <FontAwesomeIcon onClick={photoLeft} className="photoIcon leftArrow" icon={faArrowLeft} />
+      <FontAwesomeIcon onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
       <img className="currentPhoto" width='200px' src={currentPhoto} />
-      <FontAwesomeIcon onClick={photoRight} className="photoIcon rightArrow" icon={faArrowRight} />
+      <FontAwesomeIcon onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
       <FontAwesomeIcon className="photoIcon photoExpand" icon={faExpand} />
       <PhotoList list={style.photos}/>
     </div>
