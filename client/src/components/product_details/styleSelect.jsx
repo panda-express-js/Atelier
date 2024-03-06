@@ -10,12 +10,12 @@ const StyleSelector = ({ allStyles, style, setStyle }) => {
         if (uniqueStyle.style_id === style.style_id) {
           return (<div className="styleSelect" key={uniqueStyle.style_id}>
             <FontAwesomeIcon icon={faCheck} className="checkmark selected"/>
-            <img className="selectorImg" src={uniqueStyle.photos[5].thumbnail_url} />
+            <img className="selectorImg" src={uniqueStyle.photos[0].thumbnail_url} />
                  </div>
           )
         } else {
           return (<div className="styleSelect" key={uniqueStyle.style_id}>
-            <img onClick={(e) => changeStyle(e)} id={index} className="selectorImg" src={uniqueStyle.photos[5].thumbnail_url} />
+            <img onClick={(e) => changeStyle(e)} id={index} className="selectorImg" src={uniqueStyle.photos[0].thumbnail_url} />
                  </div>
           )
         }
