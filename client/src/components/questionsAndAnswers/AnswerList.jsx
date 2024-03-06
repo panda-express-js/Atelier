@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Answer from './Answer.jsx';
-import './Q&A.css';
+import './QandA.css';
 
 function AnswerList({ answers }) {
 

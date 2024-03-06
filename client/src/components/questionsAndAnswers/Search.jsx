@@ -1,5 +1,5 @@
 import React from 'react';
-import './Q&A.css';
+import './QandA.css';
 
 const Search = ({onSearchChange}) => {
 

@@ -1,5 +1,6 @@
 import React, { useState}  from 'react';
 import AnswerList from './AnswerList.jsx';
+import './QandA.css';
 
 
 function Question({question, answers}) {
@@ -21,7 +22,7 @@ function Question({question, answers}) {
         <span className="question-text">Q: {question.question_body}</span>
           <span className="question-actions">
             Helpful? <a href="#" onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
-            <a href="#">Add Answer</a>
+            <a href="#"> Add Answer</a>
           </span>
       </div>
       <AnswerList answers={answers}/>
