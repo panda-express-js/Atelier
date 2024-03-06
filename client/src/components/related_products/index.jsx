@@ -7,6 +7,7 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
   //40382 has good range
   //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
+
   useEffect(() => {
     const arr = productIds.reduce((acc, id) => {
       if (!acc.includes(id) && id !== product.id) {
@@ -25,7 +26,7 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
       </div>
       <h6>YOUR OUTFIT</h6>
       <div id='outfirProductCarousel'>
-        <OutfitCardsCarousel />
+        <OutfitCardsCarousel product={product} style={style}/>
       </div>
     </div>
   )
