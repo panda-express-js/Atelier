@@ -14,7 +14,7 @@ const QandA = ({ product, server, options }) => {
 
   useEffect(() => {
     if (product.id) {
-      axios.get(`${server}/qa/questions?product_id=${product.id}&page=1&count=15`, options)
+      axios.get(`${server}/qa/questions?product_id=${product.id}&page=1&count=50`, options)
         .then((response) => {
           const fetchedQuestions = response.data.results;
           setQuestions(fetchedQuestions);
