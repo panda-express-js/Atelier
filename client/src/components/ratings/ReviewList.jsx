@@ -6,6 +6,9 @@ import ReviewTile from './ReviewTile.jsx'
 
 // need to use useEffect so it only renders once
 
+// try looping through all reviews until all are retrieved and then limiting the amount shown instead.
+// Will help for the breakdown and its filter by rating
+
 export default function ReviewList ({ product , server, options, reviews, setReviews }) {
 
   const [sort, setSort] = useState("relevant")
