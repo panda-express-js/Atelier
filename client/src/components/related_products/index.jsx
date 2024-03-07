@@ -7,6 +7,7 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
   //40382 has good range
   //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
+  const [reviews, setReviews] = useState({})
 
   useEffect(() => {
     const arr = productIds.reduce((acc, id) => {
@@ -15,7 +16,16 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
       }
       return acc;
     }, []);
-    setUniqueProductIds(arr);
+    if (product.id !== undefined) {
+      setUniqueProductIds(arr);
+      axios.get(`${server}/reviews/meta/?product_id=${product.id}`, options)
+      .then((result) => {
+        setReviews(result.data)
+      })
+      .catch((err) => {
+        console.log('err', err)
+      })
+    }
   }, [productIds])
 
   return (
@@ -26,7 +36,7 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
       </div>
       <h6>YOUR OUTFIT</h6>
       <div id='outfitProductCarousel'>
-        <OutfitCardsCarousel product={product} style={style} changeId={changeId}/>
+        <OutfitCardsCarousel product={product} style={style} changeId={changeId} reviews={reviews}/>
       </div>
     </div>
   )

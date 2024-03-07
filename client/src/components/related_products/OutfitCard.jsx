@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import StarDisplay from '../ratings/star_rating/Star_Display.jsx';
 
 const OutfitCard = ({obj, deleteOutfit, changeId}) => {
 
@@ -13,7 +14,7 @@ const OutfitCard = ({obj, deleteOutfit, changeId}) => {
                         <span style={{ color:'red' }}>{obj.sale_price}</span>
                         <span style={{ textDecoration: 'line-through' }}>{obj.default_price}</span>
                       </>: <span>{obj.default_price}</span>}
-        <span>rating</span>
+        <span><StarDisplay rating={obj.stars}/></span>
     </div>
   </div>
   )
