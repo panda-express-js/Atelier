@@ -69,7 +69,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     <div>
       {function (){
         if (reviewMeta) {
-          return <RatingBreakdown reviewMeta={reviewMeta} />;
+          return <RatingBreakdown reviewMeta={reviewMeta} ratingFilter={ratingFilter} setRatingFilter={setRatingFilter} />;
         }
       }()}
     </div>

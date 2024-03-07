@@ -5,11 +5,8 @@ import React , { useState, useEffect } from 'react';
 // pass down the ability to set the filtering rules from ReviewList and make some logic
 // in here regarding that
 
-export default function RatingBreakdown () {
+export default function RatingBreakdown ({ reviewMeta, ratingFilter, setRatingFilter }) {
 
-  // useEffect( () => {
-  //   axios.get()
-  // },[])
 
   return <div className="Rating Breakdown"> This is the Rating Breakdown</div>
 }
