@@ -1,13 +1,19 @@
 import React from 'react';
 
-const PhotoList = ({ list }) => {
+const PhotoList = ({ list, changePhoto }) => {
+
+  const handlePhotoClick = (newIndex) => {
+    changePhoto(newIndex);
+  }
 
   if (list) {
     return (
       <div>
-        {list.map((photo) => {
+        {list.map((photo, index) => {
           return (
-            <img key={list.indexOf(photo)} width='30px' src={photo.url}/>
+            <div key={index}>
+              <img onClick={(e) => handlePhotoClick(index)} className="listPhoto" src={photo.url}/>
+            </div>
           )
         })}
       </div>
