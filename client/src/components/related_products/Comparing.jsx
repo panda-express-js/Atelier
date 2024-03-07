@@ -18,8 +18,8 @@ const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct
   let featuresArray = makeFeaturesArray(mainProduct.features, relatedProduct.features)
 
   return (
-    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Comparison Modal">
-      <table>
+    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Comparison Modal" className='comparisonModal'>
+      <table className='comparisonTable'>
         <thead>
           <tr>
             <th>{mainProduct.name}</th>
