@@ -266,8 +266,6 @@ describe(ItemAdd, () => {
 
 })
 
-
-
 describe(Summary, () => {
 
   it('renders the correct slogan', () => {
