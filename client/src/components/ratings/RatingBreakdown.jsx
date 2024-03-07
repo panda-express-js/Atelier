@@ -8,8 +8,15 @@ import StarDisplay from './star_rating/Star_Display.jsx'
 // in here regarding that
 // use a weighted average for the ratings
 
+// Helper function goes here
+
+
 export default function RatingBreakdown ({ reviewMeta, ratingFilter, setRatingFilter }) {
   console.log(reviewMeta, " this is reviewMeta")
+
+  for (let key in reviewMeta.ratings) {
+
+  }
 
 
   return <div className="Rating Breakdown"> This is the Rating Breakdown</div>
