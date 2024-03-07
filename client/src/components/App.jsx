@@ -9,7 +9,7 @@ import '../../../styles.css';
 
 const App = () => {
 
-  const [id, setId] = useState('40344');
+  const [id, setId] = useState('40346');
 
   const [product, setProduct] = useState({});
   const [productIds, setProductIds] = useState([])
@@ -60,7 +60,7 @@ const App = () => {
       <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle}/>
       <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} />
       <QandA server={server} options={options} product={product} />
-      <RatingsReviews server={server} options={options} product={product} reviews={reviews} setReviews={setReviews}/>
+      { function() { if(product.id) {return <RatingsReviews server={server} options={options} product={product} reviews={reviews} setReviews={setReviews}/>}}()}
     </div>
   )
 }
