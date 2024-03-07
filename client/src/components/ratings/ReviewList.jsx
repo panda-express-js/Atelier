@@ -62,7 +62,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 // use the length of the list and the number of reviews as gotten by the metadata to determine when the more reviews
 // button should disappear
 
-  if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
+  // if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
   return <div className="review-list">
     <h3>Reviews</h3>
