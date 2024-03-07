@@ -13,25 +13,50 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   const [sort, setSort] = useState("relevant")
 
+  const [count, setCount] = useState(2)
+
+  const [ratingFilter, setRatingFilter] = useState([1,2,3,4,5])
+
   const handleSelectChange = (event) => {
     setSort(event.target.value);
 };
 
+  const handleMoreReviews = () => {
+    let newCount = count + 2;
+    setCount(newCount);
+  }
+
   // call the API and update review state using useEffect
 
-  useEffect(() => {
-    axios.get(`${server}/reviews?product_id=${product.id}&sort=${sort}&count=2`, options).then( (response) => {
-      setReviews(response.data)
-    }).catch((err) => console.log(err))
-  },[sort])
+  //use pagination
+  // when they click "View more button" make it change the state of the pagination
+  // make the count remain 2 and only show 2 more each time
+  // then make the section scrollable if need be afterwards
 
+
+  useEffect(() => {
+
+    axios.get(`${server}/reviews?product_id=${product.id}&sort=${sort}&count=${count}`, options).then( (response) => {
+        // if (response.data.length === count){
+        // count = count + 250;
+        // setSort(sort)}
+        // enhance this in the future to only pull aa many as we need at a time
+      setReviews(response.data)
+
+    }).catch((err) => console.log(err))
+  },[sort, count])
+
+
+// add logic for if the count of reviews is 0 we collaps that list and don't show the associated buttons
+// use the length of the list and the number of reviews as gotten by the metadata to determine when the more reviews
+// button should disappear
 
   if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
   return <div className="review-list">
     <h3>Reviews</h3>
     <div className="sort-div">
-    <label for="sort">Sort by:</label>
+    <label htmlFor="sort">Sort by:</label>
 
       <select name="sort" className="sort" value={sort} onChange={handleSelectChange}>
         <option value="relevant">relevant</option>
@@ -43,10 +68,13 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     {function () {
       if (reviews.results){
       let currReviews = reviews.results.map((review) => {
-        return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
-        summary={review.summary} body={review.body} />
+        if (ratingFilter.includes(review.rating)) {
+          return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
+          summary={review.summary} body={review.body} />
+        }
       })
       return currReviews;}
     }()}
+    <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
   </div>
 }
