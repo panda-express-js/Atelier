@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import OutfitCard from './OutfitCard.jsx';
 
-const OutfitCardsCarousel = ({product, style, changeId}) => {
+const OutfitCardsCarousel = ({product, style, changeId, reviews}) => {
   const [outfit, setOutfit] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(0);
 
@@ -15,6 +15,16 @@ const OutfitCardsCarousel = ({product, style, changeId}) => {
   //update storage and rerender
   const addToOutift = () => {
     if(!outfit.some((outfitObj) => outfitObj.id === product.id)) {
+      //get average star rating
+      var ratings = reviews.ratings;
+      var totalRatings = 0;
+      var totalStars = 0;
+      for (var key in ratings) {
+        totalRatings += parseInt(ratings[key]);
+        totalStars += (parseInt(ratings[key]) * key);
+      }
+      var averageRating = totalStars / totalRatings;
+      //end of star rating average
       const newOutfitObj = {
         id: product.id,
         name: product.name,
@@ -22,10 +32,11 @@ const OutfitCardsCarousel = ({product, style, changeId}) => {
         default_price: product.default_price,
         features: product.features,
         url: style.photos[0].url,
-        sale_price: style.sale_price
+        sale_price: style.sale_price,
+        stars: averageRating
       };
-      setOutfit((prevOutfit) => [...prevOutfit, newOutfitObj]);
-      localStorage.setItem('userOutfit', JSON.stringify([...outfit, newOutfitObj]));
+      setOutfit((prevOutfit) => [newOutfitObj, ...prevOutfit]);
+      localStorage.setItem('userOutfit', JSON.stringify([newOutfitObj, ...outfit]));
     }
   }
   const deleteOutfit = (id) => {
