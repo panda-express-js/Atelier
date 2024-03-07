@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import TableRow from './TableRow.jsx';
-
+import StarDisplay from '../ratings/star_rating/Star_Display.jsx'
 const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct }) => {
 
   const makeFeaturesArray = (array1, array2) => {
@@ -18,8 +18,8 @@ const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct
   let featuresArray = makeFeaturesArray(mainProduct.features, relatedProduct.features)
 
   return (
-    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Comparison Modal">
-      <table>
+    <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Comparison Modal" className='comparisonModal'>
+      <table className='comparisonTable'>
         <thead>
           <tr>
             <th>{mainProduct.name}</th>
@@ -28,6 +28,16 @@ const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>{mainProduct.category}</td>
+            <td>Category</td>
+            <td>{relatedProduct.category}</td>
+          </tr>
+          <tr>
+            <td><StarDisplay rating={mainProduct.stars}/></td>
+            <td>Rating</td>
+            <td><StarDisplay rating={relatedProduct.stars}/></td>
+          </tr>
           {featuresArray.map((feature) => {
             return <TableRow key={feature} featureName={feature} mainFeatures={mainProduct.features} relatedFeatures={relatedProduct.features} />
           })}
