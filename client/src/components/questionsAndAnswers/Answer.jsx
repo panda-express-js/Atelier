@@ -35,8 +35,8 @@ function Answer({ answer }) {
     <div>
       <p>A: {answer.body}</p>
       <p>
-        by {isSeller ? <strong>Seller</strong> : answer.answerer_name}, {formattedDate} | Helpful? <a href="#" onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
-        {reported ? " Reported" : <a href="#" onClick={handleReportClick}> Report</a>}
+        by {isSeller ? <strong>Seller</strong> : answer.answerer_name}, {formattedDate} | Helpful? <a href='' onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
+        {reported ? ' Reported' : <a href='' onClick={handleReportClick}> Report</a>}
       </p>
     </div>
   );

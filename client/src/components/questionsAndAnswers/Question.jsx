@@ -17,12 +17,12 @@ function Question({question, answers}) {
   };
 
    return (
-    <div className="question-container">
-      <div className="question-row">
-        <span className="question-text">Q: {question.question_body}</span>
-          <span className="question-actions">
-            Helpful? <a href="#" onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
-            <a href="#"> Add Answer</a>
+    <div className='question-container'>
+      <div className='question-row'>
+        <span className='question-text'>Q: {question.question_body}</span>
+          <span className='question-actions'>
+            Helpful? <a href='' onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
+            <a href=''> Add Answer</a>
           </span>
       </div>
       <AnswerList answers={answers}/>

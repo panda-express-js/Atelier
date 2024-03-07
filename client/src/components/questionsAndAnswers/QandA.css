@@ -51,3 +51,38 @@
   white-space: nowrap;
   margin-left: auto;
 }
+
+/* AddQuestion.css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.modal input,
+.modal textarea {
+  width: calc(100% - 20px); /* Full width minus the padding on the modal-content */
+  margin-top: 5px; /* Space between the label and the input */
+  box-sizing: border-box; /* Border and padding are included in the width */
+}
+
+.error-message {
+  color: red;
+}
