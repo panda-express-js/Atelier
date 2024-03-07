@@ -11,16 +11,28 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
       return axios.get(`${server}/products/${id}`, options)
       .then((productResponse) => {
         return axios.get(`${server}/products/${id}/styles`, options)
-        .then((stylesResponse) => {
-          return {
-            id: id,
-            name: productResponse.data.name,
-            category: productResponse.data.category,
-            default_price: productResponse.data.default_price,
-            features: productResponse.data.features,
-            url: stylesResponse.data.results[0].photos[0].url,
-            sale_price: stylesResponse.data.results[0].sale_price
-        }})
+          .then((stylesResponse) => {
+            return axios.get(`${server}/reviews/meta/?product_id=${id}`, options)
+            .then((reviewsResponse) => {
+              var ratings = reviewsResponse.data.ratings;
+              var totalRatings = 0;
+              var totalStars = 0;
+              for (var key in ratings) {
+                totalRatings += parseInt(ratings[key]);
+                totalStars += (parseInt(ratings[key]) * key);
+              }
+              var averageRating = totalStars / totalRatings;
+              return {
+                id: id,
+                name: productResponse.data.name,
+                category: productResponse.data.category,
+                default_price: productResponse.data.default_price,
+                features: productResponse.data.features,
+                url: stylesResponse.data.results[0].photos[0].url,
+                sale_price: stylesResponse.data.results[0].sale_price,
+                stars: averageRating
+            }})
+          })
       })
     }))
     .then((arrayOfDetails) => {
