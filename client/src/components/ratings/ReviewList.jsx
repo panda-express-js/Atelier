@@ -54,17 +54,13 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   useEffect(() => {
     axios.get(`${server}/reviews/meta?product_id=${product.id}`, options).then((result) => {
-      setReviewMeta(result.data.data);
-      console.log(result.data.data, " this is result.data.data")
-      console.log(result, " this is result")
-      console.log(reviewMeta, " this is reviewMeta")
+      setReviewMeta(result.data);
     }).catch((err) => console.log(err))
   }, [])
+
 // add logic for if the count of reviews is 0 we collaps that list and don't show the associated buttons
 // use the length of the list and the number of reviews as gotten by the metadata to determine when the more reviews
 // button should disappear
-
-      console.log(reviewMeta, " this is reviewMeta outside")
 
   if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
@@ -72,7 +68,9 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     <h3>Reviews</h3>
     <div>
       {function (){
-        return <RatingBreakdown />;
+        if (reviewMeta) {
+          return <RatingBreakdown reviewMeta={reviewMeta} />;
+        }
       }()}
     </div>
     <div className="sort-div">

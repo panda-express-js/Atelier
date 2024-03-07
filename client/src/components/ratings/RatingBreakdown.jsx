@@ -1,5 +1,4 @@
 import React , { useState, useEffect } from 'react';
-import axios from 'axios';
 
 // use metadata for review averages
 
@@ -8,9 +7,9 @@ import axios from 'axios';
 
 export default function RatingBreakdown () {
 
-  useEffect( () => {
-    axios.get()
-  },[])
+  // useEffect( () => {
+  //   axios.get()
+  // },[])
 
   return <div className="Rating Breakdown"> This is the Rating Breakdown</div>
 }
