@@ -52,7 +52,7 @@ body {
 
   display: grid;
   grid-template-columns: repeat(5, 20%);
-  grid-template-rows: repeat(3, 150px) 200px;
+  grid-template-rows: repeat(3, 160px) 200px;
 }
 
 #photoContainer {
@@ -63,29 +63,49 @@ body {
   grid-row: 1 / 4;
 }
 
+.listPhoto {
+  height: 50px;
+  width: 50px;
+}
+
+.listPhoto:hover {
+  cursor: pointer;
+}
+
 .currentPhoto {
+  border: 1px solid blue;
+  height: 480px;
   position: absolute;
-  top: 70px;
-  left: 300px;
+  top: 0%;
+  left: 46%;
+  display: flex;
+  align-items: center;
+}
+
+.photoV {
+  position: absolute;
+
+  top: 70%;
+  left: 5%;
 }
 
 .leftArrow {
   position: absolute;
-  top: 220px;
-  left: 160px;
+  top: 50%;
+  left: 30%;
 }
 
 .rightArrow {
   position: absolute;
-  top: 220px;
-  right: 20px;
+  top: 50%;
+  right: 4%;
 }
 
 .photoExpand {
   position: absolute;
 
-  top: 28px;
-  right: 20px;
+  top: 5%;
+  right: 4%;
 }
 
 .photoIcon:hover {
@@ -95,6 +115,7 @@ body {
 
 #detailContainer {
   border: 1px solid black;
+  padding-left: 20px;
 
   grid-column: 4 / 6;
   grid-row: 1 / 4;
