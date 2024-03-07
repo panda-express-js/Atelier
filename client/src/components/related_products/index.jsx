@@ -26,7 +26,7 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
       </div>
       <h6>YOUR OUTFIT</h6>
       <div id='outfitProductCarousel'>
-        <OutfitCardsCarousel product={product} style={style}/>
+        <OutfitCardsCarousel product={product} style={style} changeId={changeId}/>
       </div>
     </div>
   )

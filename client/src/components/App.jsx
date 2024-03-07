@@ -48,9 +48,10 @@ const App = () => {
   // -product === current product
 
   //function changes id State, which is watched by useEffect, and rerenders for the new product
-  const changeId = (id) => {
-    console.log('click', id)
-    setId(id);
+  const changeId = (newId) => {
+    if (id !== newId) {
+      setId(newId);
+    }
   }
 
   return (

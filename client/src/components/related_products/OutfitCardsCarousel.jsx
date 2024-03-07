@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import OutfitCard from './OutfitCard.jsx';
 
-const OutfitCardsCarousel = ({product, style}) => {
+const OutfitCardsCarousel = ({product, style, changeId}) => {
   const [outfit, setOutfit] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(0);
 
@@ -29,8 +29,7 @@ const OutfitCardsCarousel = ({product, style}) => {
     }
   }
   const deleteOutfit = (id) => {
-    var newOutfit = outfit.filter((obj) => obj.id !== id );
-    console.log(newOutfit)
+    var newOutfit = outfit.filter((obj) => obj.id !== id);
     setOutfit(newOutfit);
     localStorage.setItem('userOutfit', JSON.stringify(newOutfit))
   }
@@ -49,7 +48,7 @@ const OutfitCardsCarousel = ({product, style}) => {
     <div style={{ display: 'flex' }}>
       {outfit.map((obj, index) => {
         if (index >= currentPosition && index <= currentPosition + 2) {
-          return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} />
+          return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} />
         } else {
           return null;
         }
