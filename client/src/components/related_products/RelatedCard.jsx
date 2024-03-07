@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import Comparing from './Comparing.jsx'
+import StarDisplay from '../ratings/star_rating/Star_Display.jsx'
 
 const RelatedCard = ({id, obj, changeId, product, style}) => {
 
