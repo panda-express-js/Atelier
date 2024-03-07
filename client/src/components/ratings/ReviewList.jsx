@@ -1,6 +1,7 @@
 import React , { useState, useEffect } from 'react';
 import axios from 'axios';
-import ReviewTile from './ReviewTile.jsx'
+import ReviewTile from './ReviewTile.jsx';
+import RatingBreakdown from './RatingBreakdown.jsx';
 
 // pass in API data to drill down to the individual review tiles
 
@@ -16,6 +17,8 @@ export default function ReviewList ({ product , server, options, reviews, setRev
   const [count, setCount] = useState(2)
 
   const [ratingFilter, setRatingFilter] = useState([1,2,3,4,5])
+
+  const [reviewMeta, setReviewMeta] = useState(null)
 
   const handleSelectChange = (event) => {
     setSort(event.target.value);
@@ -33,6 +36,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
   // make the count remain 2 and only show 2 more each time
   // then make the section scrollable if need be afterwards
 
+// Reviews API Call
 
   useEffect(() => {
 
@@ -46,15 +50,31 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     }).catch((err) => console.log(err))
   },[sort, count])
 
+// Rating Metadata API Call
 
+  useEffect(() => {
+    axios.get(`${server}/reviews/meta?product_id=${product.id}`, options).then((result) => {
+      setReviewMeta(result.data.data);
+      console.log(result.data.data, " this is result.data.data")
+      console.log(result, " this is result")
+      console.log(reviewMeta, " this is reviewMeta")
+    }).catch((err) => console.log(err))
+  }, [])
 // add logic for if the count of reviews is 0 we collaps that list and don't show the associated buttons
 // use the length of the list and the number of reviews as gotten by the metadata to determine when the more reviews
 // button should disappear
+
+      console.log(reviewMeta, " this is reviewMeta outside")
 
   if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
   return <div className="review-list">
     <h3>Reviews</h3>
+    <div>
+      {function (){
+        return <RatingBreakdown />;
+      }()}
+    </div>
     <div className="sort-div">
     <label htmlFor="sort">Sort by:</label>
 
