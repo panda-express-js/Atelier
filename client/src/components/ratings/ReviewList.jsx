@@ -13,20 +13,25 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   const [sort, setSort] = useState("relevant")
 
+  const [count, setCount] = useState(2)
+
   const handleSelectChange = (event) => {
     setSort(event.target.value);
 };
+  const handleMoreReviews = () => {
+    let newCount = count + 2;
+    setCount(newCount);
+  }
 
   // call the API and update review state using useEffect
 
-  // try calling 500 items, and if the resulting array does not contain 500 items keep increasing it by 250.
-  // need to find a way to limit the amount shown on the page before I break the page by showing all at once though.
-
-  // make count dynamic
+  //use pagination
+  // when they click "View more button" make it change the state of the pagination
+  // make the count remain 2 and only show 2 more each time
+  // then make the section scrollable if need be afterwards
 
 
   useEffect(() => {
-    let count = 1000000;
 
     axios.get(`${server}/reviews?product_id=${product.id}&sort=${sort}&count=${count}`, options).then( (response) => {
         // if (response.data.length === count){
@@ -36,7 +41,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       setReviews(response.data)
 
     }).catch((err) => console.log(err))
-  },[sort])
+  },[sort, count])
 
 
 
@@ -46,7 +51,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
   return <div className="review-list">
     <h3>Reviews</h3>
     <div className="sort-div">
-    <label for="sort">Sort by:</label>
+    <label htmlFor="sort">Sort by:</label>
 
       <select name="sort" className="sort" value={sort} onChange={handleSelectChange}>
         <option value="relevant">relevant</option>
@@ -66,5 +71,6 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       console.log(reviewCount);
       return currReviews;}
     }()}
+    <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
   </div>
 }
