@@ -15,9 +15,12 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   const [count, setCount] = useState(2)
 
+  const [ratingFilter, setRatingFilter] = useState([1,2,3,4,5])
+
   const handleSelectChange = (event) => {
     setSort(event.target.value);
 };
+
   const handleMoreReviews = () => {
     let newCount = count + 2;
     setCount(newCount);
@@ -45,6 +48,8 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
 
 // add logic for if the count of reviews is 0 we collaps that list and don't show the associated buttons
+// use the length of the list and the number of reviews as gotten by the metadata to determine when the more reviews
+// button should disappear
 
   if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
@@ -63,8 +68,10 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     {function () {
       if (reviews.results){
       let currReviews = reviews.results.map((review) => {
-        return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
-        summary={review.summary} body={review.body} />
+        if (ratingFilter.includes(review.rating)) {
+          return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
+          summary={review.summary} body={review.body} />
+        }
       })
       return currReviews;}
     }()}
