@@ -44,7 +44,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
   },[sort, count])
 
 
-
+// add logic for if the count of reviews is 0 we collaps that list and don't show the associated buttons
 
   if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
@@ -61,14 +61,11 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       <br></br>
     </div>
     {function () {
-      let reviewCount = 0;
       if (reviews.results){
       let currReviews = reviews.results.map((review) => {
-        reviewCount++;
         return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
         summary={review.summary} body={review.body} />
       })
-      console.log(reviewCount);
       return currReviews;}
     }()}
     <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
