@@ -32,6 +32,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
         // if (response.data.length === count){
         // count = count + 250;
         // setSort(sort)}
+        // enhance this in the future to only pull aa many as we need at a time
       setReviews(response.data)
 
     }).catch((err) => console.log(err))
