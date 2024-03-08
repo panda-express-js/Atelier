@@ -10,14 +10,38 @@ import StarDisplay from './star_rating/Star_Display.jsx'
 
 // Helper function goes here
 
+function averageRating (ratingObject) {
+  // rating = (sum_of_ratings * 5)/max_rating_by_user_count
+
+  let totalRatings = 0;
+  let sumOfRatings = 0;
+
+  for (let key in ratingObject) {
+    totalRatings += Number(ratingObject[key]);
+    sumOfRatings += Number(ratingObject[key]) * Number(key)
+  }
+
+  let somethingelse = sumOfRatings / totalRatings;
+
+  somethingelse = parseFloat(somethingelse.toFixed(5))
+
+  return rating;
+
+}
+
+// use toFixed to make the decimal places be fewer
 
 export default function RatingBreakdown ({ reviewMeta, ratingFilter, setRatingFilter }) {
   console.log(reviewMeta, " this is reviewMeta")
 
-  for (let key in reviewMeta.ratings) {
-
-  }
 
 
-  return <div className="Rating Breakdown"> This is the Rating Breakdown</div>
+  let productAvgRating = averageRating(reviewMeta.ratings)
+  console.log(productAvgRating, " this is productAvgRating")
+
+
+  return <div className="Rating Breakdown">
+    <>This is the average rating</>
+    <StarDisplay rating={productAvgRating} />
+  </div>
 }
