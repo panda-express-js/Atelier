@@ -2,7 +2,7 @@ import React , { useState } from 'react';
 import Question from './Question.jsx';
 
 
-function QuestionList({answers, questions}) {
+function QuestionList({server, options, product, answers, questions}) {
   const [displayQuestions, setDisplayQuestions] = useState (2);
 
   // Sort questions by helpfulness
@@ -15,7 +15,7 @@ function QuestionList({answers, questions}) {
   return (
     <div className="questionlist-container" >
       {sortedQuestions.slice(0, displayQuestions).map((question, index) => (
-        <Question key={question.question_id} question={question} answers={answers[question.question_id]} />
+        <Question server={server} options={options} product={product} key={question.question_id} question={question} answers={answers[question.question_id]} />
       ))}
       {sortedQuestions.length > displayQuestions && (
         <button onClick={showMoreQuestions}>More Answered Questions</button>

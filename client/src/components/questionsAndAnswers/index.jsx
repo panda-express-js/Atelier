@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import QuestionList from './QuestionList.jsx';
 import axios from 'axios';
@@ -57,7 +56,7 @@ const QandA = ({ product, server, options }) => {
     <div>
       <h4>Questions & Answers</h4>
       <nav><Search onSearchChange={updateSearch}/></nav>
-      <QuestionList questions={searchInput.length >= 3 ? filteredQuestions : questions} answers={answers} />
+      <QuestionList server={server} options={options} product={product} questions={searchInput.length >= 3 ? filteredQuestions : questions} answers={answers} />
       <AddQuestion productId = {product.id} productName={product.name} onSubmitQuestion={handleQuestionSubmit}/>
     </div>
   );
