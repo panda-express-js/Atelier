@@ -202,20 +202,73 @@ body {
   Related Products table
 */
 .comparisonModal {
+  border: 1px solid black;
+  background-color: white;
   width: 50%;
-  height: 50%;
+  height: 25%;
   overflow-y: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+.comparisonModal h6{
+  margin: 0 auto;
 }
 .comparisonTable {
   width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  overflow-y: auto;
   background-color: white;
   margin: 0 auto;
 }
+.comparisonTable thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: white;
+}
 /* row css */
-.comparisonTable th, .comparisonTable td {
+.comparisonTable th {
+  font-size: 15px;
+  padding: 4px;
+  text-align: center;
+}
+
+.comparisonTable td {
+  font-size: 15px;
   padding: 8px;
   text-align: center;
+}
+
+/*related carousel styling
+*/
+.carousels {
+  height: 50%;
+}
+#relatedProductsCarousel {
+
+}
+.relatedCarousel {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.relatedCardsDiv {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.relatedCardDiv {
+  border: 1px solid black;
+
+}
+.prices {
+  font-size: 14px;
+  font-weight: lighter;
+}
+.cardName {
+  font-weight: lighter;
+}
+.cardCategory {
+  font-weight: lighter;
+  font-size: 14px;
 }
