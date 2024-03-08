@@ -57,32 +57,11 @@ const HorizontalBarChart = ({ratings}) => {
   return (
     <div>
 
-      <Bar data={data} options={options} config={config}></Bar>
+      <Bar data={data} options={options}></Bar>
     </div>
   )
 }
 
-// config for chart
-// not working yet, will need to revisit
-
-// const config = {
-//   type: 'Bar',
-//   options: {
-//     onClick: (evt) => {
-//       const points = HorizontalBarChart.getElementsAtEventForMode(evt, 'nearest', {
-//         intersect: true}, true);
-
-//         if (points.length) {
-//           const firstPoint = points[0];
-//           console.log(firstPoint.datasetIndex)
-//           const dataset = firstPoint.datasetIndex;
-//           const datapoint = firstPoint.index;
-
-//           console.log(HorizontalBarChart.data.labels[datapoint])
-//         }
-//     }
-//   }
-// }
 
 
 // use metadata for review averages
@@ -127,7 +106,7 @@ export default function RatingBreakdown ({ reviewMeta, ratingFilter, setRatingFi
     <>This is the average rating</>
     <StarDisplay rating={productAvgRating} />
     <div className="chartContainer">
-    <HorizontalBarChart ratings={reviewMeta.ratings} config={config}/>
+    <HorizontalBarChart ratings={reviewMeta.ratings}/>
     </div>
   </div>
 }
