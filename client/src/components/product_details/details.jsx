@@ -1,8 +1,9 @@
 import React from 'react';
 import StyleSelector from './styleSelect.jsx';
 import ItemAdd from './itemAdd.jsx';
+import StarDisplay from '../ratings/star_rating/Star_Display.jsx';
 
-const Details = ({ product, allStyles, style, setStyle }) => {
+const Details = ({ product, allStyles, style, setStyle, avgRating }) => {
 
   let salePrice = style.sale_price;
   let ogPrice = style.original_price;
@@ -41,8 +42,8 @@ const Details = ({ product, allStyles, style, setStyle }) => {
   return (
     <div id="detailContainer">
       <div>
-        <div>
-          star rating here
+        <div className="detailStars">
+          <StarDisplay rating={avgRating} />
           <span className="readReviews" onClick={goToReviews}>Read all reviews</span>
         </div>
         <div className="prodCat">{category}</div>
