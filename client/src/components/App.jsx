@@ -30,7 +30,7 @@ const App = () => {
       axios.get(`${server}/products/${id}`, options),
       axios.get(`${server}/products/${id}/styles`, options),
       axios.get(`${server}/products/${id}/related`, options),
-      axios.get(`${server}/reviews/meta/?product_id=${id}`, options),
+      axios.get(`${server}/reviews/meta/?product_id=${id}`, options)
     ])
     .then(([productResponse, stylesResponse, relatedResponse, metaResponse]) => {
       setProduct(productResponse.data);
