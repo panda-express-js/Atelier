@@ -4,13 +4,27 @@ import ItemAdd from './itemAdd.jsx';
 
 const Details = ({ product, allStyles, style, setStyle }) => {
 
-  let price = style.sale_price || style.original_price;
+  let salePrice = style.sale_price;
+  let ogPrice = style.original_price;
+  if (salePrice && salePrice.split('').slice(-2).join('') === '00') {
+    salePrice = salePrice.split('').slice(0, -3).join('');
+  }
+  if (ogPrice && ogPrice.split('').slice(-2).join('') === '00') {
+    ogPrice = ogPrice.split('').slice(0, -3).join('');
+  }
+
+  let price = salePrice || ogPrice;
+
+  let category;
+  if (product.category) {
+    category = product.category.toUpperCase();
+  }
 
   const renderPrice = () => {
-    if (price === style.sale_price) {
+    if (style.sale_price) {
       return (
         <span style={{ color: 'red' }}>{price}
-          <span style={{ color: 'black', textDecoration: 'line-through' }}>{style.original_price}</span>
+          <span style={{ color: 'black', textDecoration: 'line-through' }}>{ogPrice}</span>
         </span>
       )
     } else {
@@ -20,14 +34,21 @@ const Details = ({ product, allStyles, style, setStyle }) => {
     }
   }
 
+  const goToReviews = () => {
+    console.log('going to review section');
+  }
+
   return (
     <div id="detailContainer">
       <div>
-        star rating here
+        <div>
+          star rating here
+          <span className="readReviews" onClick={goToReviews}>Read all reviews</span>
+        </div>
+        <div className="prodCat">{category}</div>
+        <div className="prodName">{product.name}</div>
+        <div className="prodPrice">${renderPrice()}</div>
       </div>
-      <div>{product.category}</div>
-      <div>{product.name}</div>
-      <div>{renderPrice()}</div>
       <StyleSelector allStyles={allStyles} style={style} setStyle={setStyle}/>
       <ItemAdd style={style}/>
     </div>
