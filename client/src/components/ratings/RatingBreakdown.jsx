@@ -38,7 +38,7 @@ const HorizontalBarChart = ({ratings}) => {
       {
         label:'Ratings',
         data: dataArray,
-        backgroundColor: '#61DBFB'
+        backgroundColor: '#f80',
       }
     ]
   }
