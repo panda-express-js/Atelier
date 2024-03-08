@@ -48,7 +48,7 @@ const Photos = ({ style }) => {
         <img src={currentPhoto} />
       </div>
       <FontAwesomeIcon className="photoIcon photoExpand" icon={faExpand} />
-      <PhotoList list={style.photos} changePhoto={changePhoto} photoIndex={photoIndex}/>
+      <PhotoList list={style.photos} changePhoto={changePhoto} photoIndex={photoIndex} />
       {renderArrows()}
     </div>
   )
