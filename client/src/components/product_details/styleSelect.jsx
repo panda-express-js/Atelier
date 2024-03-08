@@ -29,8 +29,8 @@ const StyleSelector = ({ allStyles, style, setStyle }) => {
   }
 
   return (
-    <div>
-      <div>STYLE > {style.name}</div>
+    <div className="styleSection">
+      <div className="styleName"><strong>STYLE > </strong>{style.name}</div>
       {renderThumbnails()}
     </div>
   )
