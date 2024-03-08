@@ -46,7 +46,9 @@ const HorizontalBarChart = ({ratings}) => {
     indexAxis:  'y',
     layout: {
       padding: '2rem'
-    }
+    },
+    responsive: true,
+    maintainAspectRatio: false
   };
 
   return (
@@ -99,6 +101,8 @@ export default function RatingBreakdown ({ reviewMeta, ratingFilter, setRatingFi
   return <div className="Rating Breakdown">
     <>This is the average rating</>
     <StarDisplay rating={productAvgRating} />
+    <div className="chartContainer">
     <HorizontalBarChart ratings={reviewMeta.ratings}/>
+    </div>
   </div>
 }
