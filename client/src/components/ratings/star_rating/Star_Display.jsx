@@ -22,8 +22,9 @@ export default function StarDisplay (props) {
     if ((num - Math.floor(num)) > 0) {
       let remainder = num - Math.floor(num);
 
+      console.log(`this is remainder ${remainder}`)
+
       if (remainder < .25) {
-        console.log(`this is remainder ${remainder}`)
         return Math.floor(num);
       } else if ((remainder >= .25) && (remainder < .5)) {
         num = Math.floor(num) + .25;

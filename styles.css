@@ -44,6 +44,12 @@ body {
   color: #f80;
 }
 
+/* Review Breakdown */
+
+.chartContainer {
+  width: 25%;
+}
+
 /* PRODUCT DETAIL */
 
 #overviewContainer {

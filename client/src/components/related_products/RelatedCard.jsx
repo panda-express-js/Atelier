@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import Comparing from './Comparing.jsx'
 import StarDisplay from '../ratings/star_rating/Star_Display.jsx'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faStar} from '@fortawesome/free-regular-svg-icons'
 const RelatedCard = ({id, obj, changeId, product, style}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,7 +16,7 @@ const RelatedCard = ({id, obj, changeId, product, style}) => {
   };
   return (
   <div className='relatedCardDiv'>
-    <button onClick={()=> {openModal()}}>star</button>
+    <FontAwesomeIcon icon={faStar} onClick={()=> {openModal()}} />
     <Comparing isModalOpen={isModalOpen} closeModal={closeModal} relatedProduct={obj} mainProduct={product} style={style}/>
     <div className='card' onClick={()=>{changeId(id)}}style={{ display: 'flex', flexDirection: 'column' }}>
       {obj.url ? <img alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <p>No Product Image</p>}
