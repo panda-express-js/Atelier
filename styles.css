@@ -34,14 +34,14 @@ body {
 
 .star-empty {
   display: inline-block;
-  font-size: 1rem;
+  font-size: 0.7rem;
   color: #ddd;
 }
 
 .star-full {
   display: inline-block;
   position: flex;
-  font-size: 1rem;
+  font-size: 0.7rem;
   color: #f80;
 }
 
@@ -159,9 +159,16 @@ body {
   grid-template-rows: 34% 33% 33%;
 }
 
+.detailStars {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
 .readReviews {
-  font-size: 10px;
   border-bottom: 1px solid black;
+  font-size: 10px;
+  margin-left: 6px;
 }
 
 .prodCat,
