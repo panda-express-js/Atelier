@@ -23,15 +23,33 @@ const Photos = ({ style }) => {
     setPhotoIndex(newIndex);
   }
 
+  const renderArrows = () => {
+    if (photoIndex === 0) {
+      return (
+        <FontAwesomeIcon onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
+      )
+    } else if (photoIndex === style.photos.length - 1) {
+      return (
+        <FontAwesomeIcon onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
+      )
+    } else {
+      return (
+        <div>
+          <FontAwesomeIcon onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
+          <FontAwesomeIcon onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
+        </div>
+      )
+    }
+  }
+
   return (
     <div id="photoContainer">
-      <FontAwesomeIcon onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
       <div className="currentPhoto">
         <img src={currentPhoto} />
       </div>
-      <FontAwesomeIcon onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
       <FontAwesomeIcon className="photoIcon photoExpand" icon={faExpand} />
-      <PhotoList list={style.photos} changePhoto={changePhoto} photoIndex={photoIndex}/>
+      <PhotoList list={style.photos} changePhoto={changePhoto} photoIndex={photoIndex} />
+      {renderArrows()}
     </div>
   )
 }

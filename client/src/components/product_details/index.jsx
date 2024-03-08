@@ -4,12 +4,12 @@ import Photos from './photos.jsx';
 import Details from './details.jsx';
 import Summary from './summary.jsx';
 
-const ProductDetail = ({ product, allStyles, style, reviews, server, options, setStyle }) => {
+const ProductDetail = ({ product, allStyles, style, reviews, server, options, setStyle, avgRating }) => {
 
   return (
     <div id="overviewContainer">
       <Photos style={style} />
-      <Details product={product} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} />
+      <Details product={product} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} avgRating={avgRating} />
       <Summary product={product} />
     </div>
   )
