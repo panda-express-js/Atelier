@@ -22,8 +22,6 @@ const PhotoList = ({ list, changePhoto, photoIndex }) => {
 
 
   const renderList = () => {
-    console.log('list:', list);
-    console.log('limited:', limitedList);
     return limitedList.map((photo) => {
       if (list.indexOf(photo) === photoIndex) {
         return (
