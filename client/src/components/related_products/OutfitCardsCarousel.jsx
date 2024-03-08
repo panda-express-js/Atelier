@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import OutfitCard from './OutfitCard.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons'
 
 const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   const [outfit, setOutfit] = useState([]);
@@ -45,7 +47,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   return (
     <div style={{ display: 'flex' }}>
     <div>{currentPosition === 0 ? null: <button onClick={() => {leftArrow()}}>{'<'}</button>}</div>
-    <button onClick={()=>{addToOutift()}}>+ icon Add To Outift</button>
+    <button onClick={()=>{addToOutift()}}><FontAwesomeIcon icon={faPlus} size='lg' />Add To Outift</button>
     <div style={{ display: 'flex' }}>
       {outfit.map((obj, index) => {
         if (index >= currentPosition && index <= currentPosition + 2) {
