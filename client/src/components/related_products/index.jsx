@@ -3,7 +3,7 @@ import axios from 'axios'
 import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
 import OutfitCardsCarousel from './OutfitCardsCarousel.jsx'
 
-const RelatedProducts = ({product, server, options, productIds, changeId, style}) => {
+const RelatedProducts = ({product, server, options, productIds, changeId, style, avgRating}) => {
   //40382 has good range
   //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
@@ -18,13 +18,6 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
     }, []);
     if (product.id !== undefined) {
       setUniqueProductIds(arr);
-      axios.get(`${server}/reviews/meta/?product_id=${product.id}`, options)
-      .then((result) => {
-        setReviews(result.data)
-      })
-      .catch((err) => {
-        console.log('err', err)
-      })
     }
   }, [productIds])
 
@@ -36,7 +29,7 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style}
       </div>
       <h6>YOUR OUTFIT</h6>
       <div id='outfitProductCarousel'>
-        <OutfitCardsCarousel product={product} style={style} changeId={changeId} reviews={reviews}/>
+        <OutfitCardsCarousel product={product} style={style} changeId={changeId} avgRating={avgRating}/>
       </div>
     </div>
   )

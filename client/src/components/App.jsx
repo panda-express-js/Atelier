@@ -16,36 +16,49 @@ const App = () => {
   const [allStyles, setAllStyles] = useState([]);
   const [style, setStyle] = useState({});
   const [reviews, setReviews] = useState([]);
+  const [meta, setMeta] = useState({});
+  const [avgRating, setAvgRating] = useState(0);
 
   const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
 
   const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
 
   useEffect(()=>{
-    axios.get(`${server}/products/${id}`, options)
-    .then((response) => {
-      console.log(response.data);
-      setProduct(response.data);
+    //Promise.all takes an array of promises
+    //returns an array of the data once all input promises are complete
+    Promise.all([
+      axios.get(`${server}/products/${id}`, options),
+      axios.get(`${server}/products/${id}/styles`, options),
+      axios.get(`${server}/products/${id}/related`, options),
+      axios.get(`${server}/reviews/meta/?product_id=${id}`, options)
+    ])
+    .then(([productResponse, stylesResponse, relatedResponse, metaResponse]) => {
+      setProduct(productResponse.data);
+
+      setAllStyles(stylesResponse.data.results);
+      setStyle(stylesResponse.data.results[0]);
+
+      setProductIds(relatedResponse.data);
+      //Meta object and avg rating states
+      setMeta(metaResponse.data);
+      setAvgRating(getAverageRatingFromMeta(metaResponse.data))
     })
-    .catch((err) => {console.log(err)})
-    .then(() => {
-      axios.get(`${server}/products/${id}/styles`, options)
-      .then((response) => {
-        setAllStyles(response.data.results);
-        setStyle(response.data.results[0]);
-      })
-      .catch((err) => {console.log(err)})
-      .then(() => {
-        axios.get(`${server}/products/${id}/related`, options)
-        .then((result) => {
-          setProductIds(result.data)
-        })
-        .catch((err) => {console.log(err)})
-      })
-    })
+    .catch((err) => {
+      console.log(err, 'App component use effect error');
+    });
   }, [id]);
-  // PROPS TO PASS DOWN
-  // -product === current product
+  //function to get average rating for main product
+  const getAverageRatingFromMeta = (metaObj) => {
+    var ratingsObj = metaObj.ratings;
+    var totalVotes = 0;
+    var totalStars = 0;
+    for (var key in ratingsObj) {
+      totalVotes += parseInt(ratingsObj[key]);
+      totalStars += (parseInt(ratingsObj[key]) * key);
+    }
+    var averageRating = totalStars / totalVotes;
+    return averageRating;
+  }
 
   //function changes id State, which is watched by useEffect, and rerenders for the new product
   const changeId = (newId) => {
@@ -57,10 +70,10 @@ const App = () => {
   return (
     <div id='main-component'>
       <h1>Atelier</h1>
-      <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle}/>
-      <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} />
+      <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} avgRating={avgRating}/>
+      <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} avgRating={avgRating}/>
       <QandA server={server} options={options} product={product} />
-      { function() { if(product.id) {return <RatingsReviews server={server} options={options} product={product} reviews={reviews} setReviews={setReviews}/>}}()}
+      { function() { if(product.id) {return <RatingsReviews server={server} options={options} product={product} reviews={reviews} meta={meta} avgRating={avgRating} setReviews={setReviews}/>}}()}
     </div>
   )
 }
