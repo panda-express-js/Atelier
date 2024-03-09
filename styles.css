@@ -51,6 +51,12 @@ body {
   width: 25%;
 }
 
+/* Review Tile */
+
+.summary {
+  font-weight: 900;
+}
+
 /* PRODUCT DETAIL */
 
 #overviewContainer {

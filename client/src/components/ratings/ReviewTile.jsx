@@ -8,8 +8,8 @@ export default function ReviewTile ({ rating, date, username, summary, body }) {
 
 
   return <div className="review-tile">
-    <div className="username">{username} </div>
     <div className="date">{newDate}</div>
+    <div className="username">{username} </div>
     <br></br>
     <StarDisplay rating={rating} />
     <br></br>
