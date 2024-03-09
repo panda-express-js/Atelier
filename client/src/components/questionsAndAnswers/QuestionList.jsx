@@ -1,8 +1,9 @@
 import React , { useState } from 'react';
 import Question from './Question.jsx';
+import AddQuestion from './AddQuestion.jsx';
 
 
-function QuestionList({answers, questions}) {
+function QuestionList({server, options, product, answers, questions}) {
   const [displayQuestions, setDisplayQuestions] = useState (2);
 
   // Sort questions by helpfulness
@@ -11,15 +12,27 @@ function QuestionList({answers, questions}) {
   const showMoreQuestions = () => {
     setDisplayQuestions(prev => prev + 2);
   };
+  const handleQuestionSubmit = (questionData) => {
+    // axios.post(`${server}/qa/questions`, questionData, options)
+    axios.post(`${server}/qa/questions?product_id=${product.id}`, questionData, options)
+      .then(() => {
+        console.log('Question added successfully:', questionData);
+        })
+      .catch(error => console.error('Error adding question:', error));
+  };
+
 
   return (
-    <div className="questionlist-container" >
+    <div className='questionlist-container' >
       {sortedQuestions.slice(0, displayQuestions).map((question, index) => (
-        <Question key={question.question_id} question={question} answers={answers[question.question_id]} />
+        <Question server={server} options={options} product={product} key={question.question_id} question={question} answers={answers[question.question_id]} />
       ))}
-      {sortedQuestions.length > displayQuestions && (
-        <button onClick={showMoreQuestions}>More Answered Questions</button>
-      )}
+      <div className='buttons-container'>
+          {sortedQuestions.length > displayQuestions && (
+            <button onClick={showMoreQuestions} className='button'>More Answered Questions</button>
+          )}
+          <AddQuestion productId = {product.id} productName={product.name} onSubmitQuestion={handleQuestionSubmit}/>
+      </div>
     </div>
   );
 }

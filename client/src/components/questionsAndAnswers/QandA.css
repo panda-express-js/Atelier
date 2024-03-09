@@ -22,7 +22,7 @@
 /* Questionlist.css */
 
 .questionlist-container {
-  max-height: 500px;
+  max-height: 800px;
   overflow-y: auto;
 }
 /* Question.css */
@@ -85,4 +85,19 @@
 
 .error-message {
   color: red;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 2px solid black;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 0;
+  margin-right: 20px
 }

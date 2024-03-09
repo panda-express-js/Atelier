@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import './QandA.css';
 
-function AnswerList({ answers }) {
+function AnswerList({server, options,  answers}) {
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -33,7 +33,7 @@ function AnswerList({ answers }) {
     <div>
       <div className = {isExpanded? 'answersExpanded':''}>
         {displayedAnswers.map((answer) => (
-          <Answer key={answer.answer_id} answer={answer} />
+          <Answer key={answer.answer_id} answer={answer} server={server} options={options}/>
         ))}
       </div>
       {sortedAnswers.length > 2  && (

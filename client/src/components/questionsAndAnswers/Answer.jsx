@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 
-function Answer({ answer }) {
+function Answer({ server, options, answer }) {
 
   const [helpfulness, setHelpfulness] = useState(answer.helpfulness);
   const [hasVoted, setHasVoted] = useState(false);
@@ -11,6 +12,13 @@ function Answer({ answer }) {
     if (!hasVoted) {
       setHelpfulness(helpfulness + 1);
       setHasVoted(true);
+      axios.put(`${server}/qa/questions/${answer.answer_id}/helpful`,{}, options)
+      .then(() => {
+        console.log('Answer Helpfulness updated successfully');
+      })
+      .catch(error => {
+        console.error('Error updating answer helpfulness:', error);
+      });
     }
   };
 
@@ -18,6 +26,13 @@ function Answer({ answer }) {
     e.preventDefault();
     if (!reported) {
       setReported(true);
+      axios.put(`${server}/qa/questions/${answer.answer_id}/report`,{}, options)
+      .then(() => {
+        console.log('Answer reported successfully');
+      })
+      .catch(error => {
+        console.error('Error reporting answer:', error);
+      });
     }
   };
 
