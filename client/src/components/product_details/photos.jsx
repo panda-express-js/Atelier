@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PhotoList from './photoList.jsx';
+import ExpandedView from './expandedView.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faExpand } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,6 +10,7 @@ const Photos = ({ style }) => {
   let currentPhoto;
   const [photoIndex, setPhotoIndex] = useState(0);
   const [photoList, setPhotoList] = useState([]);
+  const [expandedView, setExpandedView] = useState(false);
 
   if (style.photos) {
     currentPhoto = style.photos[photoIndex].url;
@@ -42,14 +44,30 @@ const Photos = ({ style }) => {
     }
   }
 
+  const openExpanded = (e) => {
+    if (e.target.id === "photoContainer" || e.target.className === "mainImg" || e.target.className === "currentPhoto" || e.target.id === "photoExpand") {
+      console.log(e.target.id);
+      setExpandedView(true);
+    }
+  }
+
+  const checkExpanded = () => {
+    if (expandedView === true) {
+      return (
+        <ExpandedView currentPhoto={currentPhoto} setExpandedView={setExpandedView} list={photoList} photoIndex={photoIndex} changePhoto={changePhoto} renderArrows={renderArrows}/>
+      )
+    }
+  }
+
   return (
-    <div id="photoContainer">
+    <div id="photoContainer" onClick={(e) => openExpanded(e)}>
       <div className="currentPhoto">
-        <img src={currentPhoto} />
+        <img className="mainImg" src={currentPhoto} onClick={(e) => openExpanded(e)}/>
       </div>
-      <FontAwesomeIcon className="photoIcon photoExpand" icon={faExpand} />
+      <FontAwesomeIcon className="photoIcon" id="photoExpand" icon={faExpand} />
       <PhotoList list={style.photos} changePhoto={changePhoto} photoIndex={photoIndex} />
       {renderArrows()}
+      {checkExpanded()}
     </div>
   )
 }
