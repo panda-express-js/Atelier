@@ -20,7 +20,7 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
         if (response) {
           return <div className="response-box">
             <span className="response">Response from seller </span>
-            <span>{response}</span>
+            <span className="response">{response}</span>
           </div>
         }
       }()
