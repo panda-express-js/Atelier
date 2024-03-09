@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './QandA.css';
 
-const AddQuestion = ( { server, options, productId, productName, onSubmitQuestion  }) => {
+const AddQuestion = ( { productId, productName, onSubmitQuestion  }) => {
   const [openModal, setOpenModal] = useState(false);
   const [question, setQuestion] = useState('');
   const [nickname, setNickname] = useState('');
@@ -41,17 +41,12 @@ const AddQuestion = ( { server, options, productId, productName, onSubmitQuestio
     };
 
     onSubmitQuestion(questionData);
-
-     setQuestion('');
-     setNickname('');
-     setEmail('');
-     setErrorMessage('');
-     setOpenModal(false);
+    setOpenModal(false);
   }
 
   return (
     <div>
-      <button onClick={() => setOpenModal(true)}>Ask a Question</button>
+      <button onClick={() => setOpenModal(true)} className="button">Ask a Question +</button>
       {openModal && (
           <div>
             <div className='modal'>
@@ -71,7 +66,8 @@ const AddQuestion = ( { server, options, productId, productName, onSubmitQuestio
                     type="text"
                     value={nickname}
                     onChange={(e) => setNickname(e.target.value)}
-                    maxLength="60" placeholder="Example: jackson11!" required />
+                    maxLength="60"
+                    placeholder="Example: jackson11!" required />
                     <p>For privacy reasons, do not use your full name or email address</p>
                   </label>
                   <label>Your email (mandatory)*

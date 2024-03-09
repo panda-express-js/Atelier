@@ -46,7 +46,6 @@ const Photos = ({ style }) => {
 
   const openExpanded = (e) => {
     if (e.target.id === "photoContainer" || e.target.className === "mainImg" || e.target.className === "currentPhoto" || e.target.id === "photoExpand") {
-      console.log(e.target.id);
       setExpandedView(true);
     }
   }
