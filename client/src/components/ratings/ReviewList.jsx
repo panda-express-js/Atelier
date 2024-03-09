@@ -90,7 +90,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
         console.log("Here's a review bud ", review)
         if (ratingFilter.includes(review.rating)) {
           return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
-          summary={review.summary} body={review.body} recommend={review.recommend}/>
+          summary={review.summary} body={review.body} recommend={review.recommend} response={review.response}/>
         }
       })
       return currReviews;}

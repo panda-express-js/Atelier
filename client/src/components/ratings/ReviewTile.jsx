@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function ReviewTile ({ rating, date, username, summary, body, recommend }) {
+export default function ReviewTile ({ rating, date, username, summary, body, recommend, response }) {
 
   const newDate = new Date(date).toDateString();
 
@@ -14,6 +14,17 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
     <div className="username">{username} </div>
     <br></br>
     <StarDisplay rating={rating} />
+    <br></br>
+    {
+      function () {
+        if (response) {
+          return <div className="response-box">
+            <span className="response">Response from seller </span>
+            <span>{response}</span>
+          </div>
+        }
+      }()
+    }
     <br></br>
     <div className="summary">{summary}</div>
     <br></br>
