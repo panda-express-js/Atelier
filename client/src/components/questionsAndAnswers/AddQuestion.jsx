@@ -46,7 +46,7 @@ const AddQuestion = ( { productId, productName, onSubmitQuestion  }) => {
 
   return (
     <div>
-      <button onClick={() => setOpenModal(true)}>Ask a Question</button>
+      <button onClick={() => setOpenModal(true)} className="button">Ask a Question +</button>
       {openModal && (
           <div>
             <div className='modal'>

@@ -14,8 +14,15 @@ function Question({server, options, product, question, answers}) {
   const handleHelpfulClick = (e) => {
     e.preventDefault();
     if (!hasVoted) {
-      setHelpfulness(helpfulness + 1);
+      setHelpfulness(helpfulness + 1)
       setHasVoted(true);
+      axios.put(`${server}/qa/questions/${question.question_id}/helpful`,{}, options)
+        .then(() => {
+          console.log('Question Helpfulness updated successfully');
+        })
+        .catch(error => {
+          console.error('Error updating question helpfulness:', error);
+        });
     }
   };
 
@@ -45,7 +52,7 @@ function Question({server, options, product, question, answers}) {
             <a href='' onClick ={handleOpenAddAnswerModal}> Add Answer</a>
           </span>
       </div>
-      <AnswerList answers={answers}/>
+      <AnswerList server={server} options={options}answers={answers}/>
       {openAddAnswerModal && (
         <AddAnswer product={product} question={question}onSubmitAnswer={onSubmitAnswer} onClose={handleCloseAddAnswerModal}/>
       )}
