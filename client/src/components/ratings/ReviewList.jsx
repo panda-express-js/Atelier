@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 
+
 // pass in API data to drill down to the individual review tiles
 
 // need to use useEffect so it only renders once
@@ -86,9 +87,10 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     {function () {
       if (reviews.results){
       let currReviews = reviews.results.map((review) => {
+        console.log("Here's a review bud ", review)
         if (ratingFilter.includes(review.rating)) {
           return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
-          summary={review.summary} body={review.body} />
+          summary={review.summary} body={review.body} recommend={review.recommend}/>
         }
       })
       return currReviews;}
