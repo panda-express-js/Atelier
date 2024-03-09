@@ -6,18 +6,19 @@ import {faCircleXmark} from '@fortawesome/free-solid-svg-icons'
 const OutfitCard = ({obj, deleteOutfit, changeId}) => {
 
   return (
-    <div>
-    <FontAwesomeIcon icon={faCircleXmark} onClick={()=> {deleteOutfit(obj.id)}}/>
-    <div className='card' onClick={()=>{changeId(obj.id)}}style={{ display: 'flex', flexDirection: 'column' }}>
-      {obj.url ? <img alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <p>No Product Image</p>}
-      <span>{obj.category}</span>
-      <span>{obj.name}</span>
-        {obj.sale_price ? <>
-                        <span style={{ color:'red' }}>{obj.sale_price}</span>
-                        <span style={{ textDecoration: 'line-through' }}>{obj.default_price}</span>
-                      </>: <span>{obj.default_price}</span>}
-        <span><StarDisplay rating={obj.stars}/></span>
-    </div>
+    <div className='outfitCardDiv'>
+      <div className='cardTop'>
+        <FontAwesomeIcon className='BTN' icon={faCircleXmark} onClick={()=> {deleteOutfit(obj.id)}}/>
+        {obj.url ? <img alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <p>No Product Image</p>}
+      </div>
+      <div className="cardBottom"  onClick={()=>{changeId(obj.id)}}>
+        <span className='cardCategory'>{obj.category}</span>
+        <span className='cardName'>{obj.name}</span>
+        {obj.sale_price ? <> <span className='prices' style={{ color:'red' }}>{obj.sale_price}</span>
+        <span className='prices' style={{ textDecoration: 'line-through' }}>{obj.default_price}</span></>: <span className='prices'>{obj.default_price}</span>}
+        <span className='starSpan'><StarDisplay rating={obj.stars}/></span>
+      </div>
+
   </div>
   )
 }
