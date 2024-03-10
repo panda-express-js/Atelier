@@ -300,13 +300,13 @@ body {
 .rHeader, .oHeader {
   margin-bottom: 15px;
   align-self: center;
-  width: 70%;
+  width: 100%;
 }
 /*contains div below*/
 .relatedProductsCarousel, .outfitProductCarousel {
   align-self: center;
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 50%;
 }
 /*contains arrows and cards collection*/
 .relatedCarousel, .outfitCarousel {
@@ -318,7 +318,7 @@ body {
 .relatedCardsDiv, .outfitCardsDiv {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
+  gap: 10px;
   box-sizing: border-box;
 }
 
@@ -336,6 +336,8 @@ body {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  min-height: 460px;
+  min-width: 200px;
 }
 /* card div */
 .relatedCardDiv, .outfitCardDiv {

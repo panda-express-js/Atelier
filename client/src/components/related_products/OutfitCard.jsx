@@ -18,7 +18,6 @@ const OutfitCard = ({obj, deleteOutfit, changeId}) => {
         <span className='prices' style={{ textDecoration: 'line-through' }}>{obj.default_price}</span></span>: <span className='prices'>{obj.default_price}</span>}
         <span className='starSpan'><StarDisplay rating={obj.stars}/></span>
       </div>
-
   </div>
   )
 }
