@@ -51,7 +51,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
 
   return (
     <div className='relatedCarousel'>
-    <div>{currentPosition === 0 ? null: <button onClick={() => {leftArrow()}}>{'<'}</button>}</div>
+    <div>{currentPosition === 0 ? null: <button className='carBtn' onClick={() => {leftArrow()}}>{'<'}</button>}</div>
     <div className='relatedCardsDiv'>
       {productList.map((obj, index) => {
         if (index >= currentPosition && index <= currentPosition + 3) {
@@ -61,7 +61,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
         }
       })}
     </div>
-    <div>{currentPosition >= uniqueProductIds.length - 4 ? null :<button onClick={() => {rightArrow()}}>{'>'}</button>}</div>
+    <div>{currentPosition >= uniqueProductIds.length - 4 ? null :<button className='carBtn' onClick={() => {rightArrow()}}>{'>'}</button>}</div>
     </div>
   )
 }

@@ -19,7 +19,7 @@ const RelatedCard = ({id, obj, changeId, product, style}) => {
       <div className='cardTop'>
         <FontAwesomeIcon className='BTN' icon={faStar} onClick={()=> {openModal()}} />
         <Comparing isModalOpen={isModalOpen} closeModal={closeModal} relatedProduct={obj} mainProduct={product} style={style}/>
-        {obj.url ? <img alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <img/>}
+        {obj.url ? <img onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <img onClick={()=>{changeId(obj.id)}}/>}
       </div>
       <div className='cardBottom' onClick={()=>{changeId(id)}}>
         <span className='cardCategory'>{obj.category}</span>
