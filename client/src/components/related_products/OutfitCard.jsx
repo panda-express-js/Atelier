@@ -14,8 +14,8 @@ const OutfitCard = ({obj, deleteOutfit, changeId}) => {
       <div className="cardBottom"  onClick={()=>{changeId(obj.id)}}>
         <span className='cardCategory'>{obj.category}</span>
         <span className='cardName'>{obj.name}</span>
-        {obj.sale_price ? <> <span className='prices' style={{ color:'red' }}>{obj.sale_price}</span>
-        <span className='prices' style={{ textDecoration: 'line-through' }}>{obj.default_price}</span></>: <span className='prices'>{obj.default_price}</span>}
+        {obj.sale_price ? <span style={{display:'flex'}}> <span className='prices' style={{ color:'red' }}>{obj.sale_price}</span>
+        <span className='prices' style={{ textDecoration: 'line-through' }}>{obj.default_price}</span></span>: <span className='prices'>{obj.default_price}</span>}
         <span className='starSpan'><StarDisplay rating={obj.stars}/></span>
       </div>
 

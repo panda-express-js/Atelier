@@ -253,8 +253,11 @@ body {
   border: 1px solid black;
   background-color: white;
   width: 50%;
-  height: 25%;
+  height: 50%;
   overflow-y: auto;
+  position: fixed;
+  top: 25%;
+  left: 25%;
 }
 .comparisonModal h6{
   margin: 0;
@@ -291,72 +294,93 @@ body {
 */
 
 .carousels {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.1fr 1fr 0.1fr 1fr;
-  gap: 0px 0px;
+  display: flex;
+  flex-direction: column;
 }
 .rHeader, .oHeader {
   margin-bottom: 15px;
+  align-self: center;
+  width: 70%;
 }
-.relatedCarousel {
+/*contains div below*/
+.relatedProductsCarousel, .outfitProductCarousel {
+  align-self: center;
+  width: 70%;
+  height: 70%;
+}
+/*contains arrows and cards collection*/
+.relatedCarousel, .outfitCarousel {
   display: grid;
-  grid-template-columns: 0.1fr 2.8fr 0.1fr;
-  grid-template-rows: .5fr;
-  gap: 16px;
+  grid-template-columns: .1fr 1fr .1fr;
+  box-sizing: border-box;
 }
+/*contains carBtn and cards*/
+.relatedCardsDiv, .outfitCardsDiv {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  box-sizing: border-box;
+}
+
 .carBtn {
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  object-fit: cover;
 }
-.relatedCardsDiv {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-.outfitCarousel {
-  display: grid;
-  grid-template-columns: 0.1fr 0.65fr 2.025fr 0.1fr;
-  grid-template-rows: .5fr;
-  gap: 16px;
-}
-.outfitCarousel > :first-child{
-  margin-right: -16px;
-}
-.outfitCarousel > :last-child{
-  margin-left: -16px;
-}
+/*  cards */
 
 .outfitBtn {
   background-color: white;
   border: 1px solid black;
-  padding: 0px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
-
-.outfitCardsDiv {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: .5fr;
-  gap: 16px;
-}
-/* relate cards */
+/* card div */
 .relatedCardDiv, .outfitCardDiv {
   border: 1px solid black;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1.4fr 0.6fr;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .cardTop {
   position: relative;
-  height: 100%;
+  flex: 3;
+  overflow: hidden;
 }
 .cardTop > img {
-  width: 100%;
   height: 100%;
+  width: 100%;
   object-fit: cover;
 }
+
+.cardBottom {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.prices {
+  font-size: 14px;
+  font-weight: lighter;
+}
+.cardName {
+  font-weight: normal;
+  white-space: nowrap;
+  font-size: 15px;
+}
+.cardCategory {
+  font-weight: lighter;
+  font-size: 14px;
+}
+.cardCategory, .cardName, .prices, .starSpan {
+  padding-left: 5px;
+  height: 100%;
+}
+/* action btns*/
 .BTN {
   position: absolute;
   top: 5px;
@@ -371,28 +395,4 @@ body {
 .outfitCardDiv > .cardTop > .BTN {
   color: rgb(212, 77, 77);
   background-color: rgb(70, 24, 24);
-}
-
-.cardBottom {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.8fr 3.5fr 0.8fr 0.8fr;
-}
-.prices {
-  font-size: 14px;
-  font-weight: lighter;
-}
-.cardName {
-  font-weight: normal;
-  font-size: 15px;
-}
-.cardCategory {
-  font-weight: lighter;
-  font-size: 14px;
-}
-.cardCategory, .cardName, .prices, .starSpan {
-  align-self: center;
-  padding-left: 5px;
-  height: 100%;
 }
