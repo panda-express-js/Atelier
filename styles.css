@@ -12,6 +12,7 @@ body {
 
 #main-component {
   width: 90%;
+  position: relative;
 }
 
 /* ---Stars--- */
@@ -66,6 +67,46 @@ body {
 
   grid-column: 1 / 4;
   grid-row: 1 / 4;
+}
+
+#photoContainer:hover {
+  cursor: zoom-in;
+}
+
+.expandedContainer {
+  background-color: rgba(128, 128, 128, 0.904);
+  color: white;
+  position: absolute;
+  height: 131%;
+  top: -18%;
+  left: -10%;
+  width: 186%;
+  z-index: 100;
+  text-align: center;
+}
+
+.expandedPhoto {
+  height: 100%;
+}
+
+.closeExpanded {
+  position: absolute;
+  right: 5%;
+  top: 3%;
+}
+
+.closeExpanded:hover {
+  cursor: pointer;
+}
+
+.expArrows .leftArrow {
+  position: absolute;
+  left: 1%;
+}
+
+.expArrows .rightArrow {
+  position: absolute;
+  right: 1%;
 }
 
 .photoList {
@@ -138,7 +179,7 @@ body {
   right: 4%;
 }
 
-.photoExpand {
+#photoExpand {
   position: absolute;
 
   top: 5%;
@@ -183,10 +224,14 @@ body {
   font-weight: 300;
 }
 
+.prodPrice {
+  padding-bottom: 16px;
+}
+
 .prodName {
   font-size: 1.9rem;
   font-weight: 900;
-  padding-bottom: 20px;
+  padding-bottom: 16px;
   width: 65%;
 }
 
