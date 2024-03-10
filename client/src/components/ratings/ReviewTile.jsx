@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function ReviewTile ({ rating, date, username, summary, body, recommend, response, helpful }) {
+export default function ReviewTile ({ rating, date, username, summary, body, recommend, response, helpful, updateHelpfulAPI, reviewID }) {
 
   const newDate = new Date(date).toDateString();
 
@@ -43,6 +43,6 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
         }
       }()
     }
-    <Helpful helpful={helpfulness} setHelpful={setHelpfulness}/>
+    <Helpful helpful={helpfulness} setHelpful={setHelpfulness} updateHelpfulAPI={updateHelpfulAPI} reviewID={reviewID}/>
   </div>
 }
