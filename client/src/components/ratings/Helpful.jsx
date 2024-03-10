@@ -9,10 +9,12 @@ import axios from 'axios';
 //  A user can provide feedback on any review. However, they can only make one submission for each review.
 //  If the user selects either “Yes” or “No” for a review, they should not be able to select another option again for that review.
 
-export default function Helpful () {
+export default function Helpful ({ helpful, setHelpful }) {
 
 
   return <span class="helpful-box">
-
+    <span>Was this review helpful? </span>
+    <>Insert buttons here </>
+    <span>{helpful} people found this helpful</span>
   </span>
 }
