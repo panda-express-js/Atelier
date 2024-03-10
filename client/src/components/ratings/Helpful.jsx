@@ -18,7 +18,7 @@ export default function Helpful ({ helpful, setHelpful, updateHelpfulAPI, review
       setHasClicked(true)
       let newHelpful = helpful + 1
       setHelpful(newHelpful);
-      updateHelpfulAPI(updateHelpfulAPI, reviewID)
+      updateHelpfulAPI(reviewID)
     }
   }
 
