@@ -14,10 +14,7 @@ const RelatedCard = ({id, obj, changeId, product, style}) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-<>
-    <span className='prices' style={{ color:'red' }}>{obj.sale_price}</span>
-    <span className='prices' style={{ textDecoration: 'line-through' }}>{obj.default_price}</span>
-</>
+
   return (
     <div className='relatedCardDiv'>
       <div className='cardTop'>
