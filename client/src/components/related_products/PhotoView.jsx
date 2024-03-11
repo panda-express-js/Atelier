@@ -5,9 +5,7 @@ const PhotoView = ({photos, photo, changePhoto}) => {
   const [currentPosition, setCurrentPosition] = React.useState(0);
 
   //remove current photo from photosarray
-  console.log(photos)
   const filteredPhotos = photos.filter((photoObj) => photoObj.url !== photo);
-  console.log(filteredPhotos)
   const rightArrow = () => {
     setCurrentPosition(currentPosition + 1);
   }
