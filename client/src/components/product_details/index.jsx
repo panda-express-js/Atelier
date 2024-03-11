@@ -3,6 +3,7 @@ import axios from 'axios';
 import Photos from './photos.jsx';
 import Details from './details.jsx';
 import Summary from './summary.jsx';
+import './prodDetail.css';
 
 const ProductDetail = ({ product, allStyles, style, reviews, server, options, setStyle, avgRating }) => {
 
