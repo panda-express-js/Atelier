@@ -11,7 +11,7 @@ import RatingBreakdown from './RatingBreakdown.jsx';
 // try looping through all reviews until all are retrieved and then limiting the amount shown instead.
 // Will help for the breakdown and its filter by rating
 
-export default function ReviewList ({ product , server, options, reviews, setReviews }) {
+export default function ReviewList ({ product , server, options, reviews, setReviews, avgRating }) {
 
   const [sort, setSort] = useState("relevant")
 
@@ -41,7 +41,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       setReviews(response.data)
 
     }).catch((err) => console.log(err))
-  },[sort, count])
+  },[sort, count, product.id])
 
 // Rating Metadata API Call
 
@@ -67,7 +67,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     <div>
       {function (){
         if (reviewMeta) {
-          return <RatingBreakdown reviewMeta={reviewMeta} ratingFilter={ratingFilter} setRatingFilter={setRatingFilter} />;
+          return <RatingBreakdown reviewMeta={reviewMeta} ratingFilter={ratingFilter} setRatingFilter={setRatingFilter} avgRating={avgRating} />;
         }
       }()}
     </div>
@@ -84,11 +84,13 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     {function () {
       if (reviews.results){
       let currReviews = reviews.results.map((review) => {
-        console.log("Here's a review bud ", review)
         if (ratingFilter.includes(review.rating)) {
+          if (review.body.includes("img")) {
+            console.log(review.body, " this one has an image")
+          }
           return <ReviewTile key={review.review_id} reviewID={review.review_id} rating={review.rating} date={review.date} username={review.reviewer_name}
           summary={review.summary} body={review.body} recommend={review.recommend} response={review.response} helpful={review.helpfulness}
-          updateHelpfulAPI={helpfulAPIUpdate}/>
+          updateHelpfulAPI={helpfulAPIUpdate} avgRating={avgRating} />
         }
       })
       return currReviews;}
