@@ -19,6 +19,8 @@ ChartJS.register(
   Legend
 );
 
+// might shuck this out into a separate component
+
 const HorizontalBarChart = ({ratings}) => {
 
   console.log(ratings, " this is ratings from within the Horizontal Bar Chart")
@@ -51,6 +53,7 @@ const HorizontalBarChart = ({ratings}) => {
     maintainAspectRatio: false
   };
 
+
   return (
     <div>
 
@@ -58,6 +61,7 @@ const HorizontalBarChart = ({ratings}) => {
     </div>
   )
 }
+
 
 
 // use metadata for review averages

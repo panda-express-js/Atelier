@@ -1,6 +1,7 @@
 import React from 'react';
 import { render , screen } from '@testing-library/react';
 
+import App from '../components/App.jsx';
 import RelatedProducts from '../components/related_products/index.jsx';
 import RelatedCardsCarousel from '../components/related_products/RelatedCardsCarousel.jsx';
 import RelatedCard from '../components/related_products/RelatedCard.jsx';
@@ -104,7 +105,7 @@ const relatedProductStyles = {
       "style_id": 246021,
       "name": "Lavender",
       "original_price": "665.00",
-      "sale_price": null,
+      "sale_price": "100.00",
       "default?": true,
       "photos": [
           {
@@ -126,42 +127,33 @@ sale_price: relatedProductStyles.results[0].sale_price
 }
 
 const changeID = () => {};
-/*
-  Test start
-*/
+/*Related card formating */
 describe('RelatedCard Component', () => {
+  test('renders data', () => {
+    const card = render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
 
-  it('renders correct image', () => {
-    render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
-    expect(screen.getByAltText('product image of Tony Boots')).toBeInTheDocument();
-  });
+  var img = card.getByAltText('product image of Tony Boots')
+  var name = card.getByText('Tony Boots');
+  var category = card.getByText('Boots');
+  var salesPrice = card.getByText('100.00');
+  var defaultPrice = card.getByText('665.00')
 
-  it('renders correct name', () => {
-    render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
-    expect(screen.getByText('Tony Boots')).toBeInTheDocument();
-  });
-
-  it('renders correct category', () => {
-    render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
-    expect(screen.getByText('Boots')).toBeInTheDocument();
-  });
-/*
-  it('renders correct sales price', () => {
-    render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
-    expect(screen.getByText('100.00')).toBeInTheDocument();
-  });
-*/
-  it('renders correct default price', () => {
-    render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles} />);
-    expect(screen.getByText('665.00')).toBeInTheDocument();
-  });
+  expect(img).toBeInTheDocument();
+  expect(name).toBeInTheDocument();
+  expect(category).toBeInTheDocument();
+  expect(salesPrice).toBeInTheDocument();
+  expect(defaultPrice).toBeInTheDocument();
+  })
 
 });
 /*
-describe('RelatedCardsCarousel Component', () => {
-  const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
-  const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
-  const uniqueProductIds = [40345, 40346, 40348, 40349];
+describe('App', () => {
+  it('renders App', () => {
+    const comp = render(<App />);
+    console.log(comp);
+    //expect(screen.getByText().toBeInTheDocument())
+  })
 
-});
-*/
+})
+/* Outfit cards */
+/* Related card */

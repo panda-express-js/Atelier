@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 
+
 // pass in API data to drill down to the individual review tiles
 
 // need to use useEffect so it only renders once
@@ -58,6 +59,10 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     }).catch((err) => console.log(err))
   }, [])
 
+  function helpfulAPIUpdate (reviewID) {
+    axios.put(`${server}/reviews/:${reviewID}/helpful`, options).then((response) => {console.log(response.data, " response from helpful change")}).catch((err) => {console.log(err)})
+  }
+
 // add logic for if the count of reviews is 0 we collaps that list and don't show the associated buttons
 // use the length of the list and the number of reviews as gotten by the metadata to determine when the more reviews
 // button should disappear
@@ -86,9 +91,11 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     {function () {
       if (reviews.results){
       let currReviews = reviews.results.map((review) => {
+        console.log("Here's a review bud ", review)
         if (ratingFilter.includes(review.rating)) {
-          return <ReviewTile rating={review.rating} date={review.date} username={review.reviewer_name}
-          summary={review.summary} body={review.body} />
+          return <ReviewTile key={review.review_id} reviewID={review.review_id} rating={review.rating} date={review.date} username={review.reviewer_name}
+          summary={review.summary} body={review.body} recommend={review.recommend} response={review.response} helpful={review.helpfulness}
+          updateHelpfulAPI={helpfulAPIUpdate}/>
         }
       })
       return currReviews;}
