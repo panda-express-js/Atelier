@@ -14,11 +14,17 @@ export default function Helpful ({ helpful, setHelpful, updateHelpfulAPI, review
   const [hasClicked, setHasClicked] = useState(false);
 
   function clickHandler (event) {
+
+    let button = event.target.innerHTML
+
+
     if (!hasClicked) {
       setHasClicked(true)
-      let newHelpful = helpful + 1
+      if (button.includes('Yes')) {
+        let newHelpful = helpful + 1
       setHelpful(newHelpful);
       updateHelpfulAPI(reviewID)
+      }
     }
   }
 
