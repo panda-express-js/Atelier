@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-regular-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const ItemAdd = ({ style }) => {
 
@@ -40,23 +41,21 @@ const ItemAdd = ({ style }) => {
 
   return (
     <div>
-      <form>
-        <select className="selector" onChange={(e) => setSelectedSKU(e.target.value)}>
-          <option value="">SELECT SIZE</option>
-          {renderSizes()}
-        </select>
-        <select className="selector">
-          <option value="">-</option>
-          {renderQuantities()}
-        </select>
-        <button>
-          <span>ADD TO BAG</span>
-          <span>+</span>
-        </button>
-        <button>
-          <FontAwesomeIcon icon={faStar} />
-        </button>
-      </form>
+      <select className="select size" onChange={(e) => setSelectedSKU(e.target.value)}>
+        <option value="">SELECT SIZE</option>
+        {renderSizes()}
+      </select>
+      <select className="select quant">
+        <option value="">-</option>
+        {renderQuantities()}
+      </select>
+      <button className="select add">
+        <span>ADD TO BAG</span>
+        <FontAwesomeIcon className="plus" icon={faPlus} />
+      </button>
+      <button className = "select fav">
+        <FontAwesomeIcon icon={faStar} />
+      </button>
     </div>
   )
 }
