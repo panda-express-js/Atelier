@@ -11,6 +11,8 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
 
   const [helpfulness, setHelpfulness] = useState(helpful);
 
+  console.log(reviewID, "this is the reviewID from within the Review Tile")
+
 
   return <div className="review-tile">
     <div className="date">{newDate}</div>

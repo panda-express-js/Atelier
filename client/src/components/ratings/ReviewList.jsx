@@ -32,20 +32,12 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   // call the API and update review state using useEffect
 
-  //use pagination
-  // when they click "View more button" make it change the state of the pagination
-  // make the count remain 2 and only show 2 more each time
-  // then make the section scrollable if need be afterwards
-
 // Reviews API Call
 
   useEffect(() => {
 
     axios.get(`${server}/reviews?product_id=${product.id}&sort=${sort}&count=${count}`, options).then( (response) => {
-        // if (response.data.length === count){
-        // count = count + 250;
-        // setSort(sort)}
-        // enhance this in the future to only pull aa many as we need at a time
+
       setReviews(response.data)
 
     }).catch((err) => console.log(err))
@@ -59,15 +51,16 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     }).catch((err) => console.log(err))
   }, [])
 
+// Helpful review API call
   function helpfulAPIUpdate (reviewID) {
-    axios.put(`${server}/reviews/:${reviewID}/helpful`, options).then((response) => {console.log(response.data, " response from helpful change")}).catch((err) => {console.log(err)})
+    console.log(reviewID, " this is the review ID from in the function")
+    axios.put(`${server}/reviews/${reviewID}/helpful`,{}, options).then(() => {console.log("Answer Helpfulness updated successfully")}).catch((err) => {console.log(err)})
   }
 
 // add logic for if the count of reviews is 0 we collaps that list and don't show the associated buttons
 // use the length of the list and the number of reviews as gotten by the metadata to determine when the more reviews
 // button should disappear
 
-  // if(reviews.results) {console.log(reviews.results, " these are the reviews passed down from generation to generation")};
 
   return <div className="review-list">
     <h3>Reviews</h3>
