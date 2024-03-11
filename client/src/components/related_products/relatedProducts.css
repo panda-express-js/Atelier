@@ -44,7 +44,44 @@
 /*
   carousels div
 */
+.carousels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.relatedCarousel,
+.outfitCarousel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 800px; /* Adjust the max-width as needed */
+  margin: 10px; /* Adjust the margin as needed */
+}
+
+.carBtn {
+  margin: 5px; /* Adjust the margin as needed */
+}
+
+.relatedCardsDiv,
+.outfitCardsDiv {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.relatedCardDiv,
+.outfitCardDiv {
+  flex: 0 0 auto; /* Make the cards not grow, not shrink, and have an initial size */
+  margin: 5px; /* Adjust the margin as needed */
+  border: 1px solid #ccc; /* Add border for styling */
+  padding: 10px; /* Add padding for styling */
+  text-align: center;
+}
+
+.outfitBtn {
+  margin: 5px; /* Adjust the margin as needed */
+  padding: 10px; /* Add padding for styling */
+}
 .carousels {
   display: flex;
   flex-direction: column;
