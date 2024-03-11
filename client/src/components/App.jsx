@@ -34,10 +34,11 @@ const App = () => {
     ])
     .then(([productResponse, stylesResponse, relatedResponse, metaResponse]) => {
       setProduct(productResponse.data);
-
       setAllStyles(stylesResponse.data.results);
-      setStyle(stylesResponse.data.results[0]);
-
+      //gets object in results array that has default? set to true
+      var stylesArray = stylesResponse.data.results;
+      var defaultStyle = stylesArray.find((style) => style['default?']) || stylesArray[0];
+      setStyle(defaultStyle);
       setProductIds(relatedResponse.data);
       //Meta object and avg rating states
       setMeta(metaResponse.data);
