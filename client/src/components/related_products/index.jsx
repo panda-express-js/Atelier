@@ -2,7 +2,7 @@ import React , { useState, useEffect } from 'react'
 import axios from 'axios'
 import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
 import OutfitCardsCarousel from './OutfitCardsCarousel.jsx'
-
+import './relatedProducts.css';
 const RelatedProducts = ({product, server, options, productIds, changeId, style, avgRating}) => {
   //40382 has good range
   //og was 40344

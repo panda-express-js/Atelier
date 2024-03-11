@@ -23,7 +23,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
         category: product.category,
         default_price: product.default_price,
         features: product.features,
-        url: style.photos[0].url,
+        photosArray: style.photos,
         sale_price: style.sale_price,
         stars: avgRating
       };

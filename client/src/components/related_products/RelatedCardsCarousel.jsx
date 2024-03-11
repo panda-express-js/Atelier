@@ -30,7 +30,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
           category: productResponse.data.category,
           default_price: productResponse.data.default_price,
           features: productResponse.data.features,
-          url: defaultStyle.photos[0].url,
+          photosArray: defaultStyle.photos,
           sale_price: defaultStyle.sale_price,
           stars: averageRating
         }
