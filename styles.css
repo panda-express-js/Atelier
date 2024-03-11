@@ -57,6 +57,18 @@ body {
 .summary {
   font-weight: 900;
 }
+.container {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 250ch;
+}
+
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #0d6aa8;
+}
 
 /* PRODUCT DETAIL */
 
