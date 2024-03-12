@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import OutfitCard from './OutfitCard.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faPlus, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 
 const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   const [outfit, setOutfit] = useState([]);
@@ -48,7 +48,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   return (
     <div className='outfitCarousel'>
       <div className='carBtnContainer'>
-        {currentPosition === 0 ? null: <button className='carBtn' onClick={() => {leftArrow()}}>{'<'}</button>}
+        {currentPosition === 0 ? null: <FontAwesomeIcon className='carBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}
       </div>
       <div className='outfitCardsDiv'>
       <div className='outfitBtnContainer'>
@@ -63,7 +63,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
         })}
       </div>
       <div className='carBtnContainer'>
-        {currentPosition >= outfit.length - 3 ? null :<button className='carBtn' onClick={() => {rightArrow()}}>{'>'}</button>}
+        {currentPosition >= outfit.length - 3 ? null :<FontAwesomeIcon className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
       </div>
     </div>
   )

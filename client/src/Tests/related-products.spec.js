@@ -2,18 +2,27 @@ import React from 'react';
 import { render , screen } from '@testing-library/react';
 
 import App from '../components/App.jsx';
+import RelatedCard from '../components/related_products/RelatedCard.jsx';
+import OutfitCard from '../components/related_products/OutfitCard.jsx'
 import RelatedProducts from '../components/related_products/index.jsx';
 import RelatedCardsCarousel from '../components/related_products/RelatedCardsCarousel.jsx';
-import RelatedCard from '../components/related_products/RelatedCard.jsx';
 import Comparing from '../components/related_products/Comparing.jsx';
 import TableRow from '../components/related_products/TableRow.jsx';
-
 import OutfitCardsCarousel from '../components/related_products/OutfitCardsCarousel.jsx'
-
-//const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
-//const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
+import { GITHUB_APIKEY } from '../../../config.js';
+const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
+const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
 
 // sample data
+const productIds = [
+  41207,
+  41220,
+  40408,
+  40919,
+  40524,
+  40916
+];
+const reviews = 3.48;
 const mainProduct = {
   "id": 41088,
   "campus": "hr-rfp",
@@ -122,9 +131,9 @@ name: relatedProduct.name,
 category: relatedProduct.category,
 default_price: relatedProduct.default_price,
 features: relatedProduct.features,
-url: relatedProductStyles.results[0].photos[0].url,
+photosArray: relatedProductStyles.results[0].photos,
 sale_price: relatedProductStyles.results[0].sale_price
-}
+};
 
 const changeID = () => {};
 /*Related card formating */
@@ -146,14 +155,32 @@ describe('RelatedCard Component', () => {
   })
 
 });
-/*
-describe('App', () => {
-  it('renders App', () => {
-    const comp = render(<App />);
-    console.log(comp);
-    //expect(screen.getByText().toBeInTheDocument())
-  })
+describe('Outift Card Component', () => {
+  test('renders data', () => {
+    const card = render(<OutfitCard key={obj.id} obj={obj} changeId={changeID} />);
 
-})
-/* Outfit cards */
-/* Related card */
+  var img = card.getByAltText('product image of Tony Boots')
+  var name = card.getByText('Tony Boots');
+  var category = card.getByText('Boots');
+  var salesPrice = card.getByText('100.00');
+  var defaultPrice = card.getByText('665.00')
+
+  expect(img).toBeInTheDocument();
+  expect(name).toBeInTheDocument();
+  expect(category).toBeInTheDocument();
+  expect(salesPrice).toBeInTheDocument();
+  expect(defaultPrice).toBeInTheDocument();
+  })
+});
+
+describe('RelatedProducts', () => {
+  test('renders divs', () => {
+    const card = render(<RelatedProducts product={mainProduct} server={server} options={options} productIds={productIds} changeId={changeID} style={mainProductStyles} reviews={reviews} avgRating={reviews} />);
+
+  var productDiv = card.getByText('RELATED PRODUCTS')
+  var outfitDiv = card.getByText('YOUR OUTFIT');
+
+  expect(productDiv).toBeInTheDocument();
+  expect(outfitDiv).toBeInTheDocument();
+  })
+});

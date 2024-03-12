@@ -1,6 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import RelatedCard from './RelatedCard.jsx'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react';
+import RelatedCard from './RelatedCard.jsx';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, product, style}) => {
 
   const [currentPosition, setCurrentPosition] = useState(0);
@@ -54,7 +56,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
   return (
     <div className='relatedCarousel'>
     <div className='carBtnContainer'>
-      {currentPosition === 0 ? null: <button className='carBtn' onClick={() => {leftArrow()}}>{'<'}</button>}
+      {currentPosition === 0 ? null: <FontAwesomeIcon className='carBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}
     </div>
     <div className='relatedCardsDiv'>
       {productList.map((obj, index) => {
@@ -66,7 +68,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
       })}
     </div>
     <div className='carBtnContainer'>
-      {currentPosition >= uniqueProductIds.length - 4 ? null :<button className='carBtn' onClick={() => {rightArrow()}}>{'>'}</button>}
+      {currentPosition >= uniqueProductIds.length - 4 ? null :<FontAwesomeIcon className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
     </div>
     </div>
   )
