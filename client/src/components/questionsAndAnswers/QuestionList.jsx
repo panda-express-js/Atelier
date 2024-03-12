@@ -1,6 +1,7 @@
 import React , { useState } from 'react';
 import Question from './Question.jsx';
 import AddQuestion from './AddQuestion.jsx';
+import axios from 'axios';
 
 
 function QuestionList({server, options, product, answers, questions}) {
