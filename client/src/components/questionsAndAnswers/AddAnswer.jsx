@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import './QandA.css'; // Assuming shared styles. Adjust if needed.
+import './QandA.css';
 
 const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
   const [yourAnswer, setYourAnswer] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
+  const [photoUrl, setPhotoUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const validateEmail = (email) => /\S+@\S+\.\S+$/.test(email);
@@ -49,6 +50,17 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
     }
   };
 
+  const handlePhotoUrlChange = (e) => {
+    setPhotoUrl(e.target.value);
+  };
+
+  const addPhotoUrl = () => {
+    if (photoUrl && photos.length < 5) {
+      setPhotos([...photos, photoUrl]);
+      setPhotoUrl('');
+    }
+  };
+
   const removePhoto = (indexToRemove) => {
     setPhotos(photos.filter((_, index) => index !== indexToRemove));
   };
@@ -86,6 +98,14 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
                 placeholder="Example: jack@email.com" required />
               <p>For authentication reasons, you will not be emailed</p>
             </label>
+            <label>Photo URL:
+            <input
+              type="text"
+              value={photoUrl}
+              onChange={handlePhotoUrlChange}
+              placeholder="Enter image URL" />
+            <button type="button" onClick={addPhotoUrl}>Add Photo</button>
+          </label>
             {photos.map((photo, index) => (
               <div key={index}>
                 <img src={photo} alt={`Uploaded ${index + 1}`} style={{ width: '100px', height: '100px' }} />
