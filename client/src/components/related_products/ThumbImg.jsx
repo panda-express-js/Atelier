@@ -2,7 +2,9 @@ import React from 'react';
 
 const ThumbImg = ({photoObj, i, changePhoto}) => {
   return (
-    <img src={photoObj.thumbnail_url} onClick={()=> {changePhoto(photoObj.url)}}/>
+    <div className='singlePicContainer'>
+      <img src={photoObj.url} onClick={()=> {changePhoto(photoObj.url)}}/>
+    </div>
   )
 }
 

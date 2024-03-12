@@ -51,38 +51,46 @@
 }
 .rHeader, .oHeader {
   margin-bottom: 15px;
-  align-self: center;
-  width: 100%;
+  padding-left: 100px;
 }
 /*contains arrows and cards collection*/
 .relatedCarousel, .outfitCarousel {
   display: flex;
   max-height: 500px;
-}
-/*card collection divs*/
-.relatedCardsDiv, .outfitCardsDiv {
-  display: flex;
-  gap: 16px;
-  flex: 4;
+  padding-left: 200px;
 }
 .carBtnContainer {
   flex: 1;
+  max-width: 20px;
 }
 /*arrow*/
 .carBtn {
   width: 100%;
   height: 100%;
+  background-color: transparent;
+  cursor: pointer;
+}
+/*card collection divs*/
+.relatedCardsDiv, .outfitCardsDiv {
+  display: flex;
+  gap: 40px;
+  flex: 4;
+  max-width: 1000px;
 }
 .outfitBtnContainer {
   width: 100%;
   height: 100%;
+  max-width: 214px;
+  min-height: 335px;
+  min-width: 220px;
 }
 /*add to outfit*/
 .outfitBtn {
   background-color: white;
-  border: 1px solid black;
   width: 100%;
   height: 100%;
+  cursor: pointer;
+  border: 1px solid black;
 }
 /* card div */
 .relatedCardDiv, .outfitCardDiv {
@@ -91,7 +99,9 @@
   grid-template-rows: 3fr 1fr;
   height: 100%;
   width: 100%;
+  max-width: 220px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 /*card top img, pic carousel, act btn*/
 .cardTop {
@@ -107,30 +117,43 @@
   width: 100%;
   height: 100%;
 }
-
+/*picture carousel picBtn and picturesDiv*/
 .pictureCarousel {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  display: grid;
-  grid-template-columns: min-content repeat(4, 1fr) min-content;
+  height: 50px;
+  display: flex;
   opacity: 0;
 }
 .pictureCarousel:hover{
-  opacity:1
+  opacity: 1;
+}
+.picturesDiv {
+  display: flex;
+  flex: 4;
+}
+.singlePicContainer {
+  width: 100%;
+  height: 100%;
+}
+.singlePicContainer > img {
+  width: 100%;
+  height: 100%;
+  max-width: 43px;
+}
+.picBtnContainer {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  max-width: 20px;
 }
 .picBtn {
   cursor: pointer;
   background: transparent;
   border: none;
-  font-size: 18px;
   color: white;
-  grid-area: 1 / 1;
-}
-.pictureCarousel img {
-  height: 50px;
-  width: 50px;
 }
 .cardBottom {
   display: flex;
