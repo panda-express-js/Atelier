@@ -15,13 +15,15 @@ const PhotoView = ({photos, photo, changePhoto}) => {
 
   return (
     <div className='pictureCarousel'>
-      <div>{currentPosition === 0 ? null: <button className='picBtn' onClick={() => {leftArrow()}}>{'<'}</button>}</div>
+      <div className='picBtnContainer'>{currentPosition === 0 ? null: <button className='picBtn' onClick={() => {leftArrow()}}>{'<'}</button>}</div>
+      <div className='picturesDiv'>
       {filteredPhotos.map((photoObj, i) => {
         if (photoObj.url !== photo && i >= currentPosition && i <= currentPosition + 3 ) {
           return <ThumbImg key={i} photoObj={photoObj} i={i} changePhoto={changePhoto}/>
         }
       })}
-      <div>{currentPosition >= filteredPhotos.length - 4 ? null :<button className='picBtn' onClick={() => {rightArrow()}}>{'>'}</button>}</div>
+      </div>
+      <div className='picBtnContainer'>{currentPosition >= filteredPhotos.length - 4 ? null :<button className='picBtn' onClick={() => {rightArrow()}}>{'>'}</button>}</div>
     </div>
   )
 }
