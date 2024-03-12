@@ -17,8 +17,8 @@ const PhotoView = ({photos, photo, changePhoto}) => {
   }
 
   return (
-    <div className='pictureCarousel'>
-      <div className='picBtnContainer'>{currentPosition === 0 ? null: <FontAwesomeIcon className='picBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}</div>
+    <div data-testid='pictureCarousel' className='pictureCarousel'>
+      <div className='picBtnContainer'>{currentPosition === 0 ? null: <FontAwesomeIcon data-testid='lPicBtn' className='picBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}</div>
       <div className='picturesDiv'>
       {filteredPhotos.map((photoObj, i) => {
         if (photoObj.url !== photo && i >= currentPosition && i <= currentPosition + 3 ) {
@@ -26,7 +26,7 @@ const PhotoView = ({photos, photo, changePhoto}) => {
         }
       })}
       </div>
-      <div className='picBtnContainer'>{currentPosition >= filteredPhotos.length - 4 ? null :<FontAwesomeIcon className='picBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}</div>
+      <div className='picBtnContainer'>{currentPosition >= filteredPhotos.length - 4 ? null :<FontAwesomeIcon data-testid='rPicBtn' className='picBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}</div>
     </div>
   )
 }

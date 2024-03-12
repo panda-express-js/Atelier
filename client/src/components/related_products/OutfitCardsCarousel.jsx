@@ -46,12 +46,12 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   }
 
   return (
-    <div className='outfitCarousel'>
-      <div className='carBtnContainer'>
-        {currentPosition === 0 ? null: <FontAwesomeIcon className='carBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}
+    <div className='outfitCarousel' data-testid='outfitCarousel'>
+      <div data-testid='carBtnContainerBack' className='carBtnContainer'>
+        {currentPosition === 0 ? null: <FontAwesomeIcon data-testid='carBtnBack' className='carBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}
       </div>
-      <div className='outfitCardsDiv'>
-      <div className='outfitBtnContainer'>
+      <div className='outfitCardsDiv' data-testid='outfitCardsDiv'>
+      <div className='outfitBtnContainer' data-testid='outfitBtnContainer'>
       <button className='outfitBtn' onClick={()=>{addToOutift()}}><FontAwesomeIcon icon={faPlus} size='lg' />Add To Outift</button>
       </div>
         {outfit.map((obj, index) => {
@@ -62,8 +62,8 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
           }
         })}
       </div>
-      <div className='carBtnContainer'>
-        {currentPosition >= outfit.length - 3 ? null :<FontAwesomeIcon className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
+      <div data-testid='carBtnContainerNext' className='carBtnContainer'>
+        {currentPosition >= outfit.length - 3 ? null :<FontAwesomeIcon data-testid='carBtnNext' className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
       </div>
     </div>
   )
