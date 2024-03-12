@@ -1,6 +1,5 @@
 import React from 'react';
 import { render , screen, fireEvent } from '@testing-library/react';
-
 import App from '../components/App.jsx';
 import RelatedCard from '../components/related_products/RelatedCard.jsx';
 import OutfitCard from '../components/related_products/OutfitCard.jsx'
@@ -80,6 +79,24 @@ const mainProductStyles = {
     }
   ]
 }
+const mainProductStylesNoSale = {
+  "product_id": "41088",
+  "results": [
+    {
+      "style_id": 245282,
+      "name": "Fuchsia",
+      "original_price": "427.00",
+      "sale_price": null,
+      "default?": true,
+      "photos": [
+        {
+          "thumbnail_url": "https://images.unsplash.com/photo-1498200163530-bdb7c50ec863?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+          "url": "https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80"
+        }
+      ]
+    }
+  ]
+}
 const relatedIds = [
   41207,
   41220,
@@ -144,7 +161,27 @@ features: relatedProduct.features,
 photosArray: relatedProductStyles.results[0].photos,
 sale_price: relatedProductStyles.results[0].sale_price
 };
-
+const mainObjNoSale = {
+  id: mainProduct.id,
+  name: mainProduct.name,
+  category: mainProduct.category,
+  default_price: mainProduct.default_price,
+  photosArray: mainProductStylesNoSale.results[0].photos,
+  sale_price: null
+}
+const mainObj = {
+  id: mainProduct.id,
+  name: mainProduct.name,
+  category: mainProduct.category,
+  default_price: mainProduct.default_price,
+  photosArray: mainProductStyles.results[0].photos,
+  sale_price: mainProductStyles.results[0].sale_price
+}
+const deleteOutfit = (id) => {
+  var newOutfit = outfit.filter((obj) => obj.id !== id);
+  setOutfit(newOutfit);
+  localStorage.setItem('userOutfit', JSON.stringify(newOutfit))
+}
 const changeID = (newId) => {
   if (id !== newId) {
     setId(newId);
@@ -174,17 +211,41 @@ describe('RelatedCard Component', () => {
 });
 describe('Outfit Card Component', () => {
   test('renders data', () => {
-    render(<OutfitCard key={obj.id} obj={obj} changeId={changeID} />);
-    var img = screen.getByAltText(`product image of ${obj.name}`);
-    var name = screen.getByText(obj.name);
-    var category = screen.getByText(obj.category);
-    var salesPrice = screen.getByText(obj.sale_price);
-    var defaultPrice = screen.getByText(obj.default_price);
+    render(<OutfitCard key={mainObj.id} obj={mainObj} changeId={changeID} />);
+    var img = screen.getByAltText(`product image of ${mainObj.name}`);
+    var name = screen.getByText(mainObj.name);
+    var category = screen.getByText(mainObj.category);
+    var defaultPrice = screen.getByText(mainObj.default_price);
+    expect(img).toBeInTheDocument();
+    expect(name).toBeInTheDocument();
+    expect(category).toBeInTheDocument();
+    expect(defaultPrice).toBeInTheDocument();
+    expect(screen.getByTestId('outfitCardDiv')).toBeInTheDocument();
+    expect(screen.getByTestId('cardTop')).toBeInTheDocument();
+    expect(screen.getByTestId('BTN')).toBeInTheDocument();
+    expect(screen.getByTestId('cardBottom')).toBeInTheDocument();
+    expect(screen.getByTestId('sale')).toBeInTheDocument();
+    expect(screen.queryByTestId('noSale')).not.toBeInTheDocument();
+
+  });
+  test('renders no sale', () => {
+    render(<OutfitCard key={mainObjNoSale.id} obj={mainObjNoSale} changeId={changeID} />);
+    var img = screen.getByAltText(`product image of ${mainObjNoSale.name}`);
+    var name = screen.getByText(mainObjNoSale.name);
+    var category = screen.getByText(mainObjNoSale.category);
+    var salesPrice = screen.getByText(mainObjNoSale.sale_price);
+    var defaultPrice = screen.getByText(mainObjNoSale.default_price);
     expect(img).toBeInTheDocument();
     expect(name).toBeInTheDocument();
     expect(category).toBeInTheDocument();
     expect(salesPrice).toBeInTheDocument();
     expect(defaultPrice).toBeInTheDocument();
+    expect(screen.getByTestId('outfitCardDiv')).toBeInTheDocument();
+    expect(screen.getByTestId('cardTop')).toBeInTheDocument();
+    expect(screen.getByTestId('BTN')).toBeInTheDocument();
+    expect(screen.getByTestId('cardBottom')).toBeInTheDocument();
+    expect(screen.getByTestId('noSale')).toBeInTheDocument();
+    expect(screen.queryByTestId('sale')).not.toBeInTheDocument();
   });
   test('deletes outfit on click', () => {
   const deleteBTN = jest.fn();
@@ -192,15 +253,27 @@ describe('Outfit Card Component', () => {
   const deleteButton = screen.getByTestId('BTN');
   fireEvent.click(deleteButton);
   expect(deleteBTN).toHaveBeenCalledWith(obj.id);
+  });
+  test('click image runs changeId', () => {
+    const changeId = jest.fn()
+    render(<OutfitCard key={obj.id} obj={obj} changeId={changeId} deleteOutfit={deleteOutfit} />);
+    const changeBtn = screen.getByTestId('cardBottom')
+    fireEvent.click(changeBtn);
+    expect(changeId).toHaveBeenCalledWith(obj.id)
+    const change = screen.getByTestId('mainImg')
+    fireEvent.click(change);
+    expect(changeId).toHaveBeenCalledWith(obj.id)
   })
-
 });
 /*index */
 describe('RelatedProducts', () => {
   test('renders divs', () => {
-    const card = render(<RelatedProducts product={mainProduct} server={server} options={options} productIds={productIds} changeId={changeID} style={mainProductStyles} reviews={reviews} avgRating={reviews} />);
-  var productDiv = card.getByText('RELATED PRODUCTS')
-  var outfitDiv = card.getByText('YOUR OUTFIT');
+    render(<RelatedProducts product={mainProduct} server={server} options={options} productIds={productIds} changeId={changeID} style={mainProductStyles} reviews={reviews} avgRating={reviews} />);
+  var productDiv = screen.getByText('RELATED PRODUCTS')
+  var outfitDiv = screen.getByText('YOUR OUTFIT');
+  expect(screen.getByTestId('carousels')).toBeInTheDocument();
+  expect(screen.getByTestId('relatedCarousel')).toBeInTheDocument();
+  expect(screen.getByTestId('outfitCarousel')).toBeInTheDocument();
   expect(productDiv).toBeInTheDocument();
   expect(outfitDiv).toBeInTheDocument();
   })
@@ -216,18 +289,21 @@ describe('PhotoView Component', () => {
     { url: 'photo6.jpg' }
   ];
   const photo = 'photo1.jpg';
-  const rightArrow = jest.fn();
-  const leftArrow = jest.fn()
   test('renders component', () => {
     render(<PhotoView photos={photos} photo={photo} changePhoto={changePhoto} />);
     expect(screen.getByTestId('pictureCarousel')).toBeInTheDocument();
     expect(screen.getByTestId('rPicBtn')).toBeInTheDocument();
   });
-  test('right arrow func', () => {
+
+  test('arrow func', () => {
     render(<PhotoView photos={photos} photo={photo} changePhoto={changePhoto} />);
+    expect(screen.queryByAltText('photo6.jpg')).not.toBeInTheDocument();
     const rtBtn = screen.getByTestId('rPicBtn');
     fireEvent.click(rtBtn);
-    expect(rightArrow).toHaveBeenCalledWith();
+    expect(screen.getByAltText('photo6.jpg')).toBeInTheDocument();
+    const lBtn = screen.getByTestId('lPicBtn');
+    fireEvent.click(lBtn);
+    expect(screen.queryByAltText('photo6.jpg')).not.toBeInTheDocument();
   });
 });
 
@@ -244,22 +320,31 @@ describe('RelatedCardsCarousel Component', () => {
       />
       );
       expect(screen.getByTestId('carBtnNext')).toBeInTheDocument();
+      expect(screen.getByTestId('relatedCarousel')).toBeInTheDocument();
+      expect(screen.getByTestId('relatedCardsDiv')).toBeInTheDocument();
+      expect(screen.getByTestId('carBtnContainerBack')).toBeInTheDocument();
+      expect(screen.getByTestId('carBtnContainerNext')).toBeInTheDocument();
+    });
+    test('arrow funcs', () => {
+      render(<RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
+      expect(screen.queryByTestId('carBtnBack')).not.toBeInTheDocument();
+      const rtBtn = screen.getByTestId('carBtnNext');
+      fireEvent.click(rtBtn);
+      expect(screen.getByTestId('carBtnBack')).toBeInTheDocument();
+      const lBtn = screen.getByTestId('carBtnBack');
+      fireEvent.click(lBtn);
+      expect(screen.queryByTestId('carBtnBack')).not.toBeInTheDocument();
     });
   });
 
   describe('TableRow Component', () => {
-    const featureName = 'Test Feature';
+    test('renders component with main and related features', () => {
+      const featureName = 'cut';
     const mainFeatures = [
       { feature: 'cut', value: 'loose' },
       { feature: 'warranty', value: null },
     ];
-
-    const relatedFeatures = [
-      { feature: 'cut', value: 'Related Feature Value' },
-      { feature: 'Yet Another Feature', value: null },
-    ];
-
-    test('renders component with main and related features', () => {
+    const relatedFeatures = [{ feature: 'cut', value: 'tight' },{ feature: 'Yet Another Feature', value: null }];
       render(
         <table>
         <tbody>
@@ -267,9 +352,35 @@ describe('RelatedCardsCarousel Component', () => {
         </tbody>
       </table>
     );
-    expect(screen.getByText('Main Feature Value')).toBeInTheDocument();
-    expect(screen.getByText('Test Feature')).toBeInTheDocument();
-    expect(screen.getByText('Related Feature Value')).toBeInTheDocument();
+    expect(screen.getByText('cut')).toBeInTheDocument();
+    expect(screen.getByText('loose')).toBeInTheDocument();
+    expect(screen.getByText('tight')).toBeInTheDocument();
+  });
+    test('renders check', () => {
+      const featureName = 'warranty';
+    const mainFeatures = [{ feature: 'cut', value: 'loose' },{ feature: 'warranty', value: null }];
+    const relatedFeatures = [{ feature: 'cut', value: 'tight' },{ feature: 'warranty', value: '1' }];
+      render(
+        <table>
+        <tbody>
+          <TableRow featureName={featureName} mainFeatures={mainFeatures} relatedFeatures={relatedFeatures} />
+        </tbody>
+      </table>
+    );
+    expect(screen.getAllByText('\u2713')[0]).toBeInTheDocument();
+  });
+    test('renders when one is null', () => {
+      const featureName = 'cut';
+    const mainFeatures = [{ feature: 'cut', value: 'loose' },{ feature: 'warranty', value: null }];
+    const relatedFeatures = [{ feature: 'random', value: 'tight' },{ feature: 'warranty', value: null }];
+      render(
+        <table>
+        <tbody>
+          <TableRow featureName={featureName} mainFeatures={mainFeatures} relatedFeatures={relatedFeatures} />
+        </tbody>
+      </table>
+    );
+    expect(screen.getByText('loose')).toBeInTheDocument();
   });
 });
 
@@ -286,5 +397,26 @@ describe('ThumbImg', () => {
     const changeBtn = screen.getByTestId('ThumbImg');
     fireEvent.click(changeBtn);
     expect(change).toHaveBeenCalledWith('https://images.unsplash.com/photo-1535639818669-c059d2f038e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80')
+  })
+})
+describe('OutfitsCardsCarousel', () => {
+  test('renders divs', () => {
+    render(<OutfitCardsCarousel product={mainProduct} style={mainProductStyles} changeId={changeID} avgRating={reviews}/>);
+      expect(screen.getByTestId('carBtnNext')).toBeInTheDocument();
+      expect(screen.getByTestId('outfitCarousel')).toBeInTheDocument();
+      expect(screen.getByTestId('outfitCardsDiv')).toBeInTheDocument();
+      expect(screen.getByTestId('outfitBtnContainer')).toBeInTheDocument();
+      expect(screen.getByTestId('carBtnContainerBack')).toBeInTheDocument();
+      expect(screen.getByTestId('carBtnContainerNext')).toBeInTheDocument();
+  });
+  test('arrows appear if theres enough photos', () => {
+    render(<OutfitCardsCarousel product={mainProduct} style={mainProductStyles} changeId={changeID} avgRating={reviews}/>);
+      expect(screen.queryByTestId('carBtnBack')).not.toBeInTheDocument();
+      const rtBtn = screen.getByTestId('carBtnNext');
+      fireEvent.click(rtBtn);
+      expect(screen.getByTestId('carBtnBack')).toBeInTheDocument();
+      const lBtn = screen.getByTestId('carBtnBack');
+      fireEvent.click(lBtn);
+      expect(screen.queryByTestId('carBtnBack')).not.toBeInTheDocument();
   })
 })

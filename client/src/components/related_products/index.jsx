@@ -7,7 +7,6 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style,
   //40382 has good range
   //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
-  const [reviews, setReviews] = useState({})
 
   useEffect(() => {
     const arr = productIds.reduce((acc, id) => {
@@ -22,7 +21,7 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style,
   }, [productIds])
 
   return (
-    <div className='carousels'>
+    <div className='carousels' data-testid="carousels">
       <p className='rHeader'>RELATED PRODUCTS</p>
         <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId} product={product} style={style} />
       <p className='oHeader'>YOUR OUTFIT</p>

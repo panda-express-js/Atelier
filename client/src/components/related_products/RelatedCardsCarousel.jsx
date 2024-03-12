@@ -54,11 +54,11 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
   }
 
   return (
-    <div className='relatedCarousel'>
-    <div className='carBtnContainer'>
-      {currentPosition === 0 ? null: <FontAwesomeIcon className='carBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}
+    <div className='relatedCarousel' data-testid='relatedCarousel'>
+    <div data-testid='carBtnContainerBack' className='carBtnContainer'>
+      {currentPosition === 0 ? null: <FontAwesomeIcon data-testid='carBtnBack' className='carBtn' icon={faChevronLeft} onClick={() => {leftArrow()}}/>}
     </div>
-    <div className='relatedCardsDiv'>
+    <div className='relatedCardsDiv' data-testid='relatedCardsDiv'>
       {productList.map((obj, index) => {
         if (index >= currentPosition && index <= currentPosition + 3) {
           return <RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeId} product={product} style={style}/>
@@ -67,7 +67,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
         }
       })}
     </div>
-    <div className='carBtnContainer'>
+    <div data-testid='carBtnContainerNext' className='carBtnContainer'>
       {currentPosition >= uniqueProductIds.length - 4 ? null :<FontAwesomeIcon data-testid='carBtnNext' className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
     </div>
     </div>
