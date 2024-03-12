@@ -9,6 +9,23 @@
   margin-top: 10px;
 }
 
+/* Answer.css */
+.image-thumbnails {
+  display: flex;
+  cursor: pointer;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+
+
+.modal img {
+  width: auto;
+  max-height: 80vh;
+  max-width: 100%;
+}
+
+
 /* Search.css */
 .searchInput {
   width: 80%;
@@ -78,9 +95,9 @@
 
 .modal input,
 .modal textarea {
-  width: calc(100% - 20px); /* Full width minus the padding on the modal-content */
-  margin-top: 5px; /* Space between the label and the input */
-  box-sizing: border-box; /* Border and padding are included in the width */
+  width: calc(100% - 20px);
+  margin-top: 5px;
+  box-sizing: border-box;
 }
 
 .error-message {
@@ -101,3 +118,4 @@
   border-radius: 0;
   margin-right: 20px
 }
+

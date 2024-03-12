@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor  } from '@testing-library/react';
 import Question from '../components/questionsAndAnswers/Question.jsx';
 import Answer from '../components/questionsAndAnswers/Answer.jsx';
 import QuestionList from '../components/questionsAndAnswers/QuestionList';
-import { waitFor } from '@testing-library/react';
+import Search from '../components/questionsAndAnswers/Search.jsx';
+import QandA from '../components/questionsAndAnswers/index.jsx';
 
 const questionsData = [
   {
@@ -37,7 +38,7 @@ const answersData = {
 
     ]
 };
-
+const productData = { id: '1', name: 'Mock Product' };
 
 describe('Question Component', () => {
   it('renders the question', () => {
@@ -78,12 +79,27 @@ describe('Answer Component', () => {
 
 describe('QuestionList', () => {
   it('renders questions sorted by helpfulness', () => {
-      render(<QuestionList questions={questionsData} answers={answersData} />);
+      render(<QuestionList questions={questionsData} answers={answersData} product={productData} />);
       expect(screen.getByText('Q: testing question?')).toBeInTheDocument();
       expect(screen.getByText('Q: Is this product eco-friendly?')).toBeInTheDocument();
       expect(screen.getByText('A: testing answer')).toBeInTheDocument();
   });
 });
+
+describe('Search', () => {
+    test('Search component should render onto the screen', async () => {
+        render(<Search onSearchChange={() => {}} />);
+        const searchContainer = screen.getByTestId('search-container');
+        expect(searchContainer).toBeInTheDocument();
+      });
+
+
+      test('Search component should have the correct placeholder text', async () => {
+        render(<Search onSearchChange={() => {}} />);
+        const placeholderText = screen.getByPlaceholderText('Have a question? Search for answers…');
+        expect(placeholderText).toBeInTheDocument();
+      });
+})
 
 
 
