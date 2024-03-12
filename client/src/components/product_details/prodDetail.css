@@ -1,5 +1,9 @@
 /* PRODUCT DETAIL */
 
+img {
+  object-fit: cover;
+}
+
 #overviewContainer {
 
   display: grid;
@@ -22,17 +26,29 @@
 .expandedContainer {
   background-color: rgba(128, 128, 128, 0.904);
   color: white;
-  position: absolute;
-  height: 131%;
-  top: -18%;
-  left: -10%;
-  width: 186%;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 100;
-  text-align: center;
+
 }
 
 .expandedPhoto {
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 1px solid blue;
   height: 100%;
+  /* justify-self: center; */
+}
+
+.expandedContainer:hover {
+  cursor: default;
+}
+
+.expandedPhoto:hover {
+  cursor: crosshair;
 }
 
 .closeExpanded {
@@ -43,6 +59,18 @@
 
 .closeExpanded:hover {
   cursor: pointer;
+}
+
+.zoomContainer {
+  background-repeat: no-repeat;
+  height: 100%;
+  width: auto;
+  border: 1px solid red;
+}
+
+.zoomedPhoto {
+  height: 100%;
+  opacity: 20%;
 }
 
 .expArrows .leftArrow {
@@ -192,6 +220,7 @@
 .styleName {
   grid-column: 1 / 5;
   margin-bottom: 2%;
+  font-size: 0.8rem;
 }
 
 .styleSelect {
