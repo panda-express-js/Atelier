@@ -5,10 +5,10 @@ import Details from './details.jsx';
 import Summary from './summary.jsx';
 import './prodDetail.css';
 
-const ProductDetail = ({ product, allStyles, style, reviews, server, options, setStyle, avgRating }) => {
+const ProductDetail = ({ product, allStyles, style, reviews, setStyle, avgRating }) => {
 
   return (
-    <div id="overviewContainer">
+    <div data-testid="overviewContainer" id="overviewContainer">
       <Photos style={style} />
       <Details product={product} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} avgRating={avgRating} />
       <Summary product={product} />

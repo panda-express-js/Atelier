@@ -1,8 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import ProductDetail from '../components/product_details/index.jsx';
 import Details from '../components/product_details/details.jsx';
+import ExpandedView from '../components/product_details/expandedView.jsx';
 import ItemAdd from '../components/product_details/itemAdd.jsx';
 import PhotoList from '../components/product_details/photoList.jsx';
 import Photos from '../components/product_details/photos.jsx';
@@ -220,7 +221,7 @@ describe(Details, () => {
 
   it('renders the correct category', () => {
     render(<Details product={productExample} allStyles={allStylesExample} style={styleExample1} />);
-    expect(screen.getByText("Accessories")).toBeInTheDocument();
+    expect(screen.getByText("ACCESSORIES")).toBeInTheDocument();
   })
 
   it('renders the correct name', () => {
@@ -235,25 +236,25 @@ describe(Details, () => {
 
   it('renders the correct price if not on sale', () => {
     render(<Details product={productExample} allStyles={allStylesExample} style={styleExample1} />);
-    expect(screen.getByText("69.00")).toBeInTheDocument();
+    expect(screen.getByText("69")).toBeInTheDocument();
   })
 })
 
-// describe(ProductDetail, () => {
+// describe(ExpandedView, () => {
 
-//   it('renders the photos component', () => {
-//
-//   })
+//     it('renders the expanded view container', () => {
 
-//   it('renders the details component', () => {
-//
-//   })
-
-//   it('renders the summary component', () => {
-//
-//   })
-
+//     })
 // })
+
+describe(ProductDetail, () => {
+
+  it('renders an overview container', () => {
+    render(<ProductDetail product={productExample} allStyles={allStylesExample} style={styleExample1} />);
+    expect(screen.getByTestId("overviewContainer")).toBeInTheDocument();
+  })
+
+})
 
 describe(ItemAdd, () => {
 
@@ -265,6 +266,54 @@ describe(ItemAdd, () => {
   })
 
 })
+
+// describe(PhotoList, () => {
+
+//     it('displays five thumbnails at one time', () => {
+
+//     })
+// })
+
+describe(Photos, () => {
+
+  it('renders a container for all photos', () => {
+    render(<Photos style={styleExample3}/>);
+    expect(screen.getByTestId("photoContainer")).toBeInTheDocument();
+  })
+
+  it('launches the expanded view after clicking on photo container', () => {
+    render(<Photos style={styleExample3}/>);
+    expect(screen.queryByTestId("expandedContainer")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("photoContainer"));
+    expect(screen.getByTestId("expandedContainer")).toBeInTheDocument();
+
+  })
+
+  it('closes expanded view after clicking on close button', () => {
+    render(<Photos style={styleExample3}/>);
+    fireEvent.click(screen.getByTestId("photoContainer"));
+    fireEvent.click(screen.getByTestId("closeExpanded"));
+    expect(screen.queryByTestId("expandedContainer")).not.toBeInTheDocument();
+  })
+
+  it('has a list of thumbnails that can be scrolled through', () => {
+    render(<Photos style={styleExample3}/>);
+
+
+  })
+
+})
+
+// describe(StyleSelector, () => {
+
+//     it('renders a thumbnail image for each available style', () => {
+
+//     })
+
+//   it('changes the style based on thumbnail click', () => {
+//     render
+//   })
+// })
 
 describe(Summary, () => {
 

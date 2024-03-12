@@ -59,7 +59,7 @@ const Photos = ({ style }) => {
   }
 
   return (
-    <div id="photoContainer" onClick={(e) => openExpanded(e)}>
+    <div data-testid="photoContainer" id="photoContainer" onClick={(e) => openExpanded(e)}>
       <div className="currentPhoto">
         <img className="mainImg" src={currentPhoto} onClick={(e) => openExpanded(e)}/>
       </div>
