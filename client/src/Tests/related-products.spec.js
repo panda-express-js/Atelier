@@ -1,5 +1,5 @@
 import React from 'react';
-import { render , screen } from '@testing-library/react';
+import { render , screen, fireEvent } from '@testing-library/react';
 
 import App from '../components/App.jsx';
 import RelatedCard from '../components/related_products/RelatedCard.jsx';
@@ -8,13 +8,23 @@ import RelatedProducts from '../components/related_products/index.jsx';
 import RelatedCardsCarousel from '../components/related_products/RelatedCardsCarousel.jsx';
 import Comparing from '../components/related_products/Comparing.jsx';
 import TableRow from '../components/related_products/TableRow.jsx';
+import ThumbImg from '../components/related_products/ThumbImg.jsx';
 import OutfitCardsCarousel from '../components/related_products/OutfitCardsCarousel.jsx'
+import PhotoView from '../components/related_products/PhotoView.jsx'
 import { GITHUB_APIKEY } from '../../../config.js';
 const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
 const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
 
 // sample data
 const productIds = [
+  41207,
+  41220,
+  40408,
+  40919,
+  40524,
+  40916
+];
+const uniqueProductIds = [
   41207,
   41220,
   40408,
@@ -135,17 +145,24 @@ photosArray: relatedProductStyles.results[0].photos,
 sale_price: relatedProductStyles.results[0].sale_price
 };
 
-const changeID = () => {};
+const changeID = (newId) => {
+  if (id !== newId) {
+    setId(newId);
+  }
+};
+const changePhoto = (url) => {
+  setPhoto(url);
+};
 /*Related card formating */
 describe('RelatedCard Component', () => {
   test('renders data', () => {
-    const card = render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
+    render(<RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeID} product={mainProduct} style={mainProductStyles}/>);
 
-  var img = card.getByAltText('product image of Tony Boots')
-  var name = card.getByText('Tony Boots');
-  var category = card.getByText('Boots');
-  var salesPrice = card.getByText('100.00');
-  var defaultPrice = card.getByText('665.00')
+  var img = screen.getByAltText(`product image of ${obj.name}`);
+  var name = screen.getByText(obj.name);
+  var category = screen.getByText(obj.category);
+  var salesPrice = screen.getByText(obj.sale_price);
+  var defaultPrice = screen.getByText(obj.default_price);
 
   expect(img).toBeInTheDocument();
   expect(name).toBeInTheDocument();
@@ -155,32 +172,119 @@ describe('RelatedCard Component', () => {
   })
 
 });
-describe('Outift Card Component', () => {
+describe('Outfit Card Component', () => {
   test('renders data', () => {
-    const card = render(<OutfitCard key={obj.id} obj={obj} changeId={changeID} />);
-
-  var img = card.getByAltText('product image of Tony Boots')
-  var name = card.getByText('Tony Boots');
-  var category = card.getByText('Boots');
-  var salesPrice = card.getByText('100.00');
-  var defaultPrice = card.getByText('665.00')
-
-  expect(img).toBeInTheDocument();
-  expect(name).toBeInTheDocument();
-  expect(category).toBeInTheDocument();
-  expect(salesPrice).toBeInTheDocument();
-  expect(defaultPrice).toBeInTheDocument();
+    render(<OutfitCard key={obj.id} obj={obj} changeId={changeID} />);
+    var img = screen.getByAltText(`product image of ${obj.name}`);
+    var name = screen.getByText(obj.name);
+    var category = screen.getByText(obj.category);
+    var salesPrice = screen.getByText(obj.sale_price);
+    var defaultPrice = screen.getByText(obj.default_price);
+    expect(img).toBeInTheDocument();
+    expect(name).toBeInTheDocument();
+    expect(category).toBeInTheDocument();
+    expect(salesPrice).toBeInTheDocument();
+    expect(defaultPrice).toBeInTheDocument();
+  });
+  test('deletes outfit on click', () => {
+  const deleteBTN = jest.fn();
+  render(<OutfitCard key={obj.id} obj={obj} changeId={changeID} deleteOutfit={deleteBTN} />);
+  const deleteButton = screen.getByTestId('BTN');
+  fireEvent.click(deleteButton);
+  expect(deleteBTN).toHaveBeenCalledWith(obj.id);
   })
-});
 
+});
+/*index */
 describe('RelatedProducts', () => {
   test('renders divs', () => {
     const card = render(<RelatedProducts product={mainProduct} server={server} options={options} productIds={productIds} changeId={changeID} style={mainProductStyles} reviews={reviews} avgRating={reviews} />);
-
   var productDiv = card.getByText('RELATED PRODUCTS')
   var outfitDiv = card.getByText('YOUR OUTFIT');
-
   expect(productDiv).toBeInTheDocument();
   expect(outfitDiv).toBeInTheDocument();
   })
 });
+/*photoview */
+describe('PhotoView Component', () => {
+  const photos = [
+    { url: 'photo1.jpg' },
+    { url: 'photo2.jpg' },
+    { url: 'photo3.jpg' },
+    { url: 'photo4.jpg' },
+    { url: 'photo5.jpg' },
+    { url: 'photo6.jpg' }
+  ];
+  const photo = 'photo1.jpg';
+  const rightArrow = jest.fn();
+  const leftArrow = jest.fn()
+  test('renders component', () => {
+    render(<PhotoView photos={photos} photo={photo} changePhoto={changePhoto} />);
+    expect(screen.getByTestId('pictureCarousel')).toBeInTheDocument();
+    expect(screen.getByTestId('rPicBtn')).toBeInTheDocument();
+  });
+  test('right arrow func', () => {
+    render(<PhotoView photos={photos} photo={photo} changePhoto={changePhoto} />);
+    const rtBtn = screen.getByTestId('rPicBtn');
+    fireEvent.click(rtBtn);
+    expect(rightArrow).toHaveBeenCalledWith();
+  });
+});
+
+describe('RelatedCardsCarousel Component', () => {
+  test('renders components', () => {
+    render(
+      <RelatedCardsCarousel
+      uniqueProductIds={uniqueProductIds}
+      server={server}
+      options={options}
+      changeId={changeID}
+      product={mainProduct}
+      style={mainProductStyles}
+      />
+      );
+      expect(screen.getByTestId('carBtnNext')).toBeInTheDocument();
+    });
+  });
+
+  describe('TableRow Component', () => {
+    const featureName = 'Test Feature';
+    const mainFeatures = [
+      { feature: 'cut', value: 'loose' },
+      { feature: 'warranty', value: null },
+    ];
+
+    const relatedFeatures = [
+      { feature: 'cut', value: 'Related Feature Value' },
+      { feature: 'Yet Another Feature', value: null },
+    ];
+
+    test('renders component with main and related features', () => {
+      render(
+        <table>
+        <tbody>
+          <TableRow featureName={featureName} mainFeatures={mainFeatures} relatedFeatures={relatedFeatures} />
+        </tbody>
+      </table>
+    );
+    expect(screen.getByText('Main Feature Value')).toBeInTheDocument();
+    expect(screen.getByText('Test Feature')).toBeInTheDocument();
+    expect(screen.getByText('Related Feature Value')).toBeInTheDocument();
+  });
+});
+
+/*thumbImg */
+describe('ThumbImg', () => {
+  test('img should be on page', () => {
+    render(<ThumbImg photoObj={relatedProductStyles.results[0].photos[0]} i={1} changePhoto={changePhoto}/>)
+    var image = screen.getByAltText('https://images.unsplash.com/photo-1535639818669-c059d2f038e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80')
+    expect(image).toBeInTheDocument();
+  })
+  test('click should change invoke function', () => {
+    const change = jest.fn();
+    render(<ThumbImg photoObj={relatedProductStyles.results[0].photos[0]} i={1} changePhoto={change}/>)
+    const changeBtn = screen.getByTestId('ThumbImg');
+    fireEvent.click(changeBtn);
+    expect(change).toHaveBeenCalledWith('https://images.unsplash.com/photo-1535639818669-c059d2f038e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80')
+  })
+})

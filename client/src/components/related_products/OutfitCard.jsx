@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCircleXmark} from '@fortawesome/free-solid-svg-icons'
 import PhotoView from './PhotoView.jsx'
 const OutfitCard = ({obj, deleteOutfit, changeId}) => {
-//{obj.url ? <img onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <img onClick={()=>{changeId(obj.id)}}/>}
+
 const [photo, setPhoto] = useState(obj.photosArray[0].url);
 const changePhoto = (url) => {
   setPhoto(url);
@@ -12,7 +12,7 @@ const changePhoto = (url) => {
   return (
     <div className='outfitCardDiv'>
       <div className='cardTop'>
-        <FontAwesomeIcon className='BTN' icon={faCircleXmark} onClick={()=> {deleteOutfit(obj.id)}}/>
+        <FontAwesomeIcon className='BTN' data-testid='BTN' icon={faCircleXmark} onClick={()=> {deleteOutfit(obj.id)}}/>
         <img className='mainImg' onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} width='50px'src={photo} />
       <PhotoView photos={obj.photosArray} photo={photo} changePhoto={changePhoto}/>
       </div>

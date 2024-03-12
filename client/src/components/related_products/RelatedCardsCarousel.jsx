@@ -68,7 +68,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
       })}
     </div>
     <div className='carBtnContainer'>
-      {currentPosition >= uniqueProductIds.length - 4 ? null :<FontAwesomeIcon className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
+      {currentPosition >= uniqueProductIds.length - 4 ? null :<FontAwesomeIcon data-testid='carBtnNext' className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
     </div>
     </div>
   )
