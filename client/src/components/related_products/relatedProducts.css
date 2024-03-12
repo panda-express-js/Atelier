@@ -44,44 +44,7 @@
 /*
   carousels div
 */
-.carousels {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.relatedCarousel,
-.outfitCarousel {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 800px; /* Adjust the max-width as needed */
-  margin: 10px; /* Adjust the margin as needed */
-}
-
-.carBtn {
-  margin: 5px; /* Adjust the margin as needed */
-}
-
-.relatedCardsDiv,
-.outfitCardsDiv {
-  display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling if needed */
-}
-
-.relatedCardDiv,
-.outfitCardDiv {
-  flex: 0 0 auto; /* Make the cards not grow, not shrink, and have an initial size */
-  margin: 5px; /* Adjust the margin as needed */
-  border: 1px solid #ccc; /* Add border for styling */
-  padding: 10px; /* Add padding for styling */
-  text-align: center;
-}
-
-.outfitBtn {
-  margin: 5px; /* Adjust the margin as needed */
-  padding: 10px; /* Add padding for styling */
-}
+/*headers and carousels*/
 .carousels {
   display: flex;
   flex-direction: column;
@@ -93,28 +56,33 @@
 }
 /*contains arrows and cards collection*/
 .relatedCarousel, .outfitCarousel {
-  display: grid;
-  grid-template-columns: .1fr 1fr .1fr;
-  box-sizing: border-box;
+  display: flex;
+  max-height: 500px;
 }
-
-
+/*card collection divs*/
+.relatedCardsDiv, .outfitCardsDiv {
+  display: flex;
+  gap: 16px;
+  flex: 4;
+}
+.carBtnContainer {
+  flex: 1;
+}
+/*arrow*/
 .carBtn {
-  height: 100%;
   width: 100%;
-  box-sizing: border-box;
-  object-fit: cover;
+  height: 100%;
 }
-/*  cards */
-
+.outfitBtnContainer {
+  width: 100%;
+  height: 100%;
+}
+/*add to outfit*/
 .outfitBtn {
   background-color: white;
   border: 1px solid black;
-  height: 100%;
   width: 100%;
-  object-fit: cover;
-  min-height: 460px;
-  min-width: 200px;
+  height: 100%;
 }
 /* card div */
 .relatedCardDiv, .outfitCardDiv {
@@ -125,16 +93,16 @@
   width: 100%;
   box-sizing: border-box;
 }
-/*old css */
+/*card top img, pic carousel, act btn*/
 .cardTop {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  max-width:300px;
+  max-height: 250px;
   object-fit: cover;
 }
 .mainImg {
-  flex: 1;
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -167,6 +135,8 @@
 .cardBottom {
   display: flex;
   flex-direction: column;
+  max-width: 300px;
+  max-height: 250px;
 }
 .prices {
   font-size: 14px;

@@ -24,13 +24,9 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style,
   return (
     <div className='carousels'>
       <h6 className='rHeader'>RELATED PRODUCTS</h6>
-
         <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId} product={product} style={style} />
-
       <h6 className='oHeader'>YOUR OUTFIT</h6>
-
         <OutfitCardsCarousel product={product} style={style} changeId={changeId} avgRating={avgRating}/>
-
     </div>
   )
 }
