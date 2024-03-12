@@ -81,8 +81,10 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       </select>
       <br></br>
     </div>
+    <div className="actual-list">
     {function () {
       if (reviews.results){
+        console.log(reviews.results, " review results baby!")
       let currReviews = reviews.results.map((review) => {
         if (ratingFilter.includes(review.rating)) {
           if (review.body.includes("img")) {
@@ -95,6 +97,20 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       })
       return currReviews;}
     }()}
-    <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
+    {function (){
+      if (reviews.results){
+      if (reviews.results.length < 4 ) {
+        return <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
+      }
+    }
+    }()}
+    </div>
+    {function (){
+      if (reviews.results){
+      if (reviews.results.length > 3 ) {
+        return <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
+      }
+    }
+    }()}
   </div>
 }

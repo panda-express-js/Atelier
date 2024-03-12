@@ -60,12 +60,38 @@ const HorizontalBarChart = ({ratings}) => {
   )
 }
 
+function nearestQuarter (num) {
+  if ((num - Math.floor(num)) > 0) {
+    let remainder = num - Math.floor(num);
+
+    if (remainder < .25) {
+      return Math.floor(num);
+    } else if ((remainder >= .25) && (remainder < .5)) {
+      num = Math.floor(num) + .25;
+      return num;
+    } else if ((remainder >= .5) && (remainder < .75)) {
+      num = Math.floor(num) + .5;
+      return num;
+    } else if ((remainder >= .75) && (remainder <= .99)) {
+      num = Math.floor(num) + .75;
+      return num;
+    }
+  } else {
+    return num;
+  }
+
+}
+
 
 export default function RatingBreakdown ({ reviewMeta, ratingFilter, setRatingFilter, avgRating }) {
 
+  let currRating = nearestQuarter(avgRating);
+
+
 
   return <div className="Rating Breakdown">
-    <>This is the average rating </>
+    <div className="rating_breakdown_text">Average Rating </div>
+    <span className="rating_breakdown_number">{currRating}</span>
     <StarDisplay rating={avgRating} />
     <div className="chartContainer">
     <HorizontalBarChart ratings={reviewMeta.ratings}/>
