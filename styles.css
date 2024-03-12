@@ -51,3 +51,13 @@ body {
 .chartContainer {
   width: 25%;
 }
+
+/* Review List */
+
+.actual-list {
+  height:900px;
+  width:75%;
+  overflow:hidden;
+  overflow-y: auto;
+  }
+
