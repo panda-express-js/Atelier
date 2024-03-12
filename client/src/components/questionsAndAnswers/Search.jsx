@@ -9,6 +9,7 @@ const Search = ({onSearchChange}) => {
         placeholder="Have a question? Search for answers…"
         onChange={(e) => onSearchChange(e.target.value)}
         className="searchInput"
+        data-testid="search-container"
       />
     );
   }
