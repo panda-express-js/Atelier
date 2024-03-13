@@ -4,7 +4,6 @@ import ExpandedView from './expandedView.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-
 const Photos = ({ style }) => {
 
   let currentPhoto;
@@ -13,7 +12,14 @@ const Photos = ({ style }) => {
   const [expandedView, setExpandedView] = useState(false);
 
   if (style.photos) {
-    currentPhoto = style.photos[photoIndex].url;
+    if (style.photos[photoIndex] === undefined) {
+      setPhotoIndex(0);
+    } else {
+      currentPhoto = style.photos[photoIndex].url;
+      if (currentPhoto === null) {
+        currentPhoto = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/256px-No-Image-Placeholder.svg.png";
+      }
+    }
   }
 
   const changePhoto = (newIndex) => {

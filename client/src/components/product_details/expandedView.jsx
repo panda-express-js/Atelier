@@ -11,7 +11,6 @@ const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
     if (zoomStatus === false) {
       return (
         <div data-testid="expandedContainer" className="expandedContainer">
-          {/* <FontAwesomeIcon icon={faCircle} /> */}
           <img src={currentPhoto} data-testid="expandedPhoto" className="expandedPhoto" onClick={() => setZoomStatus(true)} />
           <button data-testid="closeExpanded" className="closeExpanded" onClick={() => setExpandedView(false)}>X</button>
           <div className="expArrows">
