@@ -7,6 +7,19 @@ import { GITHUB_APIKEY } from '../../../config.js';
 import axios from 'axios';
 import '../../../styles.css';
 
+  //function to get average rating for main product
+  export const getAverageRatingFromMeta = (metaObj) => {
+    var ratingsObj = metaObj.ratings;
+    var totalVotes = 0;
+    var totalStars = 0;
+    for (var key in ratingsObj) {
+      totalVotes += parseInt(ratingsObj[key]);
+      totalStars += (parseInt(ratingsObj[key]) * key);
+    }
+    var averageRating = totalStars / totalVotes;
+    return averageRating;
+  }
+
 const App = () => {
 
   const [id, setId] = useState('40346');
@@ -48,18 +61,6 @@ const App = () => {
       console.log(err, 'App component use effect error');
     });
   }, [id]);
-  //function to get average rating for main product
-  const getAverageRatingFromMeta = (metaObj) => {
-    var ratingsObj = metaObj.ratings;
-    var totalVotes = 0;
-    var totalStars = 0;
-    for (var key in ratingsObj) {
-      totalVotes += parseInt(ratingsObj[key]);
-      totalStars += (parseInt(ratingsObj[key]) * key);
-    }
-    var averageRating = totalStars / totalVotes;
-    return averageRating;
-  }
 
   //function changes id State, which is watched by useEffect, and rerenders for the new product
   const changeId = (newId) => {
@@ -69,7 +70,7 @@ const App = () => {
   }
 
   return (
-    <div id='main-component'>
+    <div data-testid="main-component" id='main-component'>
       <h1>Atelier</h1>
       <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} avgRating={avgRating}/>
       <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} avgRating={avgRating}/>
@@ -80,3 +81,4 @@ const App = () => {
 }
 
 export default App;
+
