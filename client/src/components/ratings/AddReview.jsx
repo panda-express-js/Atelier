@@ -89,7 +89,8 @@ export default function AddReview ({ isModalOpen, closeModal, shouldCloseOnOverl
   }
 
   return (
-  <Modal isOpen={isModalOpen} onRequestClose={closeModal} shouldCloseOnOverlayClick={shouldCloseOnOverlayClick} className={"review-modal"}>
+  <Modal isOpen={isModalOpen} onRequestClose={closeModal} shouldCloseOnOverlayClick={shouldCloseOnOverlayClick} className="Modal"
+  overlayClassName="Overlay">
 
     <form method="post" onSubmit={handleSubmit}>
       <div>Write Your Review</div>
