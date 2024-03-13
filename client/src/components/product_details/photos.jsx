@@ -28,17 +28,17 @@ const Photos = ({ style }) => {
   const renderArrows = () => {
     if (photoIndex === 0) {
       return (
-        <FontAwesomeIcon onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
+        <FontAwesomeIcon data-testid="rightArrow" onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
       )
     } else if (photoIndex === style.photos.length - 1) {
       return (
-        <FontAwesomeIcon onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
+        <FontAwesomeIcon data-testid="leftArrow" onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
       )
     } else {
       return (
         <div>
-          <FontAwesomeIcon onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
-          <FontAwesomeIcon onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
+          <FontAwesomeIcon data-testid="leftArrow" onClick={() => changePhoto(photoIndex - 1)} className="photoIcon leftArrow" icon={faArrowLeft} />
+          <FontAwesomeIcon data-testid="rightArrow" onClick={() => changePhoto(photoIndex + 1)} className="photoIcon rightArrow" icon={faArrowRight} />
         </div>
       )
     }

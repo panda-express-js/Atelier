@@ -12,7 +12,7 @@ const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
       return (
         <div data-testid="expandedContainer" className="expandedContainer">
           {/* <FontAwesomeIcon icon={faCircle} /> */}
-          <img src={currentPhoto} className="expandedPhoto" onClick={() => setZoomStatus(true)} />
+          <img src={currentPhoto} data-testid="expandedPhoto" className="expandedPhoto" onClick={() => setZoomStatus(true)} />
           <button data-testid="closeExpanded" className="closeExpanded" onClick={() => setExpandedView(false)}>X</button>
           <div className="expArrows">
             {renderArrows()}
@@ -21,9 +21,9 @@ const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
       )
     } else {
       return (
-        <div className="zoomedContainer">
-          <div className="zoomedPhotoContainer" style={{ backgroundImage: `url(${currentPhoto})`}} onMouseMove={(e) => {moveAround(e)}}>
-            <img src={currentPhoto} className="zoomedPhoto" onClick={() => setZoomStatus(false)} />
+        <div data-testid="zoomedContainer" className="zoomedContainer">
+          <div data-testid="zPC" className="zoomedPhotoContainer" style={{ backgroundImage: `url(${currentPhoto})`}} onMouseMove={(e) => {moveAround(e)}} onClick={() => setZoomStatus(false)} >
+            <img src={currentPhoto} className="zoomedPhoto" />
           </div>
         </div>
       )

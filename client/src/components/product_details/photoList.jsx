@@ -27,7 +27,7 @@ const PhotoList = ({ list, changePhoto, photoIndex }) => {
         return (
           <div key={photo.url} className="selectedListPhoto" style={{marginBottom: "8px"}}>
             <img onClick={(e) => handlePhotoClick(list.indexOf(photo))} className="listPhoto" src={photo.url}/>
-            <div className="selectedListPhoto"></div>
+            <div data-testid="selectedLP" className="selectedListPhoto"></div>
           </div>
         )
       } else {
@@ -43,7 +43,7 @@ const PhotoList = ({ list, changePhoto, photoIndex }) => {
   const renderUpBtn = () => {
     if (limitedList && (limitedList[0] !== list[0])) {
       return (
-        <FontAwesomeIcon className="photoIcon photoUp" icon={faChevronUp} onClick={() =>
+        <FontAwesomeIcon data-testid="photoUp" className="photoIcon photoUp" icon={faChevronUp} onClick={() =>
           scroll(-1)}/>
       )
     }
@@ -52,7 +52,7 @@ const PhotoList = ({ list, changePhoto, photoIndex }) => {
   const renderDownBtn = () => {
     if (limitedList && (limitedList[limitedList.length - 1] !== list[list.length - 1])) {
       return (
-        <FontAwesomeIcon className="photoIcon photoDown" icon={faChevronDown} onClick={() => scroll(1)}/>
+        <FontAwesomeIcon data-testid="photoDown" className="photoIcon photoDown" icon={faChevronDown} onClick={() => scroll(1)}/>
       )
     }
   }
