@@ -70,19 +70,40 @@ import Modal from 'react-modal';
 // https://codepen.io/claydiffrient/pen/woLzwo
 // https://reactcommunity.org/react-modal/examples/should_close_on_overlay_click/
 
+// increase opacity
+
 
 
 export default function AddReview ({ isModalOpen, closeModal, shouldCloseOnOverlayClick }) {
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const formJson = Object.fromEntries(formData.entries());
+
+    console.log(formJson, " this is the form data")
+    closeModal()
+  }
+
   return (
   <Modal isOpen={isModalOpen} onRequestClose={closeModal} shouldCloseOnOverlayClick={shouldCloseOnOverlayClick} className={"review-modal"}>
 
-    Yo we here son!!
-  {/* <form onSubmit={console.log("it's submitted")}>
-   <input> Enter something</input>
-   </form> */}
+    <form method="post" onSubmit={handleSubmit}>
+      <div>Write Your Review</div>
+      <div>About the Product Name Here</div>
 
-<button onClick={closeModal} type="submit">Submit Review</button>
+      <>Do you Recommend this Product? </>
+      <input type="radio" id="yes" name="recommendation" value="yes" defaultChecked />
+    <label htmlFor="yes">Yes</label>
+    <input type="radio" id="no" name="recommendation" value="no" />
+    <label htmlFor="no">No</label>
+    <input type="text"></input>
+
+      <button type="submit">Submit Review</button>
+    </form>
 </Modal>
 )
 }
