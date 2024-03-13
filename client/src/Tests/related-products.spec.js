@@ -1,5 +1,5 @@
 import React from 'react';
-import { render , screen, fireEvent } from '@testing-library/react';
+import { render , screen, fireEvent, cleanup } from '@testing-library/react';
 import App from '../components/App.jsx';
 import RelatedCard from '../components/related_products/RelatedCard.jsx';
 import OutfitCard from '../components/related_products/OutfitCard.jsx'
@@ -16,6 +16,63 @@ const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
 const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
 
 // sample data
+const prod2 = {
+  "id": 41089,
+  "name": "coolShoe",
+  "category": "shoe",
+  "default_price": "400.00"
+  }
+  const prod3 = {
+  "id": 41090,
+  "name": "pinkDress",
+  "category": "Dress",
+  "default_price": "100.00"
+  }
+  const prod4 = {
+  "id": 41091,
+  "name": "car",
+  "category": "cars",
+  "default_price": "1.00"
+  }
+  const style2 = {
+        "style_id": 245283,
+        "name": "coolShoe",
+        "original_price": "400.00",
+        "sale_price": "60.00",
+        "default?": true,
+        "photos": [
+          {
+            "thumbnail_url": "https://images.unsplash.com/photo-1498200163530-bdb7c50ec863?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            "url": "https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80"
+          }
+        ]
+      }
+  const style3 = {
+        "style_id": 245284,
+        "name": "pinkDress",
+        "original_price": "100.00",
+        "sale_price": "10.00",
+        "default?": true,
+        "photos": [
+          {
+            "thumbnail_url": "https://images.unsplash.com/photo-1498200163530-bdb7c50ec863?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            "url": "https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80"
+          }
+        ]
+      }
+  const style4 = {
+        "style_id": 245282,
+        "name": "car",
+        "original_price": "1.00",
+        "sale_price": "1.00",
+        "default?": true,
+        "photos": [
+          {
+            "thumbnail_url": "https://images.unsplash.com/photo-1498200163530-bdb7c50ec863?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
+            "url": "https://images.unsplash.com/photo-1553830591-2f39e38a013c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2760&q=80"
+          }
+        ]
+      }
 const productIds = [
   41207,
   41220,
@@ -85,6 +142,7 @@ const mainProductStyles = {
     }
   ]
 }
+const style = mainProductStyles.results[0];
 const mainProductStylesNoSale = {
   "product_id": "41088",
   "results": [
@@ -445,6 +503,7 @@ describe('ThumbImg', () => {
   })
 })
 describe('OutfitsCardsCarousel', () => {
+  afterEach(cleanup);
   test('renders divs', () => {
     render(<OutfitCardsCarousel product={mainProduct} style={mainProductStyles} changeId={changeID} avgRating={reviews}/>);
       expect(screen.queryByTestId('carBtnNext')).not.toBeInTheDocument();
@@ -455,4 +514,26 @@ describe('OutfitsCardsCarousel', () => {
       expect(screen.getByTestId('carBtnContainerBack')).toBeInTheDocument();
       expect(screen.getByTestId('carBtnContainerNext')).toBeInTheDocument();
   });
+  test('add outfit button', () => {
+    render(<OutfitCardsCarousel product={mainProduct} style={style} changeId={changeID} avgRating={reviews}/>);
+    fireEvent.click(screen.getByText('Add To Outift'));
+    expect(screen.getByTestId('outfitCardsDiv').children.length).toBe(2);
+    fireEvent.click(screen.getByTestId('BTN'));
+    expect(screen.getByTestId('outfitCardsDiv').children.length).toBe(1);
+  })
+  test('add four to outfit then check if arrow appears', () => {
+    const change = jest.fn();
+    render(<OutfitCardsCarousel product={mainProduct} style={style} changeId={change} avgRating={reviews}/>);
+    fireEvent.click(screen.queryAllByTestId('outfitBtn')[0]);
+    fireEvent.click(screen.getByAltText('product image of Zora Tank Top'))
+    render(<OutfitCardsCarousel product={prod2} style={style2} changeId={change} avgRating={reviews}/>);
+    fireEvent.click(screen.queryAllByTestId('outfitBtn')[1]);
+    fireEvent.click(screen.getByAltText('product image of coolShoe'));
+    render(<OutfitCardsCarousel product={prod3} style={style3} changeId={change} avgRating={reviews}/>);
+    fireEvent.click(screen.queryAllByTestId('outfitBtn')[2]);
+    fireEvent.click(screen.getByAltText('product image of pinkDress'));
+    render(<OutfitCardsCarousel product={prod4} style={style4} changeId={change} avgRating={reviews}/>);
+    fireEvent.click(screen.queryAllByTestId('outfitBtn')[3]);
+    fireEvent.click(screen.getByAltText('product image of car'));
+  })
 })
