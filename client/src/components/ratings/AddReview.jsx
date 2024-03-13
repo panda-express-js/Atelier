@@ -104,10 +104,19 @@ export default function AddReview ({ isModalOpen, closeModal, shouldCloseOnOverl
     <input type="radio" id="no" name="recommend" value="no" />
     <label htmlFor="no">No</label>
     <div>Characteristics go here</div>
-    <input name="summary" type="text" placeholder="Example: Best purchase ever!" />
-    <input name="body" type="text" placeholder="Why did you like the product or not?" />
-    <input name="name" type="text" placeholder="Example: jackson11!" />
-    <input name="email" type="email" placeholder="Example: jackson11@email.com" />
+
+    <label htmlFor="summary">summary</label>
+    <input className="review-input" name="summary" id="summary" type="text" placeholder="Example: Best purchase ever!" />
+
+    <label htmlFor="body">body</label>
+    <textarea name="body" className="review-input" id="body" placeholder="Why did you like the product or not?" rows="5" cols="33" />
+
+    <label htmlFor="name">nickname</label>
+    <input name="name" className="review-input" id="name" type="text" placeholder="Example: jackson11!" />
+
+    <label htmlFor="email">email</label>
+    <input name="email" className="review-input" id="email" type="email" placeholder="Example: jackson11@email.com" />
+
       <button type="submit">Submit Review</button>
     </form>
 </Modal>

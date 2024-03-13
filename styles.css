@@ -80,3 +80,7 @@ body {
     bottom: 0;
     background-color: rebeccapurple;
   }
+
+.review-input {
+  display: block;
+}
