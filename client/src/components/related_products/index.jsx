@@ -20,14 +20,18 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style,
     }
   }, [productIds])
 
-  return (
-    <div className='carousels' data-testid="carousels">
-      <p className='rHeader'>RELATED PRODUCTS</p>
+  if (style !== undefined) {
+    return (
+      <div className='carousels' data-testid="carousels">
+        <p className='rHeader'>RELATED PRODUCTS</p>
         <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId} product={product} style={style} />
-      <p className='oHeader'>YOUR OUTFIT</p>
-        <OutfitCardsCarousel product={product} style={style} changeId={changeId} avgRating={avgRating}/>
-    </div>
-  )
+        <p className='oHeader'>YOUR OUTFIT</p>
+        <OutfitCardsCarousel product={product} style={style} changeId={changeId} avgRating={avgRating} />
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default RelatedProducts;

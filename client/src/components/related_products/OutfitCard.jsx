@@ -5,10 +5,6 @@ import {faCircleXmark} from '@fortawesome/free-solid-svg-icons'
 import PhotoView from './PhotoView.jsx'
 const OutfitCard = ({obj, deleteOutfit, changeId}) => {
 
-const [photo, setPhoto] = useState(obj.photosArray[0].url);
-const changePhoto = (url) => {
-  setPhoto(url);
-}
 let salePrice = obj.sale_price;
 let ogPrice = obj.default_price;
 if (salePrice && salePrice.split('').slice(-2).join('') === '00') {
@@ -17,13 +13,12 @@ if (salePrice && salePrice.split('').slice(-2).join('') === '00') {
 if (ogPrice && ogPrice.split('').slice(-2).join('') === '00') {
   ogPrice = ogPrice.split('').slice(0, -3).join('');
 }
-
+//{photo ? <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} src={photo}/>:  <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}} alt={`product image of ${obj.name}`} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/256px-No-Image-Placeholder.svg.png"}/>}
   return (
     <div className='outfitCardDiv' data-testid='outfitCardDiv'>
       <div className='cardTop' data-testid='cardTop'>
         <FontAwesomeIcon className='BTN' data-testid='BTN' icon={faCircleXmark} onClick={()=> {deleteOutfit(obj.id)}}/>
-        {photo ? <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} src={photo}/>:  <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}} alt={`product image of ${obj.name}`} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/256px-No-Image-Placeholder.svg.png"}/>}
-      <PhotoView photos={obj.photosArray} photo={photo} changePhoto={changePhoto}/>
+        {obj.url ? <img onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} width='50px'src={obj.url} />: <img onClick={()=>{changeId(obj.id)}}/>}
       </div>
       <div data-testid='cardBottom' className="cardBottom"  onClick={()=>{changeId(obj.id)}}>
         <span className='cardCategory'>{obj.category}</span>
