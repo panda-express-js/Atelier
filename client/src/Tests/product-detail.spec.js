@@ -240,13 +240,6 @@ describe(Details, () => {
   })
 })
 
-// describe(ExpandedView, () => {
-
-//     it('renders the expanded view container', () => {
-
-//     })
-// })
-
 describe(ProductDetail, () => {
 
   it('renders an overview container', () => {
@@ -267,13 +260,6 @@ describe(ItemAdd, () => {
 
 })
 
-// describe(PhotoList, () => {
-
-//     it('displays five thumbnails at one time', () => {
-
-//     })
-// })
-
 describe(Photos, () => {
 
   it('renders a container for all photos', () => {
@@ -281,12 +267,39 @@ describe(Photos, () => {
     expect(screen.getByTestId("photoContainer")).toBeInTheDocument();
   })
 
+  it('renders only right arrow when main photo is first photo', () => {
+    render(<Photos style={styleExample3}/>);
+    expect(screen.queryByTestId("leftArrow")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("rightArrow")).toBeInTheDocument();
+  })
+
+  it('renders only left arrow when main photo is last photo', () => {
+    render(<Photos style={styleExample3}/>);
+    fireEvent.click(screen.getByTestId("rightArrow"));
+    fireEvent.click(screen.getByTestId("rightArrow"));
+    fireEvent.click(screen.getByTestId("rightArrow"));
+    fireEvent.click(screen.getByTestId("rightArrow"));
+    fireEvent.click(screen.getByTestId("rightArrow"));
+    expect(screen.queryByTestId("leftArrow")).toBeInTheDocument();
+    expect(screen.queryByTestId("rightArrow")).not.toBeInTheDocument();
+  })
+
+  it('renders both arrows when main photo is neither first nor last', () => {
+    render(<Photos style={styleExample3}/>);
+    fireEvent.click(screen.getByTestId("rightArrow"));
+    expect(screen.queryByTestId("leftArrow")).toBeInTheDocument();
+    expect(screen.queryByTestId("rightArrow")).toBeInTheDocument();
+  })
+
+})
+
+describe(ExpandedView, () => {
+
   it('launches the expanded view after clicking on photo container', () => {
     render(<Photos style={styleExample3}/>);
     expect(screen.queryByTestId("expandedContainer")).not.toBeInTheDocument();
     fireEvent.click(screen.getByTestId("photoContainer"));
     expect(screen.getByTestId("expandedContainer")).toBeInTheDocument();
-
   })
 
   it('closes expanded view after clicking on close button', () => {
@@ -296,12 +309,23 @@ describe(Photos, () => {
     expect(screen.queryByTestId("expandedContainer")).not.toBeInTheDocument();
   })
 
-  it('has a list of thumbnails that can be scrolled through', () => {
+  it('renders a zoomed view after photo click in expanded view', () => {
     render(<Photos style={styleExample3}/>);
-
-
+    fireEvent.click(screen.getByTestId("photoContainer"));
+    expect(screen.queryByTestId("zoomedContainer")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("expandedPhoto"));
+    expect(screen.getByTestId("zoomedContainer")).toBeInTheDocument();
   })
 
+  it('closes zoomed view after clicking zoomed photo', () => {
+    render(<Photos style={styleExample3}/>);
+    fireEvent.click(screen.getByTestId("photoContainer"));
+    fireEvent.click(screen.getByTestId("expandedPhoto"));
+    expect(screen.queryByTestId("expandedPhoto")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("zPC"));
+    expect(screen.getByTestId("expandedPhoto")).toBeInTheDocument();
+    expect(screen.queryByTestId("zPC")).not.toBeInTheDocument();
+  })
 })
 
 // describe(StyleSelector, () => {
