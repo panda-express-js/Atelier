@@ -5,11 +5,11 @@ import PhotoView from './PhotoView.jsx'
 import StarDisplay from '../ratings/star_rating/Star_Display.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faStar} from '@fortawesome/free-regular-svg-icons'
-const RelatedCard = ({id, obj, changeId, product, style}) => {
+const RelatedCard = ({avgRating, changeId, id, obj, product, style}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [photo, setPhoto] = useState(obj.photosArray[0].url);
-
+  //remove .00 from prices
   let salePrice = obj.sale_price;
   let ogPrice = obj.default_price;
   if (salePrice && salePrice.split('').slice(-2).join('') === '00') {
@@ -34,7 +34,7 @@ const RelatedCard = ({id, obj, changeId, product, style}) => {
     <div className='relatedCardDiv' data-testid='relatedCardDiv'>
       <div className='cardTop'>
         <FontAwesomeIcon data-testid='BTN' className='BTN' icon={faStar} onClick={()=> {openModal()}} />
-        <Comparing isModalOpen={isModalOpen} closeModal={closeModal} relatedProduct={obj} mainProduct={product} style={style}/>
+        <Comparing isModalOpen={isModalOpen} closeModal={closeModal} avgRating={avgRating} relatedProduct={obj} mainProduct={product} style={style}/>
         {photo ? <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} src={photo}/>: <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/256px-No-Image-Placeholder.svg.png"/>}
         <PhotoView photos={obj.photosArray} photo={photo} changePhoto={changePhoto}/>
       </div>

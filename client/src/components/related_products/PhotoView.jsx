@@ -9,6 +9,7 @@ const PhotoView = ({photos, photo, changePhoto}) => {
 
   //remove current photo from photosarray
   const filteredPhotos = photos.filter((photoObj) => photoObj.url !== photo);
+
   const rightArrow = () => {
     setCurrentPosition(currentPosition + 1);
   }
@@ -22,7 +23,7 @@ const PhotoView = ({photos, photo, changePhoto}) => {
       <div className='picturesDiv'>
       {filteredPhotos.map((photoObj, i) => {
         if (photoObj.url !== photo && i >= currentPosition && i <= currentPosition + 3 ) {
-          return <ThumbImg key={i} photoObj={photoObj} i={i} changePhoto={changePhoto}/>
+          return <ThumbImg key={i} changePhoto={changePhoto} photoObj={photoObj}/>
         }
       })}
       </div>

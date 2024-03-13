@@ -2,8 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import TableRow from './TableRow.jsx';
 import StarDisplay from '../ratings/star_rating/Star_Display.jsx'
-const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct }) => {
-
+const Comparing = ({ avgRating, isModalOpen, closeModal, mainProduct, relatedProduct }) => {
+  //combines both product feature arrays into an array with unrepeated features
   const makeFeaturesArray = (array1, array2) => {
     let array = array1.concat(array2);
     array = array.reduce((accumulator, obj) => {
@@ -14,7 +14,7 @@ const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct
     }, [])
     return array;
   }
-
+  //used to map through every feature for TableRow component
   let featuresArray = makeFeaturesArray(mainProduct.features, relatedProduct.features)
 
   return (
@@ -35,7 +35,7 @@ const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct
             <td>{relatedProduct.category}</td>
           </tr>
           <tr>
-            <td><StarDisplay rating={mainProduct.stars}/></td>
+            <td><StarDisplay rating={avgRating}/></td>
             <td>Rating</td>
             <td><StarDisplay rating={relatedProduct.stars}/></td>
           </tr>

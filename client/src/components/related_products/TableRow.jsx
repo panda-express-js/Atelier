@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TableRow = ({featureName, mainFeatures, relatedFeatures}) => {
-
+  //finds first object that has the current featureName
   const mainFeatureObject = mainFeatures.find((item) => item.feature === featureName);
   const relatedFeatureObject = relatedFeatures.find((item) => item.feature === featureName);
 

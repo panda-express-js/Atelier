@@ -7,6 +7,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   const [outfit, setOutfit] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(0);
 
+  //grabs outfitsArray if it exists from localStorage and sets as state
   useEffect(() => {
     const storedOutfit = localStorage.getItem('userOutfit');
     if (storedOutfit) {
@@ -14,7 +15,8 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
       setOutfit(outfits);
     }
   }, [product]);
-  //update storage and rerender
+
+  //updates outfit state and localStorage with new outfit obj
   const addToOutift = () => {
     if(!outfit.some((outfitObj) => outfitObj.id === product.id)) {
       const newOutfitObj = {
@@ -31,6 +33,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
       localStorage.setItem('userOutfit', JSON.stringify([newOutfitObj, ...outfit]));
     }
   }
+  //removes outfitObj from state and localStorage
   const deleteOutfit = (id) => {
     var newOutfit = outfit.filter((obj) => obj.id !== id);
     setOutfit(newOutfit);
@@ -56,7 +59,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
       </div>
         {outfit.map((obj, index) => {
           if (index >= currentPosition && index <= currentPosition + 2) {
-            return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} />
+            return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} changeId={changeId} obj={obj}/>
           }else {
             return null;
           }
