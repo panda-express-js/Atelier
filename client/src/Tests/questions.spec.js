@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor  } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Question from '../components/questionsAndAnswers/Question.jsx';
 import Answer from '../components/questionsAndAnswers/Answer.jsx';
 import QuestionList from '../components/questionsAndAnswers/QuestionList';
@@ -243,6 +243,12 @@ describe('Search', () => {
         render(<Search onSearchChange={() => {}} />);
         const placeholderText = screen.getByPlaceholderText('Have a question? Search for answers…');
         expect(placeholderText).toBeInTheDocument();
+      });
+
+      test('input field is of type text', () => {
+        render(<Search onSearchChange={() => {}} />);
+        const inputElement = screen.getByRole('textbox');
+        expect(inputElement.getAttribute('type')).toBe('text');
       });
 })
 
