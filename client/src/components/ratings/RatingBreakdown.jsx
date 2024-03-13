@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-// might shuck this out into a separate component
+// refactor the chart to a separate component in the future
 
 const HorizontalBarChart = ({ratings}) => {
 
@@ -59,6 +59,10 @@ const HorizontalBarChart = ({ratings}) => {
     </div>
   )
 }
+
+// get the average rating to the nearest quarter just like
+// in the star display to be able to show the number properly
+// on the breakdown
 
 function nearestQuarter (num) {
   if ((num - Math.floor(num)) > 0) {
