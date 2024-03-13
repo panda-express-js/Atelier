@@ -30,7 +30,7 @@ function Answer({ server, options, answer }) {
     e.preventDefault();
     if (!reported) {
       setReported(true);
-      axios.put(`${server}/qa/questions/${answer.answer_id}/report`,{}, options)
+      axios.put(`${server}/qa/answers/${answer.answer_id}/report`,{}, options)
       .then(() => {
         console.log('Answer reported successfully');
       })
