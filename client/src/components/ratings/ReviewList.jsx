@@ -22,6 +22,16 @@ export default function ReviewList ({ product , server, options, reviews, setRev
 
   const [reviewMeta, setReviewMeta] = useState(null)
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
   const handleSelectChange = (event) => {
     setSort(event.target.value);
 };
@@ -102,7 +112,8 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       if (reviews.results.length < 4 ) {
         return <>
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
-        <AddReview />
+        <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
+        <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} />
         </>
       }
     }
@@ -113,7 +124,8 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       if (reviews.results.length > 3 ) {
         return <>
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
-        <AddReview />
+        <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
+        <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} />
         </>
       }
     }

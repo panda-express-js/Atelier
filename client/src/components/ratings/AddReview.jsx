@@ -1,5 +1,7 @@
 import React , { useState, useEffect } from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
+
 
 // At the bottom of the Ratings & Reviews module, a button will appear allowing users to create new reviews for the product. This button should always be available on any product page.
 // Upon clicking the button a modal window should open, overlaying the product page. The modal should be titled “Write Your Review” and subtitled “About the [Product Name Here]”.
@@ -59,16 +61,25 @@ import axios from 'axios';
 // The email address provided is not in correct email format
 // The images selected are invalid or unable to be uploaded.
 
-
-function handleClick() {
-  console.log("I was clicked")
-  return
-}
-
+// I - review text
+// O - make a modal to take in the review text, close the modal, submit the result for that product ID through the API
+// C -
+// E -
 
 
 
-export default function AddReview () {
+export default function AddReview ({ isModalOpen, closeModal }) {
+console.log("the button pressed")
 
-  return < button onClick={handleClick} type="button">+ Add a review</button>
+
+  return (
+  <Modal isOpen={isModalOpen} onRequestClose={closeModal} className={"review-modal"}>
+
+    Yo we here son!!
+  {/* <form onSubmit={console.log("it's submitted")}>
+   <input> Enter something</input>
+   <button type="submit"></button>
+   </form> */}
+</Modal>
+)
 }
