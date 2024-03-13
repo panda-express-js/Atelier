@@ -17,11 +17,12 @@ if (salePrice && salePrice.split('').slice(-2).join('') === '00') {
 if (ogPrice && ogPrice.split('').slice(-2).join('') === '00') {
   ogPrice = ogPrice.split('').slice(0, -3).join('');
 }
+
   return (
     <div className='outfitCardDiv' data-testid='outfitCardDiv'>
       <div className='cardTop' data-testid='cardTop'>
         <FontAwesomeIcon className='BTN' data-testid='BTN' icon={faCircleXmark} onClick={()=> {deleteOutfit(obj.id)}}/>
-        <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} width='50px'src={photo} />
+        {photo ? <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}}alt={`product image of ${obj.name}`} src={photo}/>:  <img data-testid='mainImg' className='mainImg' onClick={()=>{changeId(obj.id)}} alt={`product image of ${obj.name}`} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/256px-No-Image-Placeholder.svg.png"}/>}
       <PhotoView photos={obj.photosArray} photo={photo} changePhoto={changePhoto}/>
       </div>
       <div data-testid='cardBottom' className="cardBottom"  onClick={()=>{changeId(obj.id)}}>
