@@ -16,18 +16,7 @@ const AddQuestion = ( { productId, productName, onSubmitQuestion  }) => {
 
   const handleQuestionSubmit = (e) => {
     e.preventDefault();
-    if (!question) {
-      setErrorMessage('Question is blank, you must enter a question.');
-      return;
-    }
-    if(!nickname) {
-      setErrorMessage('Nickname is blank, you must enter a nickname.');
-      return;
-    }
-    if(!email) {
-      setErrorMessage('Email is blank, you must enter a email.');
-      return;
-    }
+
     if (!validateEmail(email)) {
       setErrorMessage('The email address provided is not in correct email format');
       return;
@@ -56,6 +45,7 @@ const AddQuestion = ( { productId, productName, onSubmitQuestion  }) => {
                 <form onSubmit={handleQuestionSubmit}>
                   <label>Your Question : (mandatory)*
                     <textarea
+                    data-testid="question-textarea"
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     maxLength="1000" required>
@@ -63,6 +53,7 @@ const AddQuestion = ( { productId, productName, onSubmitQuestion  }) => {
                   </label>
                   <label>What is your nickname (mandatory)*
                     <input
+                    data-testid="question-nickname"
                     type="text"
                     value={nickname}
                     onChange={(e) => setNickname(e.target.value)}
@@ -72,6 +63,7 @@ const AddQuestion = ( { productId, productName, onSubmitQuestion  }) => {
                   </label>
                   <label>Your email (mandatory)*
                     <input
+                    data-testid="question-email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}

@@ -14,18 +14,6 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
   const handleAnswerSubmit = (e) => {
     e.preventDefault();
 
-    if (!yourAnswer) {
-      setErrorMessage('Answer is blank, you must enter an answer.');
-      return;
-    }
-    if (!nickname) {
-      setErrorMessage('Nickname is blank, you must enter a nickname.');
-      return;
-    }
-    if (!email) {
-      setErrorMessage('Email is blank, you must enter an email.');
-      return;
-    }
     if (!validateEmail(email)) {
       setErrorMessage('The email address provided is not in correct email format');
       return;
@@ -119,7 +107,7 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
               <input type="file" onChange={handlePhotoChange} style={{ display: 'block' }} />
             </label>
             )}
-            {errorMessage && <div className="error-message">{errorMessage}</div>}
+           {errorMessage && <div className="error-message" data-testid="error-message">{errorMessage}</div>}
             <button type="submit">Submit answer</button>
           </form>
         </div>
