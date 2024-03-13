@@ -73,8 +73,6 @@ import Modal from 'react-modal';
 
 
 export default function AddReview ({ isModalOpen, closeModal }) {
-console.log("the button pressed")
-
 
   return (
   <Modal isOpen={isModalOpen} onRequestClose={closeModal} className={"review-modal"}>
