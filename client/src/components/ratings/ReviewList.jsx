@@ -113,7 +113,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
         return <>
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
         <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
-        <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} />
+        <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} shouldCloseOnOverlayClick={false} />
         </>
       }
     }
@@ -125,7 +125,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
         return <>
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
         <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
-        <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} />
+        <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} shouldCloseOnOverlayClick={false} />
         </>
       }
     }

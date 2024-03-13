@@ -72,16 +72,17 @@ import Modal from 'react-modal';
 
 
 
-export default function AddReview ({ isModalOpen, closeModal }) {
+export default function AddReview ({ isModalOpen, closeModal, shouldCloseOnOverlayClick }) {
 
   return (
-  <Modal isOpen={isModalOpen} onRequestClose={closeModal} className={"review-modal"}>
+  <Modal isOpen={isModalOpen} onRequestClose={closeModal} shouldCloseOnOverlayClick={shouldCloseOnOverlayClick} className={"review-modal"}>
 
     Yo we here son!!
   {/* <form onSubmit={console.log("it's submitted")}>
    <input> Enter something</input>
-   <button type="submit"></button>
    </form> */}
+
+<button onClick={closeModal} type="submit">Submit Review</button>
 </Modal>
 )
 }
