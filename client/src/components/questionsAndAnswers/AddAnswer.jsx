@@ -94,13 +94,14 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
               placeholder="Enter image URL" />
             <button type="button" onClick={addPhotoUrl}>Add Photo</button>
           </label>
+          <div className="photos-container">
             {photos.map((photo, index) => (
-              <div key={index}>
+              <div key={index} className="photo-item">
                 <img src={photo} alt={`Uploaded ${index + 1}`} style={{ width: '100px', height: '100px' }} />
-                <button onClick={() => removePhoto(index)}>X</button>
+                <button onClick={() => removePhoto(index)}className="remove-photo-btn">X</button>
               </div>
               ))}
-
+          </div>
             {photos.length < 5 && (
             <label>
               Upload your photos

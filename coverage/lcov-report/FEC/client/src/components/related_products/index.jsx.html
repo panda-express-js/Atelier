@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/11</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/11</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -95,12 +95,7 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -108,26 +103,21 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,35 +131,30 @@
 import axios from 'axios'
 import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
 import OutfitCardsCarousel from './OutfitCardsCarousel.jsx'
-&nbsp;
+import './relatedProducts.css';
 const RelatedProducts = ({product, server, options, productIds, changeId, style, avgRating}) =&gt; {
   //40382 has good range
   //og was 40344
   const [uniqueProductIds, setUniqueProductIds] = useState([])
-  const [reviews, setReviews] = useState({})
 &nbsp;
   useEffect(() =&gt; {
-    const arr = productIds.reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, id) =&gt; {
-<span class="cstat-no" title="statement not covered" >      if (!acc.includes(id) &amp;&amp; id !== product.id) {</span>
-<span class="cstat-no" title="statement not covered" >        return acc.concat(id);</span>
+    const arr = productIds.reduce((acc, id) =&gt; {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (!acc.includes(id) &amp;&amp; id !== product.id) {
+        return acc.concat(id);
       }
 <span class="cstat-no" title="statement not covered" >      return acc;</span>
     }, []);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (product.id !== undefined) {
-<span class="cstat-no" title="statement not covered" >      setUniqueProductIds(arr);</span>
+    if (product.id !== undefined) {
+      setUniqueProductIds(arr);
     }
   }, [productIds])
 &nbsp;
   return (
-    &lt;div className='carousels'&gt;
-      &lt;h6 className='rHeader'&gt;RELATED PRODUCTS&lt;/h6&gt;
-      &lt;div className='relatedProductsCarousel'&gt;
+    &lt;div className='carousels' data-testid="carousels"&gt;
+      &lt;p className='rHeader'&gt;RELATED PRODUCTS&lt;/p&gt;
         &lt;RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId} product={product} style={style} /&gt;
-      &lt;/div&gt;
-      &lt;h6 className='oHeader'&gt;YOUR OUTFIT&lt;/h6&gt;
-      &lt;div className='outfitProductCarousel'&gt;
+      &lt;p className='oHeader'&gt;YOUR OUTFIT&lt;/p&gt;
         &lt;OutfitCardsCarousel product={product} style={style} changeId={changeId} avgRating={avgRating}/&gt;
-      &lt;/div&gt;
     &lt;/div&gt;
   )
 }
@@ -181,7 +166,7 @@ export default RelatedProducts;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-13T02:32:00.509Z
+                at 2024-03-13T03:19:35.434Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

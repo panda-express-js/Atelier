@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">18.18% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -115,36 +115,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,38 +163,38 @@ function AnswerList({server, options,  answers}) {
 &nbsp;
   const [isExpanded, setIsExpanded] = useState(false);
 &nbsp;
-  const sortedAnswers = Array.isArray(answers) ? [...answers].sort(<span class="fstat-no" title="function not covered" >(a</span>, b) =&gt; {
-    const isASeller = <span class="cstat-no" title="statement not covered" >a.answerer_name.toLowerCase() === 'seller';</span>
-    const isBSeller = <span class="cstat-no" title="statement not covered" >b.answerer_name.toLowerCase() === 'seller';</span>
+  const sortedAnswers = Array.isArray(answers) ? [...answers].sort((a, b) =&gt; {
+    const isASeller = a.answerer_name.toLowerCase() === 'seller';
+    const isBSeller = b.answerer_name.toLowerCase() === 'seller';
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (isASeller &amp;&amp; !isBSeller) {</span>
-<span class="cstat-no" title="statement not covered" >      return -1;</span>
+    if (isASeller &amp;&amp; !isBSeller) {
+      return -1;
     }
-<span class="cstat-no" title="statement not covered" >    if (!isASeller &amp;&amp; isBSeller) {</span>
-<span class="cstat-no" title="statement not covered" >      return 1;</span>
+    if (!isASeller &amp;&amp; isBSeller) {
+      return 1;
     }
-<span class="cstat-no" title="statement not covered" >    if (isASeller &amp;&amp; isBSeller) {</span>
+    if (isASeller &amp;&amp; isBSeller) {
       // If both are 'seller', then sort by helpfulness
-<span class="cstat-no" title="statement not covered" >      return b.helpfulness - a.helpfulness;</span>
+      return b.helpfulness - a.helpfulness;
     }
-<span class="cstat-no" title="statement not covered" >    return b.helpfulness - a.helpfulness;</span>
-  }) : <span class="branch-1 cbranch-no" title="branch not covered" >[];</span>
+    return b.helpfulness - a.helpfulness;
+  }) : [];
 &nbsp;
-  const displayedAnswers = isExpanded? <span class="branch-0 cbranch-no" title="branch not covered" >sortedAnswers </span>: sortedAnswers.slice(0, 2);
+  const displayedAnswers = isExpanded? sortedAnswers : sortedAnswers.slice(0, 2);
 &nbsp;
-  const toggleExpansion =<span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >    setIsExpanded(!isExpanded);</span>
+  const toggleExpansion =() =&gt; {
+    setIsExpanded(!isExpanded);
   }
 &nbsp;
   return (
     &lt;div&gt;
-      &lt;div className = {isExpanded? <span class="branch-0 cbranch-no" title="branch not covered" >'answersExpanded':</span>''}&gt;
-        {displayedAnswers.map(<span class="fstat-no" title="function not covered" >(a</span>nswer) =&gt; (
-<span class="cstat-no" title="statement not covered" >          &lt;Answer key={answer.answer_id} answer={answer} server={server} options={options}/&gt;</span>
+      &lt;div className = {isExpanded? 'answersExpanded':''}&gt;
+        {displayedAnswers.map((answer) =&gt; (
+          &lt;Answer key={answer.answer_id} answer={answer} server={server} options={options}/&gt;
         ))}
       &lt;/div&gt;
       {sortedAnswers.length &gt; 2  &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;button onClick={toggleExpansion} className='toggleAnswers'&gt;{isExpanded? 'Collapse answers' : 'See more answers' }&lt;/button&gt;</span>
+        &lt;button onClick={toggleExpansion} className='toggleAnswers'&gt;{isExpanded? 'Collapse answers' : 'See more answers' }&lt;/button&gt;
       )}
     &lt;/div&gt;
   );
@@ -208,7 +208,7 @@ export default AnswerList;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-13T02:32:00.509Z
+                at 2024-03-13T03:19:35.434Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

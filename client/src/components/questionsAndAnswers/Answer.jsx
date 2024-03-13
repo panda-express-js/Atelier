@@ -70,9 +70,11 @@ function Answer({ server, options, answer }) {
         </div>
       )}
       {isModalOpen && (
-        <div className="modal" onClick={() => setIsModalOpen(false)}>
-          <img src={currentImage} alt="Full size" style={{ maxWidth: '100%', maxHeight: '80vh', display: 'block', marginLeft: 'auto', marginRight: 'auto' }} />
-          <button onClick={() => setIsModalOpen(false)} style={{ position: 'fixed', top: '10px', right: '10px', cursor: 'pointer' }}>X</button>
+        <div className="photo-modal" onClick={() => setIsModalOpen(false)}>
+           <div className="photo-modal-content" onClick={e => e.stopPropagation()}>
+          <img src={currentImage} alt="Full size"/>
+          <button onClick={() => setIsModalOpen(false)} className="close-modal-btn">X</button>
+        </div>
         </div>
       )}
     </div>

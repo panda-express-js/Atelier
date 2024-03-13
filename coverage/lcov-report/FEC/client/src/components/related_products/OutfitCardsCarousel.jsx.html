@@ -128,24 +128,30 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -161,34 +167,40 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,7 +208,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState, useEffect} from 'react';
 import OutfitCard from './OutfitCard.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faPlus, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 &nbsp;
 const OutfitCardsCarousel = ({product, style, changeId, avgRating}) =&gt; {
   const [outfit, setOutfit] = useState([]);
@@ -218,7 +230,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) =&gt; {
         category: product.category,
         default_price: product.default_price,
         features: product.features,
-        url: style.photos[0].url,
+        photosArray: style.photos,
         sale_price: style.sale_price,
         stars: avgRating
       };
@@ -241,10 +253,14 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) =&gt; {
   }
 &nbsp;
   return (
-    &lt;div className='outfitCarousel'&gt;
-      &lt;div&gt;{currentPosition === 0 ? null: <span class="branch-1 cbranch-no" title="branch not covered" >&lt;button className='carBtn' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >leftArrow()}</span>}&gt;{'&lt;'}&lt;/button&gt;}</span>&lt;/div&gt;
-      &lt;div className='outfitCardsDiv'&gt;
+    &lt;div className='outfitCarousel' data-testid='outfitCarousel'&gt;
+      &lt;div data-testid='carBtnContainerBack' className='carBtnContainer'&gt;
+        {currentPosition === 0 ? null: <span class="branch-1 cbranch-no" title="branch not covered" >&lt;FontAwesomeIcon data-testid='carBtnBack' className='carBtn' icon={faChevronLeft} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >leftArrow()}</span>}/&gt;}</span>
+      &lt;/div&gt;
+      &lt;div className='outfitCardsDiv' data-testid='outfitCardsDiv'&gt;
+      &lt;div className='outfitBtnContainer' data-testid='outfitBtnContainer'&gt;
       &lt;button className='outfitBtn' onClick={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >addToOutift()}</span>}&gt;&lt;FontAwesomeIcon icon={faPlus} size='lg' /&gt;Add To Outift&lt;/button&gt;
+      &lt;/div&gt;
         {outfit.map(<span class="fstat-no" title="function not covered" >(o</span>bj, index) =&gt; {
 <span class="cstat-no" title="statement not covered" >          if (index &gt;= currentPosition &amp;&amp; index &lt;= currentPosition + 2) {</span>
 <span class="cstat-no" title="statement not covered" >            return &lt;OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} /&gt;</span>
@@ -253,7 +269,9 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) =&gt; {
           }
         })}
       &lt;/div&gt;
-      &lt;div&gt;{currentPosition &gt;= outfit.length - 3 ? null :<span class="branch-1 cbranch-no" title="branch not covered" >&lt;button className='carBtn' onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >rightArrow()}</span>}&gt;{'&gt;'}&lt;/button&gt;}</span>&lt;/div&gt;
+      &lt;div data-testid='carBtnContainerNext' className='carBtnContainer'&gt;
+        {currentPosition &gt;= outfit.length - 3 ? null :<span class="branch-1 cbranch-no" title="branch not covered" >&lt;FontAwesomeIcon data-testid='carBtnNext' className='carBtn' icon={faChevronRight} onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; {<span class="cstat-no" title="statement not covered" >rightArrow()}</span>}/&gt;}</span>
+      &lt;/div&gt;
     &lt;/div&gt;
   )
 }
@@ -265,7 +283,7 @@ export default OutfitCardsCarousel;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-13T02:32:00.509Z
+                at 2024-03-13T03:19:35.434Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

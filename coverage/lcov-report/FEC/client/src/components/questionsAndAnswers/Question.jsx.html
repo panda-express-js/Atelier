@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.63% </span>
+                <span class="strong">77.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/22</span>
+                <span class='fraction'>17/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">55.55% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/9</span>
+                <span class='fraction'>5/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">76.19% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/21</span>
+                <span class='fraction'>16/21</span>
             </div>
         
             
@@ -136,11 +136,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -155,24 +155,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -219,11 +219,11 @@ function Question({server, options, product, question, answers}) {
     }
   };
 &nbsp;
-  const handleOpenAddAnswerModal = <span class="fstat-no" title="function not covered" >(e</span>) =&gt;{
-<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >    setOpenAddAnswerModal(true);</span>
+  const handleOpenAddAnswerModal = (e) =&gt;{
+    e.preventDefault();
+    setOpenAddAnswerModal(true);
   }
-  const handleCloseAddAnswerModal =<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setOpenAddAnswerModal(false);</span>
+  const handleCloseAddAnswerModal =() =&gt; setOpenAddAnswerModal(false);
   const onSubmitAnswer = <span class="fstat-no" title="function not covered" >(a</span>nswerData) =&gt; {
 <span class="cstat-no" title="statement not covered" >    axios.post(`${server}/qa/questions/${question.question_id}/answers`, answerData, options)</span>
       .then(<span class="fstat-no" title="function not covered" >()</span>=&gt;{
@@ -247,7 +247,7 @@ function Question({server, options, product, question, answers}) {
       &lt;/div&gt;
       &lt;AnswerList server={server} options={options}answers={answers}/&gt;
       {openAddAnswerModal &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;AddAnswer product={product} question={question}onSubmitAnswer={onSubmitAnswer} onClose={handleCloseAddAnswerModal}/&gt;</span>
+        &lt;AddAnswer product={product} question={question}onSubmitAnswer={onSubmitAnswer} onClose={handleCloseAddAnswerModal}/&gt;
       )}
 &nbsp;
     &lt;/div&gt;
@@ -262,7 +262,7 @@ export default Question;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-13T02:32:00.509Z
+                at 2024-03-13T03:19:35.434Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>

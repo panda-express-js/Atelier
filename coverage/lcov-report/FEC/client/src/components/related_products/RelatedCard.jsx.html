@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.45% </span>
+                <span class="strong">53.84% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/11</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">53.84% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/10</span>
+                <span class='fraction'>7/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,7 +100,15 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,6 +117,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -118,11 +127,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -140,12 +154,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import Comparing from './Comparing.jsx'
+import PhotoView from './PhotoView.jsx'
 import StarDisplay from '../ratings/star_rating/Star_Display.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faStar} from '@fortawesome/free-regular-svg-icons'
 const RelatedCard = ({id, obj, changeId, product, style}) =&gt; {
 &nbsp;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [photo, setPhoto] = useState(obj.photosArray[0].url);
 &nbsp;
   const openModal = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >    setIsModalOpen(true);</span>
@@ -154,12 +170,17 @@ const RelatedCard = ({id, obj, changeId, product, style}) =&gt; {
 <span class="cstat-no" title="statement not covered" >    setIsModalOpen(false);</span>
   };
 &nbsp;
+  const changePhoto = <span class="fstat-no" title="function not covered" >(u</span>rl) =&gt; {
+<span class="cstat-no" title="statement not covered" >    setPhoto(url);</span>
+  }
+&nbsp;
   return (
     &lt;div className='relatedCardDiv'&gt;
       &lt;div className='cardTop'&gt;
         &lt;FontAwesomeIcon className='BTN' icon={faStar} onClick={<span class="fstat-no" title="function not covered" >()</span>=&gt; {<span class="cstat-no" title="statement not covered" >openModal()}</span>} /&gt;
         &lt;Comparing isModalOpen={isModalOpen} closeModal={closeModal} relatedProduct={obj} mainProduct={product} style={style}/&gt;
-        {obj.url ? &lt;img onClick={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >changeId(obj.id)}</span>}alt={`product image of ${obj.name}`} width='50px'src={obj.url} /&gt;: <span class="branch-1 cbranch-no" title="branch not covered" >&lt;img onClick={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >changeId(obj.id)}</span>}/&gt;}</span>
+        &lt;img className='mainImg' onClick={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >changeId(obj.id)}</span>}alt={`product image of ${obj.name}`} width='50px'src={photo} /&gt;
+        &lt;PhotoView photos={obj.photosArray} photo={photo} changePhoto={changePhoto}/&gt;
       &lt;/div&gt;
       &lt;div className='cardBottom' onClick={<span class="fstat-no" title="function not covered" >()</span>=&gt;{<span class="cstat-no" title="statement not covered" >changeId(id)}</span>}&gt;
         &lt;span className='cardCategory'&gt;{obj.category}&lt;/span&gt;
@@ -181,7 +202,7 @@ export default RelatedCard;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-13T02:32:00.509Z
+                at 2024-03-13T03:19:35.434Z
             </div>
         <script src="../../../../../prettify.js"></script>
         <script>
