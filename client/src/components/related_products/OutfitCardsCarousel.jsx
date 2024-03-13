@@ -6,6 +6,7 @@ import {faPlus, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg
 const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   const [outfit, setOutfit] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(0);
+
   useEffect(() => {
     const storedOutfit = localStorage.getItem('userOutfit');
     if (storedOutfit) {
@@ -22,7 +23,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
         category: product.category,
         default_price: product.default_price,
         features: product.features,
-        photosArray: style.photos,
+        url: style.photos[0].url,
         sale_price: style.sale_price,
         stars: avgRating
       };
@@ -56,7 +57,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
         {outfit.map((obj, index) => {
           if (index >= currentPosition && index <= currentPosition + 2) {
             return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} />
-          } else {
+          }else {
             return null;
           }
         })}
