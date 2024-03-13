@@ -53,13 +53,17 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
       <div className='outfitBtnContainer' data-testid='outfitBtnContainer'>
       <button className='outfitBtn' data-testid='outfitBtn' onClick={()=>{addToOutift()}}><FontAwesomeIcon icon={faPlus} size='lg' />Add To Outift</button>
       </div>
-        {outfit.map((obj, index) => {
-          if (index >= currentPosition && index <= currentPosition + 2) {
-            return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} />
-          } else {
-            return null;
+      {() => {
+          if (outfit) {
+            return outfit.map((obj, index) => {
+              if (index >= currentPosition && index <= currentPosition + 2) {
+                return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} />
+              } else {
+                return null;
+              }
+            })
           }
-        })}
+        }}
       </div>
       <div data-testid='carBtnContainerNext' className='carBtnContainer'>
         {currentPosition >= outfit.length - 3 ? null :<FontAwesomeIcon data-testid='carBtnNext' className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}
