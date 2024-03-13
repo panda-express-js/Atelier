@@ -100,7 +100,7 @@ export default function AddReview ({ isModalOpen, closeModal, shouldCloseOnOverl
     <label htmlFor="yes">Yes</label>
     <input type="radio" id="no" name="recommendation" value="no" />
     <label htmlFor="no">No</label>
-    <input type="text"></input>
+    <input name="form-input" type="text" />
 
       <button type="submit">Submit Review</button>
     </form>
