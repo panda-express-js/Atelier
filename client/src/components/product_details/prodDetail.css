@@ -156,7 +156,8 @@ a:visited {
 
 .currentPhoto img {
   max-width: 100%;
-  max-height: 90%;
+  max-height: 95%;
+  object-fit: contain;
 }
 
 .photoUp {
