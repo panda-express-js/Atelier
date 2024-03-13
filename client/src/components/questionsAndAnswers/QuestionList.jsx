@@ -4,7 +4,7 @@ import AddQuestion from './AddQuestion.jsx';
 import axios from 'axios';
 
 
-function QuestionList({server, options, product, answers, questions}) {
+function QuestionList({server, options, product, answers, questions, searchTerm}) {
   const [displayQuestions, setDisplayQuestions] = useState (2);
 
   // Sort questions by helpfulness
@@ -22,11 +22,22 @@ function QuestionList({server, options, product, answers, questions}) {
       .catch(error => console.error('Error adding question:', error));
   };
 
+  const highlightText = (text, searchTerm) => {
+    if (!searchTerm || searchTerm.length < 3) {
+      return text;
+    }
+
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    return text.split(regex).map((part, index) => (
+      regex.test(part) ? <span key={index} style={{ backgroundColor: 'yellow' }}>{part}</span> : part
+    ));
+  };
+
 
   return (
     <div className='questionlist-container' >
       {sortedQuestions.slice(0, displayQuestions).map((question, index) => (
-        <Question server={server} options={options} product={product} key={question.question_id} question={question} answers={answers[question.question_id]} />
+        <Question server={server} options={options} product={product} key={question.question_id} question={question} answers={answers[question.question_id]} searchTerm={searchTerm} highlightText={highlightText} />
       ))}
       <div className='buttons-container'>
           {sortedQuestions.length > displayQuestions && (

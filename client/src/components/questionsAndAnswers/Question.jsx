@@ -5,7 +5,7 @@ import axios from 'axios';
 import './QandA.css';
 
 
-function Question({server, options, product, question, answers}) {
+function Question({server, options, product, question, answers,  searchTerm, highlightText}) {
 
   const [helpfulness, setHelpfulness] = useState(question.question_helpfulness);
   const [hasVoted, setHasVoted] = useState(false);
@@ -46,7 +46,7 @@ function Question({server, options, product, question, answers}) {
    return (
     <div className='question-container'>
       <div className='question-row'>
-        <span className='question-text'>Q: {question.question_body}</span>
+        <span className='question-text'>Q: {highlightText(question.question_body, searchTerm)}</span>
           <span className='question-actions'>
             Helpful? <a href='' onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
             <a href='' onClick ={handleOpenAddAnswerModal}> Add Answer</a>

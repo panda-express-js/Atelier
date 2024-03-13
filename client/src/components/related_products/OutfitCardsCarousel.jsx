@@ -6,6 +6,7 @@ import {faPlus, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg
 const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   const [outfit, setOutfit] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(0);
+
   useEffect(() => {
     const storedOutfit = localStorage.getItem('userOutfit');
     if (storedOutfit) {
@@ -22,7 +23,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
         category: product.category,
         default_price: product.default_price,
         features: product.features,
-        photosArray: style.photos,
+        url: style.photos[0].url,
         sale_price: style.sale_price,
         stars: avgRating
       };
@@ -53,17 +54,13 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
       <div className='outfitBtnContainer' data-testid='outfitBtnContainer'>
       <button className='outfitBtn' data-testid='outfitBtn' onClick={()=>{addToOutift()}}><FontAwesomeIcon icon={faPlus} size='lg' />Add To Outift</button>
       </div>
-      {() => {
-          if (outfit) {
-            return outfit.map((obj, index) => {
-              if (index >= currentPosition && index <= currentPosition + 2) {
-                return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} />
-              } else {
-                return null;
-              }
-            })
+        {outfit.map((obj, index) => {
+          if (index >= currentPosition && index <= currentPosition + 2) {
+            return <OutfitCard key={obj.id} deleteOutfit={deleteOutfit} obj={obj} changeId={changeId} />
+          }else {
+            return null;
           }
-        }}
+        })}
       </div>
       <div data-testid='carBtnContainerNext' className='carBtnContainer'>
         {currentPosition >= outfit.length - 3 ? null :<FontAwesomeIcon data-testid='carBtnNext' className='carBtn' icon={faChevronRight} onClick={() => {rightArrow()}}/>}

@@ -47,7 +47,7 @@ const QandA = ({ product, server, options }) => {
     <div>
       <h4>Questions & Answers</h4>
       <nav><Search onSearchChange={updateSearch}/></nav>
-      <QuestionList server={server} options={options} product={product} questions={searchInput.length >= 3 ? filteredQuestions : questions} answers={answers} />
+      <QuestionList server={server} options={options} product={product} questions={searchInput.length >= 3 ? filteredQuestions : questions} answers={answers} searchTerm={searchInput}  />
     </div>
   );
 };
