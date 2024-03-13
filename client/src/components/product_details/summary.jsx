@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faFacebookF, faXTwitter, faPinterestP } from '@fortawesome/free-brands-svg-icons';
 
 const Summary = ({ product }) => {
 
@@ -17,6 +18,10 @@ const Summary = ({ product }) => {
     }
   }
 
+  const share = () => {
+    console.log('sharing to social media');
+  }
+
   return (
     <div id="summaryContainer">
       <div className="sloganDesc">
@@ -25,6 +30,18 @@ const Summary = ({ product }) => {
       </div>
       <div className="features">
         {renderFeatures()}
+      </div>
+      <div className="share">
+        <div>Share: </div>
+        <a href="https://www.facebook.com" className="shareBtn">
+          <FontAwesomeIcon icon={faFacebookF} onClick={share}/>
+        </a>
+        <a href="https://www.twitter.com" className="shareBtn">
+          <FontAwesomeIcon icon={faXTwitter} onClick={share}/>
+        </a>
+        <a href="https://www.pinterest.com" className="shareBtn">
+          <FontAwesomeIcon icon={faPinterestP} onClick={share}/>
+        </a>
       </div>
     </div>
   )

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-regular-svg-icons'
 
 const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
 
@@ -8,8 +11,8 @@ const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
     if (zoomStatus === false) {
       return (
         <div data-testid="expandedContainer" className="expandedContainer">
-          <div className="expandedPhoto" style={{ backgroundImage: `url(${currentPhoto})`}}>
-          </div>
+          {/* <FontAwesomeIcon icon={faCircle} /> */}
+          <img src={currentPhoto} className="expandedPhoto" onClick={() => setZoomStatus(true)} />
           <button data-testid="closeExpanded" className="closeExpanded" onClick={() => setExpandedView(false)}>X</button>
           <div className="expArrows">
             {renderArrows()}
@@ -18,31 +21,20 @@ const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
       )
     } else {
       return (
-        <div className="expandedContainer">
-          <div className="zoomContainer" style={{ backgroundImage: `url(${currentPhoto})`}}>
-            <img className="zoomedPhoto" src={currentPhoto} onClick={() => setZoomStatus(false)}/>
+        <div className="zoomedContainer">
+          <div className="zoomedPhotoContainer" style={{ backgroundImage: `url(${currentPhoto})`}} onMouseMove={(e) => {moveAround(e)}}>
+            <img src={currentPhoto} className="zoomedPhoto" onClick={() => setZoomStatus(false)} />
           </div>
         </div>
       )
     }
   }
 
-  // create conditional to check if in zoom
-
-  // if yes, add event listener on mouseover
-
-  // set backgroundPositionX and backgroundPositionY
-
-  // const zoomIn = () => {
-  //   let container = document.querySelector('.expandedContainer');
-  //   // change background to currentPhoto
-  //   container.style.backgroundImage = `url(${currentPhoto})`;
-  //   // on click should close zoomed in view
-  //   container.addEventListener("click", () => {
-  //     console.log('clicking on zoomed photo');
-  //     container.classList.add("zoomActive");
-  //   })
-  // }
+  const moveAround = (e) => {
+    let zoomedPhotoContainer = document.querySelector('.zoomedPhotoContainer');
+    zoomedPhotoContainer.style.backgroundPositionX = (-e.nativeEvent.offsetX * 1.5) + "px";
+    zoomedPhotoContainer.style.backgroundPositionY = (-e.nativeEvent.offsetY * 1.5) + "px";
+  }
 
   return (
     <div>
