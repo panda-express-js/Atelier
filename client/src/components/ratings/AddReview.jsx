@@ -93,15 +93,20 @@ export default function AddReview ({ isModalOpen, closeModal, shouldCloseOnOverl
 
     <form method="post" onSubmit={handleSubmit}>
       <div>Write Your Review</div>
-      <div>About the Product Name Here</div>
+      <div>About the Product Name Goes Here</div>
+
+      <div>Star Rating Selector Goes Here</div>
 
       <>Do you Recommend this Product? </>
-      <input type="radio" id="yes" name="recommendation" value="yes" defaultChecked />
+      <input type="radio" id="yes" name="recommend" value="yes" defaultChecked />
     <label htmlFor="yes">Yes</label>
-    <input type="radio" id="no" name="recommendation" value="no" />
+    <input type="radio" id="no" name="recommend" value="no" />
     <label htmlFor="no">No</label>
-    <input name="form-input" type="text" />
-
+    <div>Characteristics go here</div>
+    <input name="summary" type="text" placeholder="Example: Best purchase ever!" />
+    <input name="body" type="text" placeholder="Why did you like the product or not?" />
+    <input name="name" type="text" placeholder="Example: jackson11!" />
+    <input name="email" type="email" placeholder="Example: jackson11@email.com" />
       <button type="submit">Submit Review</button>
     </form>
 </Modal>
