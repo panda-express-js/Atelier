@@ -3,11 +3,10 @@ import axios from 'axios'
 import RelatedCardsCarousel from './RelatedCardsCarousel.jsx'
 import OutfitCardsCarousel from './OutfitCardsCarousel.jsx'
 import './relatedProducts.css';
-const RelatedProducts = ({product, server, options, productIds, changeId, style, avgRating}) => {
-  //40382 has good range
-  //og was 40344
-  const [uniqueProductIds, setUniqueProductIds] = useState([])
+const RelatedProducts = ({avgRating, changeId, options, product, productIds, server, style}) => {
 
+  const [uniqueProductIds, setUniqueProductIds] = useState([])
+  //set state with unique ids(remove duplicates and current product)
   useEffect(() => {
     const arr = productIds.reduce((acc, id) => {
       if (!acc.includes(id) && id !== product.id) {
@@ -24,9 +23,9 @@ const RelatedProducts = ({product, server, options, productIds, changeId, style,
     return (
       <div className='carousels' data-testid="carousels">
         <p className='rHeader'>RELATED PRODUCTS</p>
-        <RelatedCardsCarousel uniqueProductIds={uniqueProductIds} server={server} options={options} changeId={changeId} product={product} style={style} />
+        <RelatedCardsCarousel avgRating={avgRating} changeId={changeId} options={options}  product={product} server={server}  style={style} uniqueProductIds={uniqueProductIds}/>
         <p className='oHeader'>YOUR OUTFIT</p>
-        <OutfitCardsCarousel product={product} style={style} changeId={changeId} avgRating={avgRating} />
+        <OutfitCardsCarousel avgRating={avgRating} changeId={changeId} product={product} style={style}/>
       </div>
     );
   } else {

@@ -3,11 +3,11 @@ import RelatedCard from './RelatedCard.jsx';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, product, style}) => {
+const RelatedCardsCarousel = ({avgRating, changeId, options,  product, server,  style, uniqueProductIds}) => {
 
   const [currentPosition, setCurrentPosition] = useState(0);
   const [productList, setProductList] = useState([]);
-
+  //format data for each uniqueProductIds into an obj and add to state
   useEffect(() => {
     Promise.all(uniqueProductIds.map((id) => {
       return Promise.all([
@@ -61,7 +61,7 @@ const RelatedCardsCarousel = ({uniqueProductIds, server, options, changeId, prod
     <div className='relatedCardsDiv' data-testid='relatedCardsDiv'>
       {productList.map((obj, index) => {
         if (index >= currentPosition && index <= currentPosition + 3) {
-          return <RelatedCard key={obj.id} id={obj.id} obj={obj} changeId={changeId} product={product} style={style}/>
+          return <RelatedCard key={obj.id} avgRating={avgRating} changeId={changeId} id={obj.id} obj={obj} product={product} style={style}/>
         } else {
           return null;
         }

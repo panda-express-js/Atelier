@@ -73,7 +73,7 @@ const App = () => {
     <div data-testid="main-component" id='main-component'>
       <h1>Atelier</h1>
       <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} avgRating={avgRating}/>
-      <RelatedProducts product={product} server={server} options={options} productIds={productIds} changeId={changeId} style={style} reviews={reviews} avgRating={avgRating}/>
+      <RelatedProducts avgRating={avgRating} changeId={changeId} options={options} product={product} productIds={productIds} server={server} style={style}/>
       <QandA server={server} options={options} product={product} />
       { function() { if(product.id) {return <RatingsReviews server={server} options={options} product={product} reviews={reviews} meta={meta} avgRating={avgRating} setReviews={setReviews}/>}}()}
     </div>
