@@ -51,21 +51,21 @@ export default function StarDisplay (props) {
   // map over the rating array and create a star for each number in the array
 
   return (
-    <div className="star-box">
-      <div className="star-box-empty">
+    <div className="star-box" data-testid='star-box'>
+      <div className="star-box-empty" data-testid='star-box-empty'>
     {
     function() {
-      let ratingDisplay = ratingArray.map(() => {
-          return <FontAwesomeIcon icon={faStar} className={`star-empty`} />
+      let ratingDisplay = ratingArray.map((v,i) => {
+          return <FontAwesomeIcon key={i} icon={faStar} className={`star-empty`} />
       })
       return ratingDisplay;
     }()
   }
-  <div className="star-box-full" style={{"width": `${starPercentage}`}}>
+  <div className="star-box-full" data-testid='star-box-full' style={{"width": `${starPercentage}`}}>
   {
     function() {
-      let ratingDisplay = ratingArray.map(() => {
-          return <FontAwesomeIcon icon={faStar} className={`star-full`} />
+      let ratingDisplay = ratingArray.map((v,i) => {
+          return <FontAwesomeIcon key={i} icon={faStar} className={`star-full`} />
       })
       return ratingDisplay;
     }()
