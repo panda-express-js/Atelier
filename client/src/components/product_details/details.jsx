@@ -3,7 +3,7 @@ import StyleSelector from './styleSelect.jsx';
 import ItemAdd from './itemAdd.jsx';
 import StarDisplay from '../ratings/star_rating/Star_Display.jsx';
 
-const Details = ({ product, allStyles, style, setStyle, avgRating }) => {
+const Details = ({ product, allStyles, style, setStyle, avgRating, reviews }) => {
 
   let salePrice = style.sale_price;
   let ogPrice = style.original_price;
@@ -35,17 +35,21 @@ const Details = ({ product, allStyles, style, setStyle, avgRating }) => {
     }
   }
 
-  const goToReviews = () => {
-    console.log('going to review section');
+  const renderRatingInfo = () => {
+    if (avgRating && reviews.count > 0) {
+      return (
+        <div className="detailStars">
+          <StarDisplay rating={avgRating} />
+          <a href="#Ratings & Reviews" className="readReviews">Read all {reviews.count} reviews</a>
+        </div>
+      )
+    }
   }
 
   return (
     <div id="detailContainer">
       <div>
-        <div className="detailStars">
-          <StarDisplay rating={avgRating} />
-          <span className="readReviews" onClick={goToReviews}>Read all reviews</span>
-        </div>
+        {renderRatingInfo()}
         <div className="prodCat">{category}</div>
         <div className="prodName">{product.name}</div>
         <div className="prodPrice">${renderPrice()}</div>
