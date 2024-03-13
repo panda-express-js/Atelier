@@ -66,6 +66,10 @@ import Modal from 'react-modal';
 // C -
 // E -
 
+// Make it so that the overlay isn't closed automatically
+// https://codepen.io/claydiffrient/pen/woLzwo
+// https://reactcommunity.org/react-modal/examples/should_close_on_overlay_click/
+
 
 
 export default function AddReview ({ isModalOpen, closeModal }) {
