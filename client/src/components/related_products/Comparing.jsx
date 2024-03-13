@@ -19,7 +19,7 @@ const Comparing = ({ isModalOpen, closeModal, mainProduct, style, relatedProduct
 
   return (
     <Modal isOpen={isModalOpen} onRequestClose={closeModal} contentLabel="Comparing" className='comparisonModal'>
-      <h6>Comparing</h6>
+      <h6 data-testid='mode'>Comparing</h6>
       <table className='comparisonTable'>
         <thead>
           <tr>

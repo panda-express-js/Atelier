@@ -6,7 +6,6 @@ import {faPlus, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg
 const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
   const [outfit, setOutfit] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(0);
-
   useEffect(() => {
     const storedOutfit = localStorage.getItem('userOutfit');
     if (storedOutfit) {
@@ -52,7 +51,7 @@ const OutfitCardsCarousel = ({product, style, changeId, avgRating}) => {
       </div>
       <div className='outfitCardsDiv' data-testid='outfitCardsDiv'>
       <div className='outfitBtnContainer' data-testid='outfitBtnContainer'>
-      <button className='outfitBtn' onClick={()=>{addToOutift()}}><FontAwesomeIcon icon={faPlus} size='lg' />Add To Outift</button>
+      <button className='outfitBtn' data-testid='outfitBtn' onClick={()=>{addToOutift()}}><FontAwesomeIcon icon={faPlus} size='lg' />Add To Outift</button>
       </div>
         {outfit.map((obj, index) => {
           if (index >= currentPosition && index <= currentPosition + 2) {
