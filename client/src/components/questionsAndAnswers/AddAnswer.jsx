@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './QandA.css';
+import axios from 'axios';
 
 const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
   const [yourAnswer, setYourAnswer] = useState('');
@@ -8,9 +9,27 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
   const [photos, setPhotos] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const [fileObjects, setFileObjects] = useState([]);
+  const [photoPreviews, setPhotoPreviews] = useState([]);
+
   const validateEmail = (email) => /\S+@\S+\.\S+$/.test(email);
 
-  const handleAnswerSubmit = (e) => {
+  //helper function to uploadphoto to cloudinary
+  const uploadPhoto = (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 't2iylfuw');
+    return axios.post(`https://api.cloudinary.com/v1_1/dfpyly8jw/image/upload`, formData)
+      .then(response => {
+        return response.data.secure_url;
+      })
+      .catch(error => {
+        console.error('Error uploading photo:', error.message);
+        return '';
+      })
+  };
+
+  const handleAnswerSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateEmail(email)) {
@@ -18,28 +37,38 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
       return;
     }
 
+    // If there are photo files, upload them
+    let validUrls = [];
+    if (fileObjects.length > 0) {
+      const uploadedPhotosUrls = await Promise.all(fileObjects.map(photo => uploadPhoto(photo)));
+      validUrls = uploadedPhotosUrls.filter(url => url !== '');
+    }
+
     const answerData = {
       body: yourAnswer,
       name: nickname,
       email: email,
-      photos: photos
+      photos: validUrls
     };
 
     onSubmitAnswer(answerData);
   };
 
   const handlePhotoChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      const imageUrl = URL.createObjectURL(file);
+    if (e.target.files) {
+      const files = Array.from(e.target.files);
+      const newFileObjects = [...fileObjects, ...files];
+      const newPhotoPreviews = files.map(file => URL.createObjectURL(file));
 
-      setPhotos([...photos, imageUrl]);
+      setFileObjects(newFileObjects);
+      setPhotoPreviews([...photoPreviews, ...newPhotoPreviews]);
     }
   };
 
-
   const removePhoto = (indexToRemove) => {
-    setPhotos(photos.filter((_, index) => index !== indexToRemove));
+    URL.revokeObjectURL(photoPreviews[indexToRemove]);
+    setFileObjects(fileObjects.filter((_, index) => index !== indexToRemove));
+    setPhotoPreviews(photoPreviews.filter((_, index) => index !== indexToRemove));
   };
 
 
@@ -76,12 +105,12 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
               <p>For authentication reasons, you will not be emailed</p>
             </label>
           <div className="photos-container">
-            {photos.map((photo, index) => (
+            {photoPreviews.map((photoUrl, index) => (
               <div key={index} className="photo-item">
-                <img src={photo} alt={`Uploaded ${index + 1}`} style={{ width: '100px', height: '100px' }} />
-                <button onClick={() => removePhoto(index)}className="remove-photo-btn">X</button>
+                <img src={photoUrl} alt={`Preview ${index}`} style={{ width: '100px', height: '100px' }} />
+                <button type="button" onClick={() => removePhoto(index)} className="remove-photo-btn">X</button>
               </div>
-              ))}
+            ))}
           </div>
             {photos.length < 5 && (
             <label>
