@@ -206,7 +206,7 @@ const styleExample3 = {
 					"size": "L"
 			},
 			"1394845": {
-					"quantity": 15,
+					"quantity": 0,
 					"size": "XL"
 			},
 			"1394846": {
@@ -255,6 +255,7 @@ describe(ItemAdd, () => {
 		render(<ItemAdd style={styleExample3} />);
 		expect(screen.getByText("XS")).toBeInTheDocument();
 		expect(screen.getByText("M")).toBeInTheDocument();
+    expect(screen.queryByText("XL")).not.toBeInTheDocument();
 		expect(screen.getByText("XXL")).toBeInTheDocument();
   })
 

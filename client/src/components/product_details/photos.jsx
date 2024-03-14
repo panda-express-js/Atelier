@@ -59,7 +59,7 @@ const Photos = ({ style }) => {
   const checkExpanded = () => {
     if (expandedView === true) {
       return (
-        <ExpandedView currentPhoto={currentPhoto} setExpandedView={setExpandedView} list={photoList} photoIndex={photoIndex} changePhoto={changePhoto} renderArrows={renderArrows}/>
+        <ExpandedView currentPhoto={currentPhoto} setExpandedView={setExpandedView} list={style.photos} photoIndex={photoIndex} changePhoto={changePhoto} renderArrows={renderArrows}/>
       )
     }
   }
