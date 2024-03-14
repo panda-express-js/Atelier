@@ -30,7 +30,7 @@ const Summary = ({ product }) => {
   return (
     <div id="summaryContainer">
       <div className="sloganDesc">
-        <div className="slogan" style={{fontSize: "16px"}}><strong>{product.slogan}</strong></div>
+        <div className="slogan"><strong>{product.slogan}</strong></div>
         <div className="desc">{product.description}</div>
       </div>
       <div className="features">
