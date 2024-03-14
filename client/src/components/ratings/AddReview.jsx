@@ -35,10 +35,10 @@ export default function AddReview ({ isModalOpen, closeModal, shouldCloseOnOverl
     <label htmlFor="no">No</label>
 
     <label className="review-input" htmlFor="summary">summary</label>
-    <input className="review-input" name="summary" id="summary" type="text" placeholder="Example: Best purchase ever!" style={{"width": "60ch"}}/>
+    <input  maxLength="60" className="review-input" name="summary" id="summary" type="text" placeholder="Example: Best purchase ever!" style={{"width": "60ch"}}/>
 
     <label htmlFor="body">body</label>
-    <textarea name="body" className="review-input" id="body" placeholder="Why did you like the product or not?" rows="5" cols="33" style={{"width": "60ch"}} />
+    <textarea name="body" required minlength="50" maxLength="1000" className="review-input" id="body" placeholder="Why did you like the product or not?" rows="5" cols="33" style={{"width": "60ch"}} />
 
     <label htmlFor="name">nickname</label>
     <input name="name" className="review-input" id="name" type="text" placeholder="Example: jackson11!" />
