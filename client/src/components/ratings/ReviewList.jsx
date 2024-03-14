@@ -73,7 +73,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     <div>
       {function (){
         if (reviewMeta) {
-          return <RatingBreakdown reviewMeta={reviewMeta} ratingFilter={ratingFilter} setRatingFilter={setRatingFilter} avgRating={avgRating} />;
+          return <RatingBreakdown  className="rating-breakdown" reviewMeta={reviewMeta} ratingFilter={ratingFilter} setRatingFilter={setRatingFilter} avgRating={avgRating} />;
         }
       }()}
     </div>
@@ -87,6 +87,7 @@ export default function ReviewList ({ product , server, options, reviews, setRev
       </select>
       <br></br>
     </div>
+    <div className="list-container">
     <div className="actual-list">
     {function () {
       if (reviews.results){
@@ -106,11 +107,11 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     {function (){
       if (reviews.results){
       if (reviews.results.length < 4 ) {
-        return <>
+        return <div className="more-reviews">
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
         <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
         <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} shouldCloseOnOverlayClick={false} product={product} />
-        </>
+        </div>
       }
     }
     }()}
@@ -118,13 +119,14 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     {function (){
       if (reviews.results){
       if (reviews.results.length > 3 ) {
-        return <>
+        return <div className="more-reviews">
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
         <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
         <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} shouldCloseOnOverlayClick={false} product={product} />
-        </>
+        </div>
       }
     }
     }()}
+    </div>
   </div>
 }
