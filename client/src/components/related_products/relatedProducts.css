@@ -51,14 +51,14 @@
 }
 .rHeader, .oHeader {
   margin-bottom: 15px;
-  padding-left: 100px;
+  padding-left: 150px;
   font-size: 15px;
 }
 /*contains arrows and cards collection*/
 .relatedCarousel, .outfitCarousel {
   display: flex;
   max-height: 500px;
-  padding-left: 100px;
+  padding-left: 150px;
 }
 .carBtnContainer {
   flex: 1;
@@ -187,11 +187,11 @@
   position: absolute;
   top: 5px;
   right: 5px;
-  padding: 2px;
+  padding: 3px;
   border-radius: 50%;
 }
 .relatedCardDiv > .cardTop > .BTN {
-  color: rgb(219, 163, 21);
+  color: white;
   background-color: rgb(65, 55, 22);
 }
 .outfitCardDiv > .cardTop > .BTN {
