@@ -70,7 +70,6 @@ body {
 
   /* overlay */
 
-
   .Modal {
     position: absolute;
     top: 40px;
@@ -92,11 +91,19 @@ body {
 .review-input {
   display: block;
 }
-
-/* font */
+.review-list {
+  position: relative;
+}
 
 div, span{
   font-family: "Lato", sans-serif;
+}
+
+.sort {
+  font-family: "Lato", sans-serif;
+  padding: .1rem;
+  margin: .5rem;
+  font-weight: 400;
 }
 
 .rating-breakdown.sort {
@@ -111,3 +118,58 @@ float: right;
 .more-reviews {
  display: block;
   } */
+
+  .rating_breakdown_text{
+    font-weight: 700;
+  }
+
+  .summary {
+    font-weight: 700;
+  }
+
+  .rating_breakdown_number {
+    font-weight: 900;
+    font-size: 4rem;
+    padding: .5rem;
+  }
+
+  .review-tile {
+    padding: .25rem;
+    margin: .25rem;
+  }
+
+  .star-holder {
+    margin-right: 1rem;
+  }
+
+  .date {
+    font-size: small;
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  .recommendation-box {
+    margin-top: .3rem;
+    margin-bottom: .3rem;
+  }
+
+  .container {
+    margin-top: .2rem;
+    margin-bottom: .2rem;
+  }
+
+  .star-and-summary {
+    margin-top: .1rem;
+    margin-bottom: .1rem;
+  }
+
+  #helpful-link {
+    color: HotPink;
+    text-decoration: underline;
+    margin-left: .3rem;
+    margin-right: .3rem;
+  }
+
+  #helpful-link:hover {
+    color: deeppink;
+  }

@@ -28,7 +28,9 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
 
   return <div className="review-tile">
     <div className="username">{username} </div>
+    <div className="star-and-summary">
     <span className="star-holder"><StarDisplay rating={rating} /></span> <span className="summary">{summary}</span>
+    </div>
     <div className="date">{newDate}</div>
     {
       function () {
