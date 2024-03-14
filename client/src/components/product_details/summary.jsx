@@ -22,6 +22,11 @@ const Summary = ({ product }) => {
     console.log('sharing to social media');
   }
 
+  const link = encodeURI(window.location.href);
+  const msg = encodeURIComponent("Check out this cool item:");
+  const fbHref = `https://www.facebook.com/share.php?u=${link}`;
+  const twitterHref = `http://twitter.com/share?&url=${link}&text=${msg}&hashtags=Atelier`;
+
   return (
     <div id="summaryContainer">
       <div className="sloganDesc">
@@ -33,13 +38,13 @@ const Summary = ({ product }) => {
       </div>
       <div className="share">
         <div>Share: </div>
-        <a href="https://www.facebook.com" className="shareBtn">
+        <a href={fbHref} className="facebook">
           <FontAwesomeIcon icon={faFacebookF} onClick={share}/>
         </a>
-        <a href="https://www.twitter.com" className="shareBtn">
+        <a href={twitterHref} className="twitter">
           <FontAwesomeIcon icon={faXTwitter} onClick={share}/>
         </a>
-        <a href="https://www.pinterest.com" className="shareBtn">
+        <a href="https://www.pinterest.com" className="pinterest">
           <FontAwesomeIcon icon={faPinterestP} onClick={share}/>
         </a>
       </div>
