@@ -14,10 +14,10 @@ function Question({server, options, product, question, answers,  searchTerm, hig
   const handleHelpfulClick = (e) => {
     e.preventDefault();
     if (!hasVoted) {
-      setHelpfulness(helpfulness + 1)
-      setHasVoted(true);
       axios.put(`${server}/qa/questions/${question.question_id}/helpful`,{}, options)
-        .then(() => {
+      .then(() => {
+          setHelpfulness(helpfulness + 1)
+          setHasVoted(true);
           console.log('Question Helpfulness updated successfully');
         })
         .catch(error => {
@@ -35,10 +35,10 @@ function Question({server, options, product, question, answers,  searchTerm, hig
     axios.post(`${server}/qa/questions/${question.question_id}/answers`, answerData, options)
       .then(()=>{
         console.log('Answer submitted:', answerData);
+        handleCloseAddAnswerModal()
       })
       .catch(error => console.error('Error adding answer:', error));
 
-    handleCloseAddAnswerModal()
   };
 
 

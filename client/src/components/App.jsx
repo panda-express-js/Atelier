@@ -9,14 +9,14 @@ import '../../../styles.css';
 
   //function to get average rating for main product
   export const getAverageRatingFromMeta = (metaObj) => {
-    var ratingsObj = metaObj.ratings;
-    var totalVotes = 0;
-    var totalStars = 0;
-    for (var key in ratingsObj) {
+    const ratingsObj = metaObj.ratings;
+    let totalVotes = 0;
+    let totalStars = 0;
+    for (let key in ratingsObj) {
       totalVotes += parseInt(ratingsObj[key]);
       totalStars += (parseInt(ratingsObj[key]) * key);
     }
-    var averageRating = totalStars / totalVotes;
+    const averageRating = totalStars / totalVotes;
     return averageRating;
   }
 
@@ -31,6 +31,7 @@ const App = () => {
   const [reviews, setReviews] = useState([]);
   const [meta, setMeta] = useState({});
   const [avgRating, setAvgRating] = useState(0);
+  const [questions, setQuestions] = useState([]);
 
   const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
 
@@ -43,22 +44,24 @@ const App = () => {
       axios.get(`${server}/products/${id}`, options),
       axios.get(`${server}/products/${id}/styles`, options),
       axios.get(`${server}/products/${id}/related`, options),
-      axios.get(`${server}/reviews/meta/?product_id=${id}`, options)
+      axios.get(`${server}/reviews/meta/?product_id=${id}`, options),
+      axios.get(`${server}/qa/questions?product_id=${id}&page=1&count=30`, options)
     ])
-    .then(([productResponse, stylesResponse, relatedResponse, metaResponse]) => {
+    .then(([productResponse, stylesResponse, relatedResponse, metaResponse, questionsResponse]) => {
       setProduct(productResponse.data);
       setAllStyles(stylesResponse.data.results);
       //gets object in results array that has default? set to true
-      var stylesArray = stylesResponse.data.results;
-      var defaultStyle = stylesArray.find((style) => style['default?']) || stylesArray[0];
+      const stylesArray = stylesResponse.data.results;
+      const defaultStyle = stylesArray.find((style) => style['default?']) || stylesArray[0];
       setStyle(defaultStyle);
       setProductIds(relatedResponse.data);
       //Meta object and avg rating states
       setMeta(metaResponse.data);
       setAvgRating(getAverageRatingFromMeta(metaResponse.data))
+      setQuestions(questionsResponse.data.results);
     })
     .catch((err) => {
-      console.log(err, 'App component use effect error');
+      console.log(err);
     });
   }, [id]);
 
@@ -74,7 +77,7 @@ const App = () => {
       <h1>Atelier</h1>
       <ProductDetail product={product} server={server} options={options} allStyles={allStyles} style={style} reviews={reviews} setStyle={setStyle} avgRating={avgRating}/>
       <RelatedProducts avgRating={avgRating} changeId={changeId} options={options} product={product} productIds={productIds} server={server} style={style}/>
-      <QandA server={server} options={options} product={product} />
+      <QandA server={server} options={options} product={product} questions={questions}/>
       { function() { if(product.id) {return <RatingsReviews server={server} options={options} product={product} reviews={reviews} meta={meta} avgRating={avgRating} setReviews={setReviews}/>}}()}
     </div>
   )
