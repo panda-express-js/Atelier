@@ -106,11 +106,11 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     }()}
     {function (){
       if (reviews.results){
-      if (reviews.results.length < 4 ) {
+      if (reviews.results.length < 5 ) {
         return <div className="more-reviews">
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
-        <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
-        <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} shouldCloseOnOverlayClick={false} product={product} />
+        <button className="button" onClick={()=> {openModal()}} type="button">+ Add a review</button>
+        <AddReview isModalOpen={isModalOpen} closeModal={closeModal} shouldCloseOnOverlayClick={false} product={product} />
         </div>
       }
     }
@@ -118,10 +118,10 @@ export default function ReviewList ({ product , server, options, reviews, setRev
     </div>
     {function (){
       if (reviews.results){
-      if (reviews.results.length > 3 ) {
+      if (reviews.results.length > 4 ) {
         return <div className="more-reviews">
         <button onClick={handleMoreReviews} type="button" className="button">More Reviews</button>
-        <button onClick={()=> {openModal()}} type="button">+ Add a review</button>
+        <button className="button" onClick={()=> {openModal()}} type="button">+ Add a review</button>
         <AddReview  isModalOpen={isModalOpen} closeModal={closeModal} shouldCloseOnOverlayClick={false} product={product} />
         </div>
       }
