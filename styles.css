@@ -63,13 +63,14 @@ body {
 
   /* overlay */
 
+
   .Modal {
     position: absolute;
     top: 40px;
     left: 40px;
     right: 40px;
     bottom: 40px;
-    background-color: papayawhip;
+    background-color: #ddd;
   }
 
   .Overlay {
@@ -78,9 +79,28 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rebeccapurple;
+    background-color: rgb(73, 73, 73);
   }
 
 .review-input {
   display: block;
 }
+
+/* font */
+
+div, span{
+  font-family: "Lato", sans-serif;
+}
+
+.rating-breakdown.sort {
+  position: absolute;
+  float: left;
+}
+
+/* .actual-list {
+float: right;
+}
+
+.more-reviews {
+ display: block;
+  } */
