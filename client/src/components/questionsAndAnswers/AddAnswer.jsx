@@ -8,7 +8,6 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
   const [email, setEmail] = useState('');
   const [photos, setPhotos] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-
   const [fileObjects, setFileObjects] = useState([]);
   const [photoPreviews, setPhotoPreviews] = useState([]);
 
@@ -28,7 +27,6 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
         return '';
       })
   };
-
   const handleAnswerSubmit = async (e) => {
     e.preventDefault();
 
@@ -36,7 +34,6 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
       setErrorMessage('The email address provided is not in correct email format');
       return;
     }
-
     // If there are photo files, upload them
     let validUrls = [];
     if (fileObjects.length > 0) {
@@ -50,7 +47,6 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
       email: email,
       photos: validUrls
     };
-
     onSubmitAnswer(answerData);
   };
 
@@ -64,13 +60,11 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
       setPhotoPreviews([...photoPreviews, ...newPhotoPreviews]);
     }
   };
-
   const removePhoto = (indexToRemove) => {
     URL.revokeObjectURL(photoPreviews[indexToRemove]);
     setFileObjects(fileObjects.filter((_, index) => index !== indexToRemove));
     setPhotoPreviews(photoPreviews.filter((_, index) => index !== indexToRemove));
   };
-
 
   return (
     <div>
@@ -80,28 +74,15 @@ const AddAnswer = ({ product, question, onSubmitAnswer, onClose}) => {
           <h3>{product.name}: {question.question_body}</h3>
           <form onSubmit={handleAnswerSubmit}>
             <label>Your Answer: (mandatory)*
-              <textarea
-                value={yourAnswer}
-                onChange={(e) => setYourAnswer(e.target.value)}
-                maxLength="1000" required>
+              <textarea value={yourAnswer} onChange={(e) => setYourAnswer(e.target.value)} maxLength="1000" required>
               </textarea>
             </label>
             <label>What is your nickname (mandatory)*
-              <input
-                type="text"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-                maxLength="60"
-                placeholder="Example: jack543!" required />
+              <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)}maxLength="60"placeholder="Example: jack543!" required />
               <p>For privacy reasons, do not use your full name or email address</p>
             </label>
             <label>Your email (mandatory)*
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                maxLength="60"
-                placeholder="Example: jack@email.com" required />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} maxLength="60" placeholder="Example: jack@email.com" required />
               <p>For authentication reasons, you will not be emailed</p>
             </label>
           <div className="photos-container">

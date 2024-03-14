@@ -16,7 +16,7 @@ const QandA = ({ questions,product, server, options }) => {
     if (questions.length > 0) {
       // Fetch answers for each question
       Promise.all(questions.map(question =>
-        axios.get(`${server}/qa/questions/${question.question_id}/answers?page=1&count=5`, options)
+        axios.get(`${server}/qa/questions/${question.question_id}/answers?page=1&count=50`, options)
       ))
       .then(answersResponses => {
         const newAnswers = answersResponses.reduce((acc, current, index) => {

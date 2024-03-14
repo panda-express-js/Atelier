@@ -58,9 +58,11 @@ function Answer({ server, options, answer }) {
    return (
     <div>
       <p>A: {answer.body}</p>
-      <p>
-        by {isSeller ? <strong>Seller</strong> : answer.answerer_name}, {formattedDate} | Helpful? <a href='' onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
-        {reported ? ' Reported' : <a href='' onClick={handleReportClick}> Report</a>}
+      <p className="answer-info">
+        by {isSeller ? <strong>Seller</strong> : answer.answerer_name}, {formattedDate} | Helpful?{' '}
+        <a href='' className="link" onClick={handleHelpfulClick}>Yes</a> ({helpfulness}) |
+        {reported ? <span className="reported-text"> Reported</span> :
+        <a href='#' className="link" onClick={handleReportClick}> Report</a>}
       </p>
       {answer.photos && answer.photos.length > 0 && (
         <div className="image-thumbnails">
