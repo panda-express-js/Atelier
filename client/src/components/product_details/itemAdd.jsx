@@ -14,9 +14,11 @@ const ItemAdd = ({ style }) => {
     if (style.skus) {
       let allSkus = Object.keys(style.skus);
       return allSkus.map((sku) => {
-        return (
-          <option key={sku} value={sku}>{style.skus[sku].size}</option>
-        )
+        if (style.skus[sku].quantity > 0) {
+          return (
+            <option key={sku} value={sku}>{style.skus[sku].size}</option>
+          )
+        }
       })
     }
   }
