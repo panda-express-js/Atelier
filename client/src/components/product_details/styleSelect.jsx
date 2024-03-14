@@ -28,9 +28,18 @@ const StyleSelector = ({ allStyles, style, setStyle }) => {
     setStyle(allStyles[index]);
   }
 
+  const returnStyleName = () => {
+    if (style.name) {
+      let allCapsStyle = style.name.toUpperCase();
+      return (
+        <span>{allCapsStyle}</span>
+      )
+    }
+  }
+
   return (
     <div className="styleSection">
-      <div className="styleName"><strong>STYLE > </strong>{style.name}</div>
+      <div className="styleName"><strong>STYLE > </strong>{returnStyleName()}</div>
       {renderThumbnails()}
     </div>
   )
