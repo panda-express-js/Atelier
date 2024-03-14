@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleDot } from '@fortawesome/free-solid-svg-icons';
-import { faCircle } from '@fortawesome/free-regular-svg-icons'
+import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
-const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
+const ExpandedView = ({ list, currentPhoto, setExpandedView, renderArrows, changePhoto}) => {
 
+  const [photoList, setPhotoList] = useState(list);
   const [zoomStatus, setZoomStatus] = useState(false);
 
   const expandOrZoom = () => {
     if (zoomStatus === false) {
       return (
         <div data-testid="expandedContainer" className="expandedContainer">
+          <div className="expIcons">
+            {renderIcons()}
+          </div>
           <img src={currentPhoto} data-testid="expandedPhoto" className="expandedPhoto" onClick={() => setZoomStatus(true)} />
           <button data-testid="closeExpanded" className="closeExpanded" onClick={() => setExpandedView(false)}>X</button>
           <div className="expArrows">
@@ -27,6 +30,20 @@ const ExpandedView = ({currentPhoto, setExpandedView, renderArrows}) => {
         </div>
       )
     }
+  }
+
+  const renderIcons = () => {
+    return photoList.map((photo, index) => {
+      if (photo.url === currentPhoto) {
+        return (
+          <FontAwesomeIcon key={photo.url} className="selectedIcon" icon={faCircle} />
+        )
+      } else {
+        return (
+          <FontAwesomeIcon key={photo.url} onClick={() => changePhoto(index)} icon={faCircle} />
+        )
+      }
+    })
   }
 
   const moveAround = (e) => {
