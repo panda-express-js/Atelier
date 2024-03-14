@@ -94,7 +94,7 @@ export default function RatingBreakdown ({ reviewMeta, ratingFilter, setRatingFi
 
 
   return <div className="Rating Breakdown">
-    <div className="rating_breakdown_text">Average Rating </div>
+    <span className="rating_breakdown_text">Average Rating </span>
     <span className="rating_breakdown_number">{currRating}</span>
     <StarDisplay rating={avgRating} />
     <div className="chartContainer">

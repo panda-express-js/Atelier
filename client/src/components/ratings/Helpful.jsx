@@ -14,6 +14,7 @@ export default function Helpful ({ helpful, setHelpful, updateHelpfulAPI, review
   const [hasClicked, setHasClicked] = useState(false);
 
   function clickHandler (event) {
+    event.preventDefault();
 
     let button = event.target.innerHTML
 
@@ -31,8 +32,8 @@ export default function Helpful ({ helpful, setHelpful, updateHelpfulAPI, review
 
   return <span className="helpful-box">
     <span>Was this review helpful? </span>
-    <button className="helpfulbutton" type="button" onClick={clickHandler}>Yes</button>
-    <button className="helpfulbutton" type="button" onClick={clickHandler}>No</button>
+    <a href='#' id ="helpful-link" className="helpful-link" onClick={clickHandler}>Yes</a>
+    <a href='#' id ="helpful-link" className="helpful-link" onClick={clickHandler}>No</a>
     <span> {helpful} people found this helpful</span>
   </span>
 }

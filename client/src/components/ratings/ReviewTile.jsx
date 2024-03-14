@@ -27,11 +27,11 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
 
 
   return <div className="review-tile">
-    <div className="date">{newDate}</div>
     <div className="username">{username} </div>
-    <br></br>
-    <StarDisplay rating={rating} />
-    <br></br>
+    <div className="star-and-summary">
+    <span className="star-holder"><StarDisplay rating={rating} /></span> <span className="summary">{summary}</span>
+    </div>
+    <div className="date">{newDate}</div>
     {
       function () {
         if (response) {
@@ -42,9 +42,6 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
         }
       }()
     }
-    <br></br>
-    <div className="summary">{summary}</div>
-    <br></br>
     <div>
       <div ref={ref} className={showMore ? "" : "container"}>
       {body}
@@ -55,7 +52,6 @@ export default function ReviewTile ({ rating, date, username, summary, body, rec
         </span>
       )}
     </div>
-    <br></br>
     {
       function () {
         if (recommend === true) {
