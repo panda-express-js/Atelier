@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npx webpack",
     "client-dev": "npx webpack --watch",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "server": "npx nodemon --watch server server.js"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,8 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
+    "nodemon": "^2.0.7",
+    "express": "^4.17.1",
     "@babel/preset-env": "^7.24.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
