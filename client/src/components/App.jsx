@@ -3,7 +3,6 @@ import ProductDetail from './product_details/index.jsx';
 import RelatedProducts from './related_products/index.jsx';
 import RatingsReviews from './ratings/Index.jsx';
 import QandA from './questionsAndAnswers/index.jsx';
-import { GITHUB_APIKEY } from '../../../config.js';
 import axios from 'axios';
 import './styles.css';
 
