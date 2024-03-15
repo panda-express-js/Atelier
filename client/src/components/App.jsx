@@ -33,10 +33,8 @@ const App = () => {
   const [avgRating, setAvgRating] = useState(0);
   const [questions, setQuestions] = useState([]);
 
-  const server = "https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp";
-
-  const options = {headers: {'Authorization': `${GITHUB_APIKEY}`}};
-
+  const server = "";
+  const options = '';
   useEffect(()=>{
     //Promise.all takes an array of promises
     //returns an array of the data once all input promises are complete
