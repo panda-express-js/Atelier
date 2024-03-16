@@ -195,20 +195,20 @@
 
 
 .question-actions a {
-  color: HotPink;
+  color: darkblue;
   text-decoration: underline;
 }
 
 .question-actions a:hover {
-  color:deeppink ;
+  color:black ;
 }
 .answer-info .link {
-  color: HotPink;
+  color: darkblue;
   text-decoration: underline;
 }
 
 .answer-info .link:hover {
-  color: deeppink;
+  color: black;
 }
 
 .answer-info .reported-text {
